@@ -1,0 +1,11 @@
+<svg overflow="visible" style="display: block;" viewBox="0 0 90.5656 24.2667" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group-2">
+<g id="Group">
+<path id="Fill-1" fill-rule="evenodd" clip-rule="evenodd" d="M0 4.85398e-05V22.6489L22.6489 4.85398e-05H0Z" fill="var(--fill-0, #B9B9B9)"/>
+<path id="Fill-2" fill-rule="evenodd" clip-rule="evenodd" d="M1.61719 24.2661H24.2661V1.61724L1.61719 24.2661Z" fill="var(--fill-0, #686868)"/>
+</g>
+<path id="Fill-3" fill-rule="evenodd" clip-rule="evenodd" d="M36.9888 11.6073C39.6222 11.6073 41.0222 10.3177 41.0222 7.90815V7.77201C41.0222 5.19278 39.5554 4.17467 36.9888 4.17467H34.2553V11.6073H36.9888ZM28.8888 0H37.1221C42.922 0 46.2222 2.61317 46.2222 7.73847V7.87382C46.2222 12.9987 42.7223 15.4426 37.2886 15.4426H34.2553V24.2667H28.8888V0Z" fill="var(--fill-0, black)"/>
+<path id="Fill-5" fill-rule="evenodd" clip-rule="evenodd" d="M56.9057 20.092C59.4895 20.092 60.7978 18.9381 60.7978 16.7318V16.5965C60.7978 14.4241 59.4895 13.2363 56.775 13.2363H53.766V20.092H56.9057ZM57.1021 24.2667H48.5334V0H63.7738V4.27648H53.799L53.766 9.36706H57.2654C62.6618 9.36706 65.8667 11.777 65.8667 16.63V16.7662C65.8667 21.5174 62.8907 24.2667 57.1021 24.2667Z" fill="var(--fill-0, black)"/>
+<path id="Fill-8" fill-rule="evenodd" clip-rule="evenodd" d="M69.7656 0.0339384H75.4005V10.4728L84.096 4.85398e-05H90.0787L80.2352 11.4895L90.5656 24.2667H83.9916L75.4005 13.3873V24.2667H69.7656V0.0339384Z" fill="var(--fill-0, black)"/>
+</g>
+</svg>

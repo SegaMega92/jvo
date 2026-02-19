@@ -3,6 +3,7 @@ export { Button } from './Button';
 export { Card } from './Card';
 export { Header } from './Header';
 export { Footer } from './Footer';
+export { LogoMarquee } from './LogoMarquee';
 
 // Section Components
 export { HeroSection } from './HeroSection';

@@ -6,6 +6,7 @@ export { Footer } from './Footer';
 export { LogoMarquee } from './LogoMarquee';
 
 // Section Components
+export { AwardsSection } from './AwardsSection';
 export { HeroSection } from './HeroSection';
 export { FeatureCard } from './FeatureCard';
 export { FeaturesSection } from './FeaturesSection';

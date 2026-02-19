@@ -1,0 +1,196 @@
+/* Awards Section */
+
+.awards {
+  padding: 60px 20px;
+  background: #ffffff;
+}
+
+.awards__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.awards__title {
+  font-family: var(--font-family-heading);
+  font-size: 48px;
+  font-weight: 700;
+  color: #15181f;
+  letter-spacing: -0.96px;
+  margin: 0 0 40px;
+}
+
+.awards__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.awards__card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f6f6f9;
+  border-radius: 16px;
+  padding: 10px 20px;
+  min-height: 106px;
+}
+
+.awards__card--withIcon {
+  padding-left: 10px;
+}
+
+.awards__cardLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.awards__icon {
+  flex-shrink: 0;
+  width: 86px;
+  height: 86px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.awards__iconImage {
+  width: 86px;
+  height: 86px;
+  object-fit: contain;
+}
+
+.awards__content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+}
+
+.awards__source {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 600;
+  color: #000000;
+  margin: 0;
+}
+
+.awards__source--uppercase {
+  text-transform: uppercase;
+}
+
+.awards__description {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0;
+}
+
+.awards__badge {
+  font-family: var(--font-family-heading);
+  font-size: 28px;
+  font-weight: 700;
+  color: #000000;
+  letter-spacing: -0.56px;
+  text-align: right;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 900px) {
+  .awards__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .awards__title {
+    font-size: 36px;
+  }
+
+  .awards__content {
+    max-width: none;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 600px) {
+  .awards {
+    padding: 40px 16px;
+  }
+
+  .awards__title {
+    font-size: 28px;
+    letter-spacing: -0.56px;
+    margin-bottom: 24px;
+  }
+
+  .awards__grid {
+    gap: 12px;
+  }
+
+  .awards__card {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 16px;
+    min-height: auto;
+    gap: 12px;
+  }
+
+  .awards__card--withIcon {
+    padding-left: 12px;
+  }
+
+  .awards__cardLeft {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .awards__icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .awards__iconImage {
+    width: 64px;
+    height: 64px;
+  }
+
+  .awards__content {
+    flex: 1;
+    min-width: 0;
+    gap: 6px;
+  }
+
+  .awards__source {
+    font-size: 14px;
+  }
+
+  .awards__description {
+    font-size: 13px;
+    line-height: 1.3;
+  }
+
+  .awards__badge {
+    font-size: 20px;
+    letter-spacing: -0.4px;
+  }
+}
+
+/* Responsive - Small Mobile */
+@media (max-width: 400px) {
+  .awards__card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .awards__cardLeft {
+    width: 100%;
+  }
+
+  .awards__badge {
+    align-self: flex-end;
+    margin-top: 4px;
+  }
+}

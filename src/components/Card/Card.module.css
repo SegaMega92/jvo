@@ -1,0 +1,66 @@
+/* Card Component Styles */
+
+.card {
+  border-radius: var(--radius-xl);
+  transition: all var(--transition-normal);
+}
+
+/* Variants */
+.card--default {
+  background: var(--color-bg-card);
+}
+
+.card--outlined {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card--elevated {
+  background: var(--color-bg-card);
+  box-shadow: var(--shadow-lg);
+}
+
+.card--gradient {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 143, 218, 0.1) 0%,
+    var(--color-bg-card) 100%
+  );
+  border: 1px solid rgba(255, 143, 218, 0.2);
+}
+
+/* Padding */
+.card--none {
+  padding: 0;
+}
+
+.card--small {
+  padding: var(--spacing-4);
+}
+
+.card--medium {
+  padding: var(--spacing-6);
+}
+
+.card--large {
+  padding: var(--spacing-8);
+}
+
+/* States */
+.card--hoverable:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.card--outlined.card--hoverable:hover {
+  border-color: var(--color-accent-pink);
+}
+
+.card--clickable {
+  cursor: pointer;
+}
+
+.card--clickable:focus-visible {
+  outline: 2px solid var(--color-accent-pink);
+  outline-offset: 2px;
+}

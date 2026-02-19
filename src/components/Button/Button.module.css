@@ -1,0 +1,107 @@
+/* Button Component Styles - JVO Figma Design */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  font-family: var(--font-family-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  white-space: nowrap;
+  line-height: 100%;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-accent-pink);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Primary - Pink button (FeatureSection style) */
+.button--primary {
+  background: #ff8fda;
+  color: #101010;
+  border-radius: 8px;
+  font-size: 13px;
+  letter-spacing: 0.26px;
+}
+
+.button--primary:hover:not(:disabled) {
+  background: #ff7ad0;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 143, 218, 0.4);
+}
+
+/* Secondary - Dark button (Hero style) */
+.button--secondary {
+  background: #292538;
+  color: #ffffff;
+  border-radius: 12px;
+  font-size: 16px;
+  letter-spacing: 0.32px;
+}
+
+.button--secondary:hover:not(:disabled) {
+  background: #363347;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(41, 37, 56, 0.3);
+}
+
+/* Outline - White button (Header style) */
+.button--outline {
+  background: #ffffff;
+  color: #15181f;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  letter-spacing: 0.26px;
+}
+
+.button--outline:hover:not(:disabled) {
+  background: #f5f5f7;
+  transform: translateY(-1px);
+}
+
+/* Ghost */
+.button--ghost {
+  background: transparent;
+  color: var(--color-white);
+  border-radius: 8px;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  text-transform: none;
+}
+
+.button--ghost:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Sizes */
+.button--small {
+  padding: 8px 16px;
+  height: 36px;
+}
+
+.button--medium {
+  padding: 12px 24px;
+  height: 48px;
+}
+
+.button--large {
+  padding: 12px 32px;
+  height: 64px;
+}
+
+/* Full Width */
+.button--fullWidth {
+  width: 100%;
+}

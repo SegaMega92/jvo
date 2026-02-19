@@ -1,0 +1,88 @@
+/* Aurora Background Effect - from JVO Tilda */
+
+.aurora {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Main radial gradient */
+.aurora__gradient {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1920px;
+  height: 1000px;
+  background-image: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(237, 255, 245, 1) 28%,
+    rgba(231, 250, 255, 1) 44%,
+    rgba(244, 237, 255, 1) 57%,
+    rgba(255, 255, 255, 1) 67%
+  );
+  filter: blur(50px);
+  border-radius: 96px;
+}
+
+/* Base circle styles */
+.aurora__circle {
+  position: absolute;
+  filter: blur(50px);
+  border-radius: 50%;
+}
+
+/* Cyan circle */
+.aurora__circle--cyan {
+  width: 186px;
+  height: 147px;
+  top: 314px;
+  right: 120px;
+  opacity: 0.5;
+  background-image: linear-gradient(
+    180deg,
+    rgba(145, 205, 207, 1) 0%,
+    rgba(90, 204, 239, 1) 100%
+  );
+}
+
+/* Dark purple circle */
+.aurora__circle--darkPurple {
+  width: 156px;
+  height: 173px;
+  top: 400px;
+  right: 60px;
+  opacity: 0.1;
+  background-image: linear-gradient(
+    180deg,
+    rgba(59, 35, 113, 1) 0%,
+    rgba(248, 237, 252, 1) 100%
+  );
+}
+
+/* Blue-purple circle - far right */
+.aurora__circle--bluePurple {
+  width: 281px;
+  height: 350px;
+  top: 263px;
+  right: -150px;
+  opacity: 0.5;
+  background-image: linear-gradient(
+    180deg,
+    rgba(35, 57, 113, 1) 0%,
+    rgba(161, 96, 189, 1) 100%
+  );
+}
+
+/* Hide circles on mobile */
+@media (max-width: 960px) {
+  .aurora__circle {
+    display: none;
+  }
+}

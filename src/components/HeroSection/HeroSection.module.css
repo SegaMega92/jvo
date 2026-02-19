@@ -1,0 +1,113 @@
+/* HeroSection - JVO Figma Design */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-bg-light);
+  padding: 160px 24px 80px;
+  overflow: hidden;
+}
+
+.hero__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Badge with JVO Agent + WB + Ozon logos */
+.hero__badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.hero__badgeJvo {
+  width: 173.327px;
+  height: 31.76px;
+  aspect-ratio: 173.33 / 31.76;
+  flex-shrink: 0;
+}
+
+.hero__badgeSeparator {
+  font-size: 18px;
+  color: var(--color-text-dark-secondary);
+  margin: 0 4px;
+  font-weight: 300;
+}
+
+.hero__badgeIcon {
+  height: 32px;
+  width: 32px;
+  object-fit: contain;
+}
+
+/* Main title - Desktop/H1 from Figma */
+.hero__title {
+  font-family: var(--font-family-heading);
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: -1.92px;
+  color: var(--color-heading);
+  text-align: center;
+  margin: 0 0 36px;
+  max-width: 900px;
+}
+
+@media (max-width: 960px) {
+  .hero__title {
+    font-size: 42px;
+    letter-spacing: -1.26px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero__title {
+    font-size: 32px;
+    letter-spacing: -0.96px;
+  }
+}
+
+/* CTA Button spacing */
+.hero__button {
+  margin-bottom: 48px;
+}
+
+/* Interface screenshots */
+.hero__interface {
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 48px;
+}
+
+.hero__interfaceImage {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.1);
+}
+
+/* Subtitle - RF Dewi 20px */
+.hero__subtitle {
+  font-family: var(--font-family-body);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: 0.4px;
+  color: var(--color-heading);
+  text-align: center;
+  margin: 0;
+  max-width: 800px;
+}

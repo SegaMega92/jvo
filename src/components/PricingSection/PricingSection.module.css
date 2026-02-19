@@ -1,0 +1,179 @@
+/* PricingSection Component Styles */
+
+.pricing {
+  width: 100%;
+  padding: var(--spacing-20) 0;
+  background: var(--color-bg-primary);
+}
+
+.pricing__container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+/* Header */
+.pricing__header {
+  text-align: center;
+  margin-bottom: var(--spacing-16);
+}
+
+.pricing__title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-4);
+}
+
+@media (min-width: 768px) {
+  .pricing__title {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+.pricing__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Plans Grid */
+.pricing__plans {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-6);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: stretch;
+}
+
+@media (min-width: 768px) {
+  .pricing__plans {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .pricing__plans {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.pricing__planWrapper {
+  display: flex;
+}
+
+/* Plan Card */
+.pricing__plan {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: var(--color-bg-card);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-8);
+  position: relative;
+  border: 1px solid transparent;
+  transition: transform var(--transition-normal), border-color var(--transition-normal);
+}
+
+.pricing__plan:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Featured Plan */
+.pricing__plan--featured {
+  border: 2px solid var(--color-accent-pink);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 143, 218, 0.1) 0%,
+    var(--color-bg-card) 100%
+  );
+}
+
+.pricing__plan--featured:hover {
+  border-color: var(--color-accent-pink);
+  box-shadow: var(--shadow-glow-pink);
+}
+
+/* Badge */
+.pricing__badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--color-accent-pink), var(--color-accent-purple));
+  color: var(--color-white);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  padding: var(--spacing-1) var(--spacing-4);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Plan Name & Description */
+.pricing__planName {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-2);
+}
+
+.pricing__planDescription {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-6);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Price */
+.pricing__priceBlock {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-1);
+  margin-bottom: var(--spacing-6);
+}
+
+.pricing__price {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent-pink);
+}
+
+.pricing__period {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+}
+
+/* Features */
+.pricing__features {
+  flex: 1;
+  list-style: none;
+  margin: 0 0 var(--spacing-8);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.pricing__feature {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.pricing__featureIcon {
+  flex-shrink: 0;
+  color: var(--color-success);
+}

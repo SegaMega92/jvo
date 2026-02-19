@@ -1,0 +1,139 @@
+/* CTASection Component Styles */
+
+.cta {
+  width: 100%;
+  padding: var(--spacing-20) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Variants */
+.cta--default {
+  background: var(--color-bg-primary);
+}
+
+.cta--minimal {
+  background: var(--color-bg-secondary);
+}
+
+.cta--gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-darker) 0%,
+    var(--color-primary-dark) 50%,
+    rgba(255, 143, 218, 0.2) 100%
+  );
+}
+
+.cta__container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  position: relative;
+  z-index: 1;
+}
+
+/* Content */
+.cta__content {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cta__title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-4);
+}
+
+@media (min-width: 768px) {
+  .cta__title {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cta__title {
+    font-size: var(--font-size-5xl);
+  }
+}
+
+.cta__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-8);
+  line-height: var(--line-height-relaxed);
+}
+
+@media (min-width: 768px) {
+  .cta__subtitle {
+    font-size: var(--font-size-xl);
+  }
+}
+
+/* Actions */
+.cta__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .cta__actions {
+    flex-direction: row;
+  }
+}
+
+/* Decoration */
+.cta__decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.cta__glowOrb {
+  position: absolute;
+  border-radius: var(--radius-full);
+  filter: blur(80px);
+  opacity: 0.4;
+}
+
+.cta__glowOrb:first-child {
+  width: 400px;
+  height: 400px;
+  background: var(--color-accent-pink);
+  top: -200px;
+  left: -100px;
+}
+
+.cta__glowOrb:last-child {
+  width: 300px;
+  height: 300px;
+  background: var(--color-accent-purple);
+  bottom: -150px;
+  right: -50px;
+}
+
+@media (min-width: 768px) {
+  .cta__glowOrb:first-child {
+    width: 500px;
+    height: 500px;
+    top: -250px;
+    left: -150px;
+  }
+
+  .cta__glowOrb:last-child {
+    width: 400px;
+    height: 400px;
+    bottom: -200px;
+    right: -100px;
+  }
+}

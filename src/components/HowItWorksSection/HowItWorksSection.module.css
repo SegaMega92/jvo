@@ -1,0 +1,197 @@
+/* HowItWorksSection Component Styles */
+
+.howItWorks {
+  width: 100%;
+  padding: var(--spacing-20) 0;
+  background: var(--color-bg-secondary);
+}
+
+.howItWorks__container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+/* Header */
+.howItWorks__header {
+  text-align: center;
+  margin-bottom: var(--spacing-16);
+}
+
+.howItWorks__title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-4);
+}
+
+@media (min-width: 768px) {
+  .howItWorks__title {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+.howItWorks__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Steps */
+.howItWorks__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: step;
+}
+
+/* Horizontal Variant */
+.howItWorks__steps--horizontal {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-8);
+}
+
+@media (min-width: 768px) {
+  .howItWorks__steps--horizontal {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-6);
+  }
+}
+
+.howItWorks__steps--horizontal .howItWorks__step {
+  position: relative;
+  text-align: center;
+  padding: var(--spacing-6);
+}
+
+.howItWorks__steps--horizontal .howItWorks__connector {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .howItWorks__steps--horizontal .howItWorks__connector {
+    display: block;
+    position: absolute;
+    top: 40px;
+    right: -20px;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-accent-pink), var(--color-accent-purple));
+  }
+}
+
+/* Vertical Variant */
+.howItWorks__steps--vertical {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.howItWorks__steps--vertical .howItWorks__step {
+  display: flex;
+  gap: var(--spacing-6);
+  align-items: flex-start;
+}
+
+.howItWorks__steps--vertical .howItWorks__connector {
+  position: absolute;
+  left: 28px;
+  top: 70px;
+  width: 2px;
+  height: calc(100% - 40px);
+  background: linear-gradient(180deg, var(--color-accent-pink), var(--color-accent-purple));
+}
+
+.howItWorks__steps--vertical .howItWorks__stepContent {
+  text-align: left;
+}
+
+/* Timeline Variant */
+.howItWorks__steps--timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: var(--spacing-8);
+}
+
+.howItWorks__steps--timeline::before {
+  content: '';
+  position: absolute;
+  left: 28px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--color-accent-pink), var(--color-accent-purple), var(--color-accent-pink));
+}
+
+.howItWorks__steps--timeline .howItWorks__step {
+  display: flex;
+  gap: var(--spacing-6);
+  position: relative;
+}
+
+.howItWorks__steps--timeline .howItWorks__stepNumber {
+  position: relative;
+  z-index: 1;
+}
+
+.howItWorks__steps--timeline .howItWorks__connector {
+  display: none;
+}
+
+/* Step */
+.howItWorks__step {
+  position: relative;
+}
+
+/* Step Number */
+.howItWorks__stepNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--color-accent-pink), var(--color-accent-purple));
+  border-radius: var(--radius-full);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  flex-shrink: 0;
+  margin: 0 auto var(--spacing-4);
+}
+
+.howItWorks__steps--vertical .howItWorks__stepNumber,
+.howItWorks__steps--timeline .howItWorks__stepNumber {
+  margin: 0;
+}
+
+/* Step Content */
+.howItWorks__stepContent {
+  flex: 1;
+}
+
+.howItWorks__stepTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-2);
+}
+
+.howItWorks__stepDescription {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+}

@@ -1,0 +1,48 @@
+/* ===========================================
+   JVO Fonts - RF Dewi + RF Dewi Extended + Manrope
+   =========================================== */
+
+/* RF Dewi (regular width) - Body text */
+@import url('https://db.onlinewebfonts.com/c/bfb30c2677ae3236b6f893704c76f019?family=RF+Dewi');
+
+/* RF Dewi Extended - Headings */
+@font-face {
+  font-family: 'RF Dewi Extended';
+  src: url('./RFDewiExtended-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'RF Dewi Extended';
+  src: url('./RFDewiExtended-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Manrope - Body text */
+@font-face {
+  font-family: 'Manrope';
+  src: url('./Manrope-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('./Manrope-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('./Manrope-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

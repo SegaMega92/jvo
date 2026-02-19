@@ -1,0 +1,175 @@
+/* Typography Component Styles - JVO Figma Design */
+
+/* ===========================================
+   Headings - RF Dewi Extended Bold
+   =========================================== */
+
+/* H1 - 64px (Desktop) */
+.h1 {
+  font-family: var(--font-family-heading);
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: -1.92px;
+  color: var(--color-heading);
+  margin: 0;
+}
+
+@media (max-width: 960px) {
+  .h1 {
+    font-size: 42px;
+    letter-spacing: -1.26px;
+  }
+}
+
+@media (max-width: 640px) {
+  .h1 {
+    font-size: 32px;
+    letter-spacing: -0.96px;
+  }
+}
+
+/* H2 - 40px */
+.h2 {
+  font-family: var(--font-family-heading);
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: -1.2px;
+  color: var(--color-heading);
+  margin: 0;
+}
+
+@media (max-width: 960px) {
+  .h2 {
+    font-size: 32px;
+    letter-spacing: -0.96px;
+  }
+}
+
+@media (max-width: 640px) {
+  .h2 {
+    font-size: 28px;
+    letter-spacing: -0.84px;
+  }
+}
+
+/* H3 - 28px */
+.h3 {
+  font-family: var(--font-family-heading);
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: -0.84px;
+  color: var(--color-heading);
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .h3 {
+    font-size: 24px;
+    letter-spacing: -0.72px;
+  }
+}
+
+/* ===========================================
+   Body Text - RF Dewi / Manrope
+   =========================================== */
+
+/* Subtitle - RF Dewi 20px */
+.subtitle {
+  font-family: var(--font-family-body);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: 0.4px;
+  color: var(--color-heading);
+  margin: 0;
+}
+
+/* Body Large - Manrope Medium 18px */
+.bodyLarge {
+  font-family: var(--font-family-primary);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.36px;
+  color: #0d0e12;
+  margin: 0;
+}
+
+@media (max-width: 960px) {
+  .bodyLarge {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bodyLarge {
+    font-size: 15px;
+  }
+}
+
+/* Body - Manrope Medium 16px */
+.body {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.32px;
+  color: var(--color-text-dark-primary);
+  margin: 0;
+}
+
+/* Body Small - Manrope 14px */
+.bodySmall {
+  font-family: var(--font-family-primary);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.28px;
+  color: var(--color-text-dark-secondary);
+  margin: 0;
+}
+
+/* Caption - Manrope 12px */
+.caption {
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.24px;
+  color: var(--color-text-dark-secondary);
+  margin: 0;
+}
+
+/* ===========================================
+   Utility Classes
+   =========================================== */
+
+/* Secondary color for bullets/muted text */
+.secondary {
+  color: #3d3e41;
+}
+
+/* Center alignment */
+.center {
+  text-align: center;
+}
+
+/* Max width constraints */
+.maxWidth--sm {
+  max-width: 600px;
+}
+
+.maxWidth--md {
+  max-width: 800px;
+}
+
+.maxWidth--lg {
+  max-width: 900px;
+}

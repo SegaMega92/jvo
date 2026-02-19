@@ -1,0 +1,72 @@
+/* StepsSection - JVO Figma Design */
+
+.steps {
+  padding: 100px 24px;
+  background: var(--color-bg-light);
+}
+
+.steps__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.steps__title {
+  font-family: var(--font-family-heading);
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: -1.44px;
+  color: var(--color-heading);
+  text-align: center;
+  margin: 0 0 80px;
+}
+
+@media (max-width: 960px) {
+  .steps__title {
+    font-size: 36px;
+    margin-bottom: 48px;
+  }
+}
+
+@media (max-width: 640px) {
+  .steps__title {
+    font-size: 28px;
+  }
+}
+
+.steps__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .steps__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+.steps__card {
+  padding: 0;
+}
+
+.steps__cardTitle {
+  font-family: var(--font-family-heading);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: -0.54px;
+  color: var(--color-heading);
+  margin: 0 0 8px;
+}
+
+.steps__cardDescription {
+  font-family: var(--font-family-primary);
+  font-size: 15px;
+  color: var(--color-text-dark-secondary);
+  margin: 0;
+  line-height: 1.6;
+}

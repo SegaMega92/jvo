@@ -8,7 +8,7 @@ export { LogoMarquee } from './LogoMarquee';
 // Section Components
 export { AwardsSection } from './AwardsSection';
 export { HeroSection } from './HeroSection';
-export { FeatureCard } from './FeatureCard';
+export { FeatureSection } from './FeatureSection';
 export { FeaturesSection } from './FeaturesSection';
 export { StepsSection } from './StepsSection';
 export { PartnersSection } from './PartnersSection';
@@ -17,3 +17,4 @@ export { HowItWorksSection } from './HowItWorksSection';
 export { PricingSection } from './PricingSection';
 export { TestimonialsSection } from './TestimonialsSection';
 export { CTASection } from './CTASection';
+export { BannerSection } from './BannerSection';

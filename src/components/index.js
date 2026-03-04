@@ -19,3 +19,4 @@ export { TestimonialsSection } from './TestimonialsSection';
 export { CTASection } from './CTASection';
 export { BannerSection } from './BannerSection';
 export { ImageListCards } from './ImageListCards';
+export { PromoBanners } from './PromoBanners';

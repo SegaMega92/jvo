@@ -159,7 +159,7 @@ function App() {
         <HowItWorksSection steps={steps} />
         <PricingSection plans={plans} />
         <TestimonialsSection testimonials={testimonials} />
-        <CTASection variant="gradient" />
+        <CTASection />
       </main>
       <Footer columns={footerColumns} />
     </>

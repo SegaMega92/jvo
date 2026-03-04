@@ -1,0 +1,161 @@
+/* PromoBanners Component Styles */
+
+.banners {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+/* ============================
+   Banner Base
+   ============================ */
+.banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 68px;
+}
+
+/* Full-width: растягивается на всё окно, без скруглений */
+.banner--fullWidth {
+  border-radius: 0;
+}
+
+.banner--fullWidth .banner__bgImage {
+  border-radius: 0;
+}
+
+/* ============================
+   Green Variant — Background
+   Exact Figma layering:
+   1) SVG gradient (lime green diagonal)
+   2) Solid dark green #172104
+   3) Base light gray #f8f8fa
+   ============================ */
+.banner__bgGreen {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    url("data:image/svg+xml;utf8,<svg viewBox='0 0 1200 68' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><g transform='matrix(148.2 2.25 -1.5214 100.21 -208 11.5)' opacity='1'><rect height='6.638' width='82.425' fill='url(%23grad)' id='quad' shape-rendering='crispEdges'/><use href='%23quad' transform='scale(1 -1)'/><use href='%23quad' transform='scale(-1 1)'/><use href='%23quad' transform='scale(-1 -1)'/></g><defs><linearGradient id='grad' gradientUnits='userSpaceOnUse' x2='5' y2='5'><stop stop-color='rgba(255,255,255,1)' offset='0'/><stop stop-color='rgba(244,255,199,1)' offset='0.13749'/><stop stop-color='rgba(233,255,143,1)' offset='0.27499'/><stop stop-color='rgba(220,247,165,1)' offset='0.51324'/><stop stop-color='rgba(143,255,145,0)' offset='1'/></linearGradient></defs></svg>") center / cover no-repeat,
+    linear-gradient(90deg, #172104 0%, #172104 100%),
+    #f8f8fa;
+}
+
+/* ============================
+   Lavender Variant — Image BG
+   ============================ */
+.banner__bgImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+/* ============================
+   Decoration (green only)
+   Figma: left 518px, top -28.69px, 445×148px
+   ============================ */
+.banner__decor {
+  position: absolute;
+  left: 518px;
+  top: -29px;
+  width: 445px;
+  height: 148px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ============================
+   Text
+   ============================ */
+.banner__text {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #15181f;
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.banner__text--purple {
+  color: #300247;
+}
+
+/* ============================
+   Button
+   Figma: white bg, 36px height,
+   rounded 12px, bold 16px, #15181f
+   ============================ */
+.banner__button {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 24px;
+  border-radius: 12px;
+  border: none;
+  background: #ffffff;
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.32px;
+  color: #15181f;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+  margin-left: 24px;
+}
+
+.banner__button:hover {
+  opacity: 0.85;
+}
+
+/* ============================
+   Responsive
+   ============================ */
+@media (max-width: 960px) {
+  .banner__decor {
+    left: 40%;
+    width: 37%;
+    height: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 20px;
+  }
+
+  .banner__text {
+    font-size: 14px;
+  }
+
+  .banner__button {
+    margin-left: 0;
+  }
+
+  .banner__decor {
+    display: none;
+  }
+}

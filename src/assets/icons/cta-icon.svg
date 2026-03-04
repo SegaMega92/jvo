@@ -1,0 +1,25 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="&#208;&#154;&#208;&#190;&#208;&#189;&#209;&#130;&#209;&#128;&#208;&#190;&#208;&#187;&#209;&#140;">
+<path id="Rectangle 240648153" d="M16 52.333C13.6068 52.333 11.667 50.3932 11.667 48L11.667 16C11.667 13.6068 13.6068 11.667 16 11.667L48 11.667C50.3932 11.667 52.333 13.6068 52.333 16L52.333 48C52.333 50.3932 50.3932 52.333 48 52.333L16 52.333Z" fill="var(--fill-0, #C16FFB)" stroke="var(--stroke-0, white)" stroke-width="0.666667"/>
+<g id="Vector 395">
+<path d="M27 29.926C22.6667 30.2717 20 41.3333 12 41.3333V48C12 50.2091 13.7909 52 16 52H48C50.2091 52 52 50.2091 52 48V22.6667C40.3333 22.6667 39 34.9689 36 35.8025C33 36.6361 31.3333 29.5802 27 29.926Z" fill="var(--fill-0, #D8F995)"/>
+<path d="M27 29.926C22.6667 30.2717 20 41.3333 12 41.3333V48C12 50.2091 13.7909 52 16 52H48C50.2091 52 52 50.2091 52 48V22.6667C40.3333 22.6667 39 34.9689 36 35.8025C33 36.6361 31.3333 29.5802 27 29.926Z" fill="url(#paint0_linear_680_1552)"/>
+</g>
+<path id="Vector 384" d="M18.6667 48L18.6667 16" stroke="var(--stroke-0, white)" stroke-width="1.33333"/>
+<path id="Vector 386" d="M25.3333 48L25.3333 16" stroke="var(--stroke-0, white)" stroke-width="1.33333"/>
+<path id="Vector 387" d="M32 48L32 16" stroke="var(--stroke-0, white)" stroke-width="1.33333"/>
+<path id="Vector 388" d="M38.6667 48L38.6667 16" stroke="var(--stroke-0, white)" stroke-width="1.33333"/>
+<path id="Vector 389" d="M45.3333 48L45.3333 16" stroke="var(--stroke-0, white)" stroke-width="1.33333"/>
+<path id="Vector 385" d="M12 41.3333C20 41.3333 22.6667 30.2717 27 29.9259C31.3333 29.5802 33 36.6361 36 35.8025C39 34.9689 40.3333 22.6667 52 22.6667" stroke="var(--stroke-0, #C16FFB)" stroke-width="1.33333"/>
+<path id="Vector 391" d="M8 18.6667V12C8 9.79086 9.79086 8 12 8H18.6667" stroke="var(--stroke-0, #C16FFB)" stroke-width="1.33333"/>
+<path id="Vector 392" d="M56 45.3333V52C56 54.2091 54.2091 56 52 56H45.3333" stroke="var(--stroke-0, #C16FFB)" stroke-width="1.33333"/>
+<path id="Vector 393" d="M56 18.6667V12C56 9.79086 54.2091 8 52 8H45.3333" stroke="var(--stroke-0, #C16FFB)" stroke-width="1.33333"/>
+<path id="Vector 394" d="M8 45.3333V52C8 54.2091 9.79086 56 12 56H18.6667" stroke="var(--stroke-0, #C16FFB)" stroke-width="1.33333"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_680_1552" x1="29" y1="32.6667" x2="32.4001" y2="62.0715" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F2E6FE"/>
+<stop offset="1" stop-color="#D5AFFD"/>
+</linearGradient>
+</defs>
+</svg>

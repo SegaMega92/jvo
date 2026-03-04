@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="24&#195;&#151;24">
+<g id="Rectangle 240648195">
+<rect x="3" y="3" width="18" height="18" rx="9" fill="var(--fill-0, #FF8FDA)" fill-opacity="0.2"/>
+<rect x="3.5" y="3.5" width="17" height="17" rx="8.5" stroke="var(--stroke-0, #FF8FDA)" stroke-opacity="0.2"/>
+</g>
+<path id="Vector 414" d="M12 16L12 8" stroke="var(--stroke-0, #FF8FDA)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector 415" d="M8 12H16" stroke="var(--stroke-0, #FF8FDA)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

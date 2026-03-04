@@ -1,0 +1,255 @@
+/* ImageListCards Component Styles */
+
+.section {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+/* ============================
+   Card Base
+   ============================ */
+.card {
+  flex: 1;
+  min-width: 0;
+  background: rgba(234, 215, 254, 0.3);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card--dark {
+  background: #3f0030;
+}
+
+/* ============================
+   Image Area (top)
+   ============================ */
+.card__image {
+  position: relative;
+  aspect-ratio: 571 / 328;
+  margin: 9px 11px 0;
+  border-radius: 8.93px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Left card: interface screenshot */
+.card__imageBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8.93px;
+}
+
+.card__imageOverlay {
+  position: absolute;
+  top: 8.54%;
+  left: 7.51%;
+  width: 117.74%;
+  height: 84.89%;
+}
+
+/* ============================
+   Card Body (bottom)
+   ============================ */
+.card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding: 24px 20px 32px;
+}
+
+/* ============================
+   Card Header (icon + title)
+   ============================ */
+.card__header {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.card__icon img {
+  width: 36px;
+  height: 36px;
+}
+
+.card__icon--light {
+  background: #eed8fe;
+}
+
+.card__icon--dark {
+  background: #651d52;
+}
+
+.card__title {
+  font-family: var(--font-family-heading);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.56px;
+  color: #300247;
+  margin: 0;
+  white-space: pre-line;
+}
+
+.card__title--dark {
+  color: #fbdcf1;
+}
+
+/* ============================
+   List Items
+   ============================ */
+.card__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card__listItem {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #300247;
+}
+
+.card__listItem--dark {
+  color: #fbdcf1;
+}
+
+.card__checkIcon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* ============================
+   Right Card: People Collage
+   ============================ */
+.collage {
+  position: absolute;
+  inset: 0;
+  background: #ff8fda;
+  border-radius: 8.93px;
+}
+
+.collage__photo1,
+.collage__photo2,
+.collage__photo3,
+.collage__photo4 {
+  position: absolute;
+  object-fit: cover;
+  border-radius: 7.708px;
+}
+
+/* Photo 1 — left, medium height */
+.collage__photo1 {
+  left: 13.9%;
+  top: 18.9%;
+  width: 26.8%;
+  height: 62.8%;
+}
+
+/* Photo 2 — center-left, tallest */
+.collage__photo2 {
+  left: 25.1%;
+  top: 6.1%;
+  width: 31.2%;
+  height: 87.5%;
+}
+
+/* Photo 3 — center-right, medium */
+.collage__photo3 {
+  left: 48%;
+  top: 18.9%;
+  width: 29.4%;
+  height: 62%;
+}
+
+/* Photo 4 — far right, smallest */
+.collage__photo4 {
+  left: 67.4%;
+  top: 26.5%;
+  width: 19.2%;
+  height: 44.9%;
+}
+
+/* "Always online" badge */
+.collage__badge {
+  position: absolute;
+  top: 8.8%;
+  left: 44.9%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #172104;
+  border-radius: 12px;
+  padding: 4px 12px;
+  z-index: 2;
+}
+
+.collage__badgeDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 100px;
+  background: #b8ee49;
+  flex-shrink: 0;
+}
+
+.collage__badgeText {
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #d8f995;
+  white-space: nowrap;
+}
+
+/* ============================
+   Responsive
+   ============================ */
+@media (max-width: 960px) {
+  .section {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .card__title {
+    font-size: 22px;
+  }
+
+  .card__body {
+    gap: 24px;
+    padding: 20px 16px 24px;
+  }
+
+  .card__list {
+    gap: 16px;
+  }
+
+  .card__listItem {
+    font-size: 14px;
+  }
+}

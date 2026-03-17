@@ -1,0 +1,20 @@
+<svg width="1280" height="1280" viewBox="0 0 1280 1280" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g clip-path="url(#paint0_diamond_187_10891_clip_path)" data-figma-skip-parse="true"><g transform="matrix(1.38376 -1.46983 0.758848 2.4833 -103.758 1469.83)"><rect x="0" y="0" width="1000.71" height="413.967" fill="url(#paint0_diamond_187_10891)" opacity="1" shape-rendering="crispEdges"/><rect x="0" y="0" width="1000.71" height="413.967" transform="scale(1 -1)" fill="url(#paint0_diamond_187_10891)" opacity="1" shape-rendering="crispEdges"/><rect x="0" y="0" width="1000.71" height="413.967" transform="scale(-1 1)" fill="url(#paint0_diamond_187_10891)" opacity="1" shape-rendering="crispEdges"/><rect x="0" y="0" width="1000.71" height="413.967" transform="scale(-1)" fill="url(#paint0_diamond_187_10891)" opacity="1" shape-rendering="crispEdges"/></g></g><path d="M0 16C0 7.16343 7.16344 0 16 0H1264C1272.84 0 1280 7.16344 1280 16V1264C1280 1272.84 1272.84 1280 1264 1280H16C7.16343 1280 0 1272.84 0 1264V16Z" data-figma-gradient-fill="{&#34;type&#34;:&#34;GRADIENT_DIAMOND&#34;,&#34;stops&#34;:[{&#34;color&#34;:{&#34;r&#34;:0.18823529779911041,&#34;g&#34;:0.0078431377187371254,&#34;b&#34;:0.27843138575553894,&#34;a&#34;:1.0},&#34;position&#34;:0.48029547929763794},{&#34;color&#34;:{&#34;r&#34;:0.45865783095359802,&#34;g&#34;:0.019110742956399918,&#34;b&#34;:0.67843139171600342,&#34;a&#34;:1.0},&#34;position&#34;:0.66799861192703247},{&#34;color&#34;:{&#34;r&#34;:0.75686275959014893,&#34;g&#34;:0.43529412150382996,&#34;b&#34;:0.98431372642517090,&#34;a&#34;:1.0},&#34;position&#34;:1.0}],&#34;stopsVar&#34;:[{&#34;color&#34;:{&#34;r&#34;:0.18823529779911041,&#34;g&#34;:0.0078431377187371254,&#34;b&#34;:0.27843138575553894,&#34;a&#34;:1.0},&#34;position&#34;:0.48029547929763794},{&#34;color&#34;:{&#34;r&#34;:0.45865783095359802,&#34;g&#34;:0.019110742956399918,&#34;b&#34;:0.67843139171600342,&#34;a&#34;:1.0},&#34;position&#34;:0.66799861192703247},{&#34;color&#34;:{&#34;r&#34;:0.75686275959014893,&#34;g&#34;:0.43529412150382996,&#34;b&#34;:0.98431372642517090,&#34;a&#34;:1.0},&#34;position&#34;:1.0}],&#34;transform&#34;:{&#34;m00&#34;:2767.515136718750,&#34;m01&#34;:1517.696777343750,&#34;m02&#34;:-2246.3635253906250,&#34;m10&#34;:-2939.6608886718750,&#34;m11&#34;:4966.5996093750,&#34;m12&#34;:456.36099243164062},&#34;opacity&#34;:1.0,&#34;blendMode&#34;:&#34;NORMAL&#34;,&#34;visible&#34;:true}"/>
+<path d="M0 16C0 7.16343 7.16344 0 16 0H1264C1272.84 0 1280 7.16344 1280 16V1264C1280 1272.84 1272.84 1280 1264 1280H16C7.16343 1280 0 1272.84 0 1264V16Z" fill="url(#paint1_radial_187_10891)" style="mix-blend-mode:luminosity"/>
+<path d="M0 16C0 7.16343 7.16344 0 16 0H1264C1272.84 0 1280 7.16344 1280 16V1264C1280 1272.84 1272.84 1280 1264 1280H16C7.16343 1280 0 1272.84 0 1264V16Z" fill="url(#pattern0_187_10891)" style="mix-blend-mode:soft-light"/>
+<defs>
+<clipPath id="paint0_diamond_187_10891_clip_path"><path d="M0 16C0 7.16343 7.16344 0 16 0H1264C1272.84 0 1280 7.16344 1280 16V1264C1280 1272.84 1272.84 1280 1264 1280H16C7.16343 1280 0 1272.84 0 1264V16Z"/></clipPath><linearGradient id="paint0_diamond_187_10891" x1="0" y1="0" x2="500" y2="500" gradientUnits="userSpaceOnUse">
+<stop offset="0.480295" stop-color="#300247"/>
+<stop offset="0.667999" stop-color="#7505AD"/>
+<stop offset="1" stop-color="#C16FFB"/>
+</linearGradient>
+<radialGradient id="paint1_radial_187_10891" cx="0" cy="0" r="1" gradientTransform="matrix(50.4242 1113.67 -1606.37 1046.05 254.061 945.537)" gradientUnits="userSpaceOnUse">
+<stop offset="0.457245" stop-color="#B4FB9A" stop-opacity="0.0470535"/>
+<stop offset="0.862641" stop-color="#D8F995"/>
+</radialGradient>
+<pattern id="pattern0_187_10891" patternUnits="userSpaceOnUse" patternTransform="matrix(1.64667 0 0 1.64667 0 0)" preserveAspectRatio="none" viewBox="0 0 380 380" width="1" height="1">
+<g id="pattern0_187_10891_inner">
+<rect width="100" height="100" fill="white"/>
+</g>
+</pattern></defs>
+</svg>

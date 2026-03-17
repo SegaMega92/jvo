@@ -1,0 +1,164 @@
+/* HeroBlock - карточка с фичами + иллюстрация */
+/* Градиентный фон, белая карточка слева */
+
+.block {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 20px 20px 20px 30px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  min-height: 500px;
+
+  /* Фоновые слои */
+  background:
+    var(--bg-image, transparent),
+    radial-gradient(
+      ellipse 200% 100% at 50% -30%,
+      rgba(105, 165, 250, 1) 0%,
+      rgba(148, 185, 252, 1) 17%,
+      rgba(191, 205, 255, 1) 34%,
+      rgba(165, 202, 253, 1) 56%,
+      rgba(209, 215, 252, 1) 78%,
+      rgba(253, 228, 250, 1) 100%
+    ),
+    #f6f6f9;
+  background-size: cover, cover, cover;
+  background-position: center, center, center;
+}
+
+/* Белая карточка */
+.card {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 36px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.02);
+  max-width: 370px;
+}
+
+/* Список фич */
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0;
+}
+
+.featureIcon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c16ffb;
+}
+
+.featureIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.featureText {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #15181f;
+}
+
+/* Кнопка */
+.button {
+  width: 100%;
+}
+
+/* Иллюстрация */
+.illustrationWrapper {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.illustration {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* ========================================
+   Адаптив
+   ======================================== */
+
+@media (max-width: 960px) {
+  .block {
+    flex-direction: column;
+    padding: 20px;
+    min-height: auto;
+    gap: 24px;
+  }
+
+  .card {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 24px;
+  }
+
+  .illustrationWrapper {
+    width: 100%;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  .block {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .card {
+    padding: 16px;
+    gap: 20px;
+    border-radius: 20px;
+  }
+
+  .features {
+    gap: 8px;
+  }
+
+  .featureItem {
+    gap: 12px;
+    padding: 8px 0;
+  }
+
+  .featureIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .featureText {
+    font-size: 15px;
+  }
+
+  .illustrationWrapper {
+    min-height: 250px;
+  }
+}

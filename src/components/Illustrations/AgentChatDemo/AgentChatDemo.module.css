@@ -1,0 +1,225 @@
+/* AgentChatDemo - интерактивная иллюстрация чата агента */
+
+.container {
+  position: relative;
+  width: 360px;
+  height: 360px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Градиентный фон */
+.background {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 120% 80% at 0% 0%,
+      rgba(255, 143, 218, 1) 0%,
+      rgba(231, 161, 253, 0.8) 45%,
+      rgba(226, 187, 255, 0.6) 100%
+    ),
+    radial-gradient(
+      ellipse 100% 100% at 100% 100%,
+      rgba(245, 236, 254, 0.8) 0%,
+      rgba(246, 243, 254, 1) 100%
+    ),
+    #f6f3fe;
+}
+
+/* Кнопка "Автоматизировать" */
+.automateButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px 10px 10px;
+  background: linear-gradient(105deg, #aa50ea 15%, #e877ff 112%);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.automateButton:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+  box-shadow: 0 4px 20px rgba(170, 80, 234, 0.4);
+}
+
+.automateButton:active {
+  transform: translate(-50%, -50%) scale(0.98);
+}
+
+.automateButtonHidden {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+  pointer-events: none;
+}
+
+.automateIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 29px;
+  height: 29px;
+  background: rgba(170, 80, 234, 0.5);
+  border-radius: 6px;
+}
+
+.automateText {
+  font-family: var(--font-family-primary);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+/* Чат-пузырь */
+.chatBubble {
+  position: absolute;
+  left: 18px;
+  max-width: 324px;
+  padding: 12px;
+  background: white;
+  border-radius: 9px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.chatBubbleVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.chatBubble1 {
+  top: 41px;
+}
+
+.chatBubble2 {
+  top: 199px;
+  transition-delay: 0.1s;
+}
+
+/* Тег агента */
+.agentTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(234, 215, 254, 0.6);
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+.agentDot {
+  width: 9px;
+  height: 9px;
+  background: #c16ffb;
+  border-radius: 50%;
+}
+
+.agentName {
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  color: #300247;
+}
+
+/* Текст чата */
+.chatText {
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #2b2b2b;
+}
+
+.chatText p {
+  margin: 0 0 6px 0;
+}
+
+.bulletList {
+  margin: 0;
+  padding-left: 18px;
+  list-style: disc;
+}
+
+.bulletList li {
+  margin-bottom: 2px;
+}
+
+.bulletList li:last-child {
+  margin-bottom: 0;
+}
+
+/* Курсор печатания */
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: #c16ffb;
+  margin-left: 2px;
+  opacity: 0;
+  animation: blink 0.7s infinite;
+}
+
+.cursorVisible {
+  opacity: 1;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Кнопки ответа */
+.responseButtons {
+  position: absolute;
+  left: 18px;
+  top: 284px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.responseButtonsVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.responseButton {
+  padding: 3px 9px 4.5px;
+  background: #f6f6f9;
+  border: 0.75px solid white;
+  border-radius: 12px;
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #2b2b2b;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.responseButton:hover {
+  background: #eeeef2;
+}
+
+.responseButton:active {
+  background: #e5e5ea;
+}

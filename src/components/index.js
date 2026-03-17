@@ -25,3 +25,6 @@ export { TestimonialsSection } from './TestimonialsSection';
 export { CTASection } from './CTASection';
 export { BannerSection } from './BannerSection';
 export { MonitoringSection } from './MonitoringSection';
+
+// Illustrations
+export { AgentChatDemo } from './Illustrations/AgentChatDemo';

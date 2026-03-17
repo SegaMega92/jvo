@@ -1,0 +1,215 @@
+/* FeatureBlock - карточка с буллетами + иллюстрация */
+/* Двухколоночный лейаут, светлый фон */
+
+.section {
+  padding: 0 24px 80px;
+  background: #ffffff;
+}
+
+.container {
+  max-width: 1288px;
+  margin: 0 auto;
+  display: flex;
+  gap: 48px;
+  align-items: center;
+}
+
+.containerReversed {
+  flex-direction: row-reverse;
+}
+
+/* Карточка с контентом */
+.card {
+  flex: 1;
+  background: #f8f9fb;
+  border-radius: 24px;
+  padding: 48px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Заголовок - RF Dewi Extended Bold */
+.title {
+  font-family: var(--font-family-heading);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.56px;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+/* Описание - Manrope Medium */
+.description {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Список фич */
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.featureIcon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(193, 111, 251, 0.1);
+  border-radius: 50%;
+  color: #c16ffb;
+}
+
+.featureIcon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.featureText {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #1a1a2e;
+}
+
+/* Кнопка */
+.button {
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+/* Иллюстрация */
+.imageWrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.image {
+  max-width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+/* ========================================
+   Адаптив
+   ======================================== */
+
+@media (max-width: 1200px) {
+  .container {
+    gap: 32px;
+  }
+
+  .card {
+    padding: 40px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .imageWrapper {
+    min-height: 350px;
+  }
+}
+
+@media (max-width: 960px) {
+  .section {
+    padding: 0 24px 60px;
+  }
+
+  .container {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .containerReversed {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .imageWrapper {
+    width: 100%;
+    max-width: 600px;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 0 16px 48px;
+  }
+
+  .card {
+    padding: 24px;
+    border-radius: 16px;
+  }
+
+  .content {
+    gap: 20px;
+  }
+
+  .title {
+    font-size: 22px;
+    letter-spacing: -0.44px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+
+  .features {
+    gap: 12px;
+  }
+
+  .featureText {
+    font-size: 15px;
+  }
+
+  .featureIcon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .featureIcon svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .imageWrapper {
+    min-height: 250px;
+  }
+
+  .image {
+    border-radius: 12px;
+  }
+}

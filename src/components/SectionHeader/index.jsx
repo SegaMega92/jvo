@@ -16,6 +16,7 @@ export function SectionHeader({
   buttonVariant = 'primary',
   children,
   centered = true,
+  titleSize = 'large',
   as: HeadingTag = 'h1',
   className = '',
 }) {
@@ -34,7 +35,7 @@ export function SectionHeader({
 
         {/* Текстовый блок */}
         <div className={`${styles.content} ${centered ? styles.contentCentered : ''}`}>
-          <HeadingTag className={styles.title}>{title}</HeadingTag>
+          <HeadingTag className={`${styles.title} ${titleSize === 'medium' ? styles.titleMedium : ''}`}>{title}</HeadingTag>
           {subtitle && (
             <p className={styles.subtitle}>{subtitle}</p>
           )}
@@ -73,6 +74,7 @@ SectionHeader.propTypes = {
   buttonVariant: PropTypes.oneOf(['primary', 'secondary', 'outline', 'ghost']),
   children: PropTypes.node,
   centered: PropTypes.bool,
+  titleSize: PropTypes.oneOf(['large', 'medium']),
   as: PropTypes.oneOf(['h1', 'h2', 'h3']),
   className: PropTypes.string,
 };

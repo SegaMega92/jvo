@@ -1,0 +1,71 @@
+/* MonitoringSection - секция с двумя карточками */
+
+.section {
+  padding: 40px 24px;
+  background: #ffffff;
+}
+
+/* Убираем padding у вложенного SectionHeader */
+.header {
+  padding: 0;
+  margin-bottom: 48px;
+}
+
+/* Контейнер для карточек */
+.cardsContainer {
+  max-width: 1288px;
+  margin: 0 auto;
+}
+
+/* Обёртка карточек с навигацией */
+.cardsWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 120px;
+  position: relative;
+}
+
+/* Навигационная стрелка - абсолютно позиционирована по центру между карточками */
+.navigation {
+  position: absolute;
+  left: 50%;
+  top: 162px; /* Выравнивание по верхней части изображений */
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* ========================================
+   Адаптив
+   ======================================== */
+
+@media (max-width: 960px) {
+  .cardsWrapper {
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .navigation {
+    position: static;
+    transform: rotate(90deg);
+    margin: -24px 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 32px 16px;
+  }
+
+  .header {
+    margin-bottom: 32px;
+  }
+
+  .cardsWrapper {
+    gap: 32px;
+  }
+
+  .navigation {
+    margin: -16px 0;
+  }
+}

@@ -4,6 +4,12 @@ export { Card } from './Card';
 export { Header } from './Header';
 export { Footer } from './Footer';
 export { LogoMarquee } from './LogoMarquee';
+export { IconButton } from './IconButton';
+export { FeatureCard } from './FeatureCard';
+export { SectionHeader } from './SectionHeader';
+export { HeroBlock } from './HeroBlock';
+export { FeatureSlider } from './FeatureSlider';
+export { FeatureSliderGroup } from './FeatureSliderGroup';
 
 // Section Components
 export { AwardsSection } from './AwardsSection';
@@ -18,3 +24,4 @@ export { PricingSection } from './PricingSection';
 export { TestimonialsSection } from './TestimonialsSection';
 export { CTASection } from './CTASection';
 export { BannerSection } from './BannerSection';
+export { MonitoringSection } from './MonitoringSection';

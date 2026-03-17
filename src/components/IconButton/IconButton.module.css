@@ -1,0 +1,71 @@
+/* IconButton - круглая кнопка с иконкой */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+/* Variants */
+.button--default {
+  background: #e9ebf0;
+  color: #15181f;
+}
+
+.button--default:hover {
+  background: #dcdfe5;
+}
+
+.button--primary {
+  background: var(--color-accent-pink);
+  color: #ffffff;
+}
+
+.button--primary:hover {
+  background: var(--color-accent-pink-hover);
+}
+
+.button--ghost {
+  background: transparent;
+  color: #15181f;
+}
+
+.button--ghost:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Sizes */
+.button--small {
+  width: 28px;
+  height: 28px;
+}
+
+.button--medium {
+  width: 36px;
+  height: 36px;
+}
+
+.button--large {
+  width: 48px;
+  height: 48px;
+}
+
+/* Icon */
+.icon {
+  width: auto;
+  height: 40%;
+  object-fit: contain;
+}

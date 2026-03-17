@@ -73,6 +73,13 @@
   margin: 0;
 }
 
+/* Средний заголовок - 36px */
+.titleMedium {
+  font-size: 36px;
+  line-height: 1;
+  letter-spacing: -0.72px;
+}
+
 /* Подзаголовок - Manrope Medium */
 .subtitle {
   font-family: var(--font-family-primary);
@@ -103,6 +110,11 @@
     letter-spacing: -1.92px;
   }
 
+  .titleMedium {
+    font-size: 32px;
+    letter-spacing: -0.64px;
+  }
+
   .subtitle {
     font-size: 18px;
   }
@@ -124,6 +136,11 @@
   .title {
     font-size: 36px;
     letter-spacing: -1.08px;
+  }
+
+  .titleMedium {
+    font-size: 28px;
+    letter-spacing: -0.56px;
   }
 
   .subtitle {
@@ -161,6 +178,11 @@
   .title {
     font-size: 28px;
     letter-spacing: -0.84px;
+  }
+
+  .titleMedium {
+    font-size: 24px;
+    letter-spacing: -0.48px;
   }
 
   .subtitle {

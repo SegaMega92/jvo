@@ -31,13 +31,25 @@
   position: relative;
 }
 
-/* Навигационная стрелка - абсолютно позиционирована по центру между карточками */
+/* Декоративная стрелка - абсолютно позиционирована по центру между карточками */
 .navigation {
   position: absolute;
   left: 50%;
-  top: 162px; /* Выравнивание по верхней части изображений */
+  top: 162px;
   transform: translateX(-50%);
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #e9ebf0;
+  border-radius: 12px;
+}
+
+.navigationIcon {
+  width: 9px;
+  height: auto;
 }
 
 /* ========================================

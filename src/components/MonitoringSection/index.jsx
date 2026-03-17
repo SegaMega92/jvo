@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import styles from './MonitoringSection.module.css';
 import { SectionHeader } from '../SectionHeader';
 import { FeatureCard } from '../FeatureCard';
-import { IconButton } from '../IconButton';
 import chevronRight from '../../../assets/chevron-right.svg';
 
 /**
@@ -14,7 +13,6 @@ export function MonitoringSection({
   subtitle,
   cards = [],
   showNavigation = true,
-  onNavigate,
   className = '',
 }) {
   return (
@@ -41,16 +39,10 @@ export function MonitoringSection({
             />
           ))}
 
-          {/* Навигационная стрелка */}
+          {/* Декоративная стрелка между карточками */}
           {showNavigation && cards.length >= 2 && (
-            <div className={styles.navigation}>
-              <IconButton
-                icon={chevronRight}
-                ariaLabel="Следующий слайд"
-                variant="default"
-                size="medium"
-                onClick={onNavigate}
-              />
+            <div className={styles.navigation} aria-hidden="true">
+              <img src={chevronRight} alt="" className={styles.navigationIcon} />
             </div>
           )}
         </div>
@@ -71,7 +63,6 @@ MonitoringSection.propTypes = {
     })
   ).isRequired,
   showNavigation: PropTypes.bool,
-  onNavigate: PropTypes.func,
   className: PropTypes.string,
 };
 

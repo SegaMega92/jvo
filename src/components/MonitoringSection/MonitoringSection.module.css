@@ -21,7 +21,7 @@
 .cardsWrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 120px;
   position: relative;
 }

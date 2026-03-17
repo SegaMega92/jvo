@@ -1,6 +1,8 @@
 import { HeroBlock } from './index';
+import { SectionHeader } from '../SectionHeader';
 import heroIllustration from '../../../assets/hero-illustration-agent.png';
 import heroGradient from '../../../assets/hero-gradient.png';
+import tagIconAgent from '../../../assets/tag-icon-agent.svg';
 
 export default {
   title: 'Sections/HeroBlock',
@@ -72,67 +74,17 @@ export const WithSectionHeader = {
     illustration: heroIllustration,
     backgroundImage: heroGradient,
   },
-  decorators: [
-    (Story) => (
-      <div style={{ background: '#fff', padding: '0 24px 80px' }}>
-        {/* Имитация SectionHeader */}
-        <div style={{
-          padding: '80px 0 40px',
-          textAlign: 'center',
-          maxWidth: '1200px',
-          margin: '0 auto',
-        }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '6px 14px 6px 6px',
-            background: '#ead7fe',
-            borderRadius: '16px',
-            marginBottom: '24px',
-          }}>
-            <div style={{
-              width: '36px',
-              height: '36px',
-              background: '#c16ffb',
-              borderRadius: '10px',
-            }} />
-            <span style={{
-              fontFamily: 'var(--font-family-primary)',
-              fontSize: '16px',
-              fontWeight: 500,
-              color: '#300247',
-            }}>
-              Агент коммуникаций
-            </span>
-          </div>
-          <h1 style={{
-            fontFamily: 'var(--font-family-heading)',
-            fontSize: '64px',
-            fontWeight: 800,
-            lineHeight: 0.9,
-            letterSpacing: '-2.56px',
-            color: '#15181f',
-            margin: '0 0 36px',
-          }}>
-            Ответы на отзывы, вопросы и кросс-продажи
-          </h1>
-          <p style={{
-            fontFamily: 'var(--font-family-primary)',
-            fontSize: '20px',
-            fontWeight: 500,
-            lineHeight: 1.6,
-            color: '#15181f',
-            maxWidth: '760px',
-            margin: '0 auto',
-          }}>
-            Автоматизируйте общение с покупателями, превращайте отзывы в повторные продажи и получайте готовую аналитику для бизнеса
-          </p>
-        </div>
-        <div style={{ maxWidth: '960px', margin: '0 auto' }}>
-          <Story />
-        </div>
+  render: (args) => (
+    <div style={{ background: '#fff' }}>
+      <SectionHeader
+        tag="Агент коммуникаций"
+        tagIcon={tagIconAgent}
+        title="Ответы на отзывы, вопросы и кросс-продажи"
+        subtitle="Автоматизируйте общение с покупателями, превращайте отзывы в повторные продажи и получайте готовую аналитику для бизнеса"
+      />
+      <div style={{ maxWidth: '960px', margin: '-40px auto 80px', padding: '0 24px' }}>
+        <HeroBlock {...args} />
       </div>
-    ),
-  ],
+    </div>
+  ),
 };

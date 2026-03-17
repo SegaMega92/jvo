@@ -1,4 +1,5 @@
 import { SectionHeader } from './index';
+import tagIconAgent from '../../../assets/tag-icon-agent.svg';
 
 export default {
   title: 'Sections/SectionHeader',
@@ -21,22 +22,22 @@ export default {
   },
 };
 
-// Базовый вариант с тегом
+// Агент коммуникаций - как в макете
 export const Default = {
+  args: {
+    tag: 'Агент коммуникаций',
+    tagIcon: tagIconAgent,
+    title: 'Ответы на отзывы, вопросы и кросс-продажи',
+    subtitle: 'Автоматизируйте общение с покупателями, превращайте отзывы в повторные продажи и получайте готовую аналитику для бизнеса',
+  },
+};
+
+// Без иконки в теге
+export const WithoutIcon = {
   args: {
     tag: 'Новая функция',
     title: 'Автоматизируйте продажи в социальных сетях',
     subtitle: 'Превращайте комментарии и сообщения в продажи с помощью умных автоответов и персонализированных воронок.',
-  },
-};
-
-// С иконкой в теге
-export const WithTagIcon = {
-  args: {
-    tag: 'AI Powered',
-    tagIcon: 'https://api.iconify.design/mdi:robot-outline.svg?color=%23c16ffb',
-    title: 'Искусственный интеллект для вашего бизнеса',
-    subtitle: 'Автоматически отвечайте на вопросы клиентов, квалифицируйте лиды и закрывайте сделки 24/7.',
   },
 };
 

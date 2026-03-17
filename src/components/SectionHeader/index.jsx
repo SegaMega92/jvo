@@ -24,7 +24,7 @@ export function SectionHeader({
       <div className={styles.container}>
         {/* Тег с иконкой */}
         {tag && (
-          <div className={styles.tag}>
+          <div className={`${styles.tag} ${!tagIcon ? styles.tagNoIcon : ''}`}>
             {tagIcon && (
               <img src={tagIcon} alt="" className={styles.tagIcon} />
             )}

@@ -59,13 +59,14 @@
 @media (max-width: 960px) {
   .cardsWrapper {
     flex-direction: column;
+    align-items: center;
     gap: 48px;
   }
 
   .navigation {
     position: static;
     transform: rotate(90deg);
-    margin: -24px 0;
+    margin: -24px auto;
   }
 }
 
@@ -75,14 +76,44 @@
   }
 
   .header {
-    margin-bottom: 32px;
+    margin-bottom: 32px !important;
+  }
+
+  /* Уменьшаем gap между title и subtitle на мобильных */
+  .header [class*="content"] {
+    gap: 16px !important;
   }
 
   .cardsWrapper {
-    gap: 32px;
+    gap: 24px;
   }
 
   .navigation {
-    margin: -16px 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    margin: -12px auto;
+  }
+
+  .navigationIcon {
+    width: 7px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 24px 12px;
+  }
+
+  .header {
+    margin-bottom: 24px !important;
+  }
+
+  .cardsWrapper {
+    gap: 20px;
+  }
+
+  .navigation {
+    margin: -10px auto;
   }
 }

@@ -268,3 +268,94 @@
 .responseButton:active {
   background: #e5e5ea;
 }
+
+/* ========================================
+   Адаптив
+   ======================================== */
+
+@media (max-width: 640px) {
+  .container {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    min-height: 280px;
+    border-radius: 12px;
+  }
+
+  .automateButton {
+    height: 36px;
+    gap: 8px;
+    padding: 0 12px 0 8px;
+    border-radius: 8px;
+  }
+
+  .automateIconWrapper {
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+  }
+
+  .automateIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .automateText {
+    font-size: 14px;
+  }
+
+  .chatBubble {
+    left: 12px;
+    right: 12px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .chatBubble1 {
+    top: 28px;
+  }
+
+  .chatBubble2 {
+    top: auto;
+    bottom: 60px;
+  }
+
+  .agentTag {
+    padding: 4px 8px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+  }
+
+  .agentDot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .agentName {
+    font-size: 10px;
+  }
+
+  .chatText {
+    font-size: 11px;
+  }
+
+  .bulletList {
+    padding-left: 14px;
+  }
+
+  .bulletList li {
+    font-size: 11px;
+  }
+
+  .responseButtons {
+    left: 12px;
+    top: auto;
+    bottom: 12px;
+    padding-top: 8px;
+  }
+
+  .responseButton {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+}

@@ -7,13 +7,13 @@
 
 /* Убираем padding у вложенного SectionHeader */
 .header {
-  padding: 0;
+  padding: 0 !important;
   margin-bottom: 48px;
 }
 
 /* Gap между title и subtitle в этой секции = 24px (из Figma) */
 .header [class*="content"] {
-  gap: 24px;
+  gap: 24px !important;
 }
 
 /* Контейнер для карточек */

@@ -60,13 +60,23 @@
   .cardsWrapper {
     flex-direction: column;
     align-items: center;
-    gap: 48px;
+    gap: 24px;
+  }
+
+  /* Располагаем стрелку между карточками через order */
+  .cardsWrapper > *:first-child {
+    order: 1;
+  }
+
+  .cardsWrapper > *:nth-child(2) {
+    order: 3;
   }
 
   .navigation {
+    order: 2 !important;
     position: static;
     transform: rotate(90deg);
-    margin: -24px auto;
+    margin: 0;
   }
 }
 

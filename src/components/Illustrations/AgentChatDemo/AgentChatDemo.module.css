@@ -1,4 +1,5 @@
 /* AgentChatDemo - интерактивная иллюстрация чата агента */
+/* Pixel-perfect по макету Figma */
 
 .container {
   position: relative;
@@ -8,26 +9,38 @@
   overflow: hidden;
 }
 
-/* Градиентный фон */
+/* Градиентный фон - из Figma */
 .background {
   position: absolute;
   inset: 0;
   background:
     radial-gradient(
-      ellipse 120% 80% at 0% 0%,
+      ellipse at 0% 0%,
       rgba(255, 143, 218, 1) 0%,
-      rgba(231, 161, 253, 0.8) 45%,
-      rgba(226, 187, 255, 0.6) 100%
+      rgba(231, 161, 253, 0.45) 45%,
+      rgba(226, 187, 255, 0) 100%
     ),
     radial-gradient(
-      ellipse 100% 100% at 100% 100%,
-      rgba(245, 236, 254, 0.8) 0%,
+      ellipse at 100% 100%,
+      rgba(245, 236, 254, 0) 0%,
       rgba(246, 243, 254, 1) 100%
-    ),
-    #f6f3fe;
+    );
+  background-color: #f6f3fe;
 }
 
-/* Кнопка "Автоматизировать" */
+/* Точечный паттерн поверх градиента */
+.pattern {
+  position: absolute;
+  inset: 0;
+  background-image: var(--pattern-dots);
+  background-repeat: repeat;
+  pointer-events: none;
+}
+
+/* ========================================
+   Кнопка "Автоматизировать"
+   Figma: height 41px, padding 10px 15px 10px 10px, gap 10px
+   ======================================== */
 .automateButton {
   position: absolute;
   top: 50%;
@@ -36,8 +49,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 15px 10px 10px;
-  background: linear-gradient(105deg, #aa50ea 15%, #e877ff 112%);
+  height: 41px;
+  padding: 0 15px 0 10px;
+  background: linear-gradient(105deg, #aa50ea 14.6%, #e877ff 111.7%);
   border: none;
   border-radius: 10px;
   color: white;
@@ -61,16 +75,24 @@
   pointer-events: none;
 }
 
-.automateIcon {
+/* Иконка в кнопке - 29x29px с фоном */
+.automateIconWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 29px;
   height: 29px;
-  background: rgba(170, 80, 234, 0.5);
+  background: #aa50ea;
   border-radius: 6px;
+  flex-shrink: 0;
 }
 
+.automateIcon {
+  width: 22px;
+  height: 22px;
+}
+
+/* Текст кнопки - Golos Text Medium 17px */
 .automateText {
   font-family: var(--font-family-primary);
   font-size: 17px;
@@ -79,15 +101,19 @@
   white-space: nowrap;
 }
 
-/* Чат-пузырь */
+/* ========================================
+   Чат-пузыри
+   Figma: left 18px, padding 12px, border-radius 9px
+   ======================================== */
 .chatBubble {
   position: absolute;
   left: 18px;
+  right: 18px;
   max-width: 324px;
   padding: 12px;
   background: white;
   border-radius: 9px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -98,16 +124,21 @@
   transform: translateY(0);
 }
 
+/* Первый пузырь - top 41px */
 .chatBubble1 {
   top: 41px;
 }
 
+/* Второй пузырь - top 199px */
 .chatBubble2 {
   top: 199px;
   transition-delay: 0.1s;
 }
 
-/* Тег агента */
+/* ========================================
+   Тег агента
+   Figma: gap 6px, padding 6px 10px, border-radius 12px
+   ======================================== */
 .agentTag {
   display: inline-flex;
   align-items: center;
@@ -115,16 +146,18 @@
   padding: 6px 10px;
   background: rgba(234, 215, 254, 0.6);
   border-radius: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 7.5px;
 }
 
 .agentDot {
   width: 9px;
   height: 9px;
   background: #c16ffb;
-  border-radius: 50%;
+  border-radius: 7.5px;
+  flex-shrink: 0;
 }
 
+/* Figma: Manrope Medium 12px */
 .agentName {
   font-family: var(--font-family-primary);
   font-size: 12px;
@@ -133,19 +166,27 @@
   color: #300247;
 }
 
-/* Текст чата */
+/* ========================================
+   Контент чата
+   Figma: Golos Text Regular 12px, line-height 16.5px
+   ======================================== */
+.chatContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
 .chatText {
   font-family: var(--font-family-primary);
   font-size: 12px;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.375;
   color: #2b2b2b;
+  margin: 0;
+  word-wrap: break-word;
 }
 
-.chatText p {
-  margin: 0 0 6px 0;
-}
-
+/* Bullet list - Figma: margin-left 18px */
 .bulletList {
   margin: 0;
   padding-left: 18px;
@@ -153,26 +194,25 @@
 }
 
 .bulletList li {
-  margin-bottom: 2px;
-}
-
-.bulletList li:last-child {
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.375;
+  color: #2b2b2b;
   margin-bottom: 0;
 }
 
-/* Курсор печатания */
+/* ========================================
+   Курсор печатания
+   ======================================== */
 .cursor {
   display: inline-block;
-  width: 2px;
-  height: 1em;
+  width: 1px;
+  height: 12px;
   background: #c16ffb;
-  margin-left: 2px;
-  opacity: 0;
-  animation: blink 0.7s infinite;
-}
-
-.cursorVisible {
-  opacity: 1;
+  margin-left: 1px;
+  vertical-align: text-bottom;
+  animation: blink 0.6s infinite;
 }
 
 @keyframes blink {
@@ -184,7 +224,10 @@
   }
 }
 
-/* Кнопки ответа */
+/* ========================================
+   Кнопки ответа
+   Figma: left 18px, top 284px, gap 3px
+   ======================================== */
 .responseButtons {
   position: absolute;
   left: 18px;
@@ -192,6 +235,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 3px;
+  padding-top: 12px;
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -202,6 +246,7 @@
   transform: translateY(0);
 }
 
+/* Figma: padding 3px 9px 4.5px, border-radius 12px */
 .responseButton {
   padding: 3px 9px 4.5px;
   background: #f6f6f9;
@@ -210,7 +255,7 @@
   font-family: var(--font-family-primary);
   font-size: 12px;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.375;
   color: #2b2b2b;
   cursor: pointer;
   transition: background 0.2s ease;

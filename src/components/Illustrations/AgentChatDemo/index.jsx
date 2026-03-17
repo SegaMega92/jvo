@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styles from './AgentChatDemo.module.css';
+import automateIcon from '../../../../assets/automate-icon.svg';
 
 /**
  * AgentChatDemo - интерактивная иллюстрация с анимацией чата агента
@@ -24,6 +25,8 @@ export function AgentChatDemo({
   const [displayedBullets, setDisplayedBullets] = useState([]);
   const [displayedText2, setDisplayedText2] = useState('');
   const [showButtons, setShowButtons] = useState(false);
+  // Позиция курсора: 'text1' | 'bullet0' | 'bullet1' | 'bullet2' | 'text2' | 'none'
+  const [cursorPosition, setCursorPosition] = useState('none');
 
   const fullText1 = 'Начинаем автоматизацию ответов на отзывы и вопросы. Для начала определим тон ответа:';
   const bullets = [
@@ -40,12 +43,14 @@ export function AgentChatDemo({
     setDisplayedBullets([]);
     setDisplayedText2('');
     setShowButtons(false);
+    setCursorPosition('none');
   }, []);
 
   // Запуск анимации
   const startAnimation = useCallback(() => {
     if (stage !== 'idle') return;
     setStage('typing1');
+    setCursorPosition('text1');
   }, [stage]);
 
   // Эффект печатания первого сообщения
@@ -64,6 +69,7 @@ export function AgentChatDemo({
           charIndex++;
         } else {
           phase = 'bullets';
+          setCursorPosition('bullet0');
         }
       } else if (phase === 'bullets') {
         if (bulletIndex < bullets.length) {
@@ -78,10 +84,17 @@ export function AgentChatDemo({
           } else {
             bulletIndex++;
             bulletCharIndex = 0;
+            if (bulletIndex < bullets.length) {
+              setCursorPosition(`bullet${bulletIndex}`);
+            }
           }
         } else {
           clearInterval(interval);
-          setTimeout(() => setStage('typing2'), 500);
+          setCursorPosition('none');
+          setTimeout(() => {
+            setStage('typing2');
+            setCursorPosition('text2');
+          }, 500);
         }
       }
     }, typingSpeed);
@@ -101,6 +114,7 @@ export function AgentChatDemo({
         charIndex++;
       } else {
         clearInterval(interval);
+        setCursorPosition('none');
         setTimeout(() => {
           setShowButtons(true);
           setStage('complete');
@@ -120,12 +134,13 @@ export function AgentChatDemo({
     }
   }, [autoPlay, autoPlayDelay, stage, startAnimation]);
 
-  const isAnimating = stage !== 'idle' && stage !== 'complete';
-
   return (
     <div className={`${styles.container} ${className}`}>
       {/* Градиентный фон */}
       <div className={styles.background} />
+
+      {/* Точечный паттерн */}
+      <div className={styles.pattern} />
 
       {/* Кнопка "Автоматизировать" */}
       <button
@@ -133,14 +148,8 @@ export function AgentChatDemo({
         onClick={startAnimation}
         disabled={stage !== 'idle'}
       >
-        <span className={styles.automateIcon}>
-          <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g transform="rotate(-45 14.5 14.5)">
-              <ellipse cx="14.5" cy="14.5" rx="4" ry="7" stroke="white" strokeWidth="2" fill="none" />
-              <ellipse cx="14.5" cy="14.5" rx="7" ry="11" stroke="white" strokeWidth="2" fill="none" opacity="0.7" />
-              <ellipse cx="14.5" cy="14.5" rx="10" ry="14" stroke="white" strokeWidth="2" fill="none" opacity="0.4" />
-            </g>
-          </svg>
+        <span className={styles.automateIconWrapper}>
+          <img src={automateIcon} alt="" className={styles.automateIcon} />
         </span>
         <span className={styles.automateText}>Автоматизировать</span>
       </button>
@@ -151,16 +160,17 @@ export function AgentChatDemo({
           <span className={styles.agentDot} />
           <span className={styles.agentName}>Агент коммуникаций</span>
         </div>
-        <div className={styles.chatText}>
-          <p>{displayedText1}<span className={`${styles.cursor} ${isAnimating && stage === 'typing1' && displayedBullets.length === 0 ? styles.cursorVisible : ''}`} /></p>
+        <div className={styles.chatContent}>
+          <p className={styles.chatText}>
+            {displayedText1}
+            {cursorPosition === 'text1' && <span className={styles.cursor} />}
+          </p>
           {displayedBullets.length > 0 && (
             <ul className={styles.bulletList}>
               {displayedBullets.map((bullet, index) => (
                 <li key={index}>
                   {bullet}
-                  {stage === 'typing1' && index === displayedBullets.length - 1 && index < bullets.length - 1 && (
-                    <span className={`${styles.cursor} ${styles.cursorVisible}`} />
-                  )}
+                  {cursorPosition === `bullet${index}` && <span className={styles.cursor} />}
                 </li>
               ))}
             </ul>
@@ -172,7 +182,7 @@ export function AgentChatDemo({
       <div className={`${styles.chatBubble} ${styles.chatBubble2} ${stage === 'typing2' || stage === 'complete' ? styles.chatBubbleVisible : ''}`}>
         <p className={styles.chatText}>
           {displayedText2}
-          <span className={`${styles.cursor} ${stage === 'typing2' ? styles.cursorVisible : ''}`} />
+          {cursorPosition === 'text2' && <span className={styles.cursor} />}
         </p>
       </div>
 

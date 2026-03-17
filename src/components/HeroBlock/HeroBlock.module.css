@@ -28,6 +28,25 @@
   background-position: center, center, center;
 }
 
+/* Точечный паттерн поверх градиента */
+.withPattern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--pattern-dots);
+  background-repeat: repeat;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 0;
+}
+
+/* Контент поверх паттерна */
+.withPattern .card,
+.withPattern .illustrationWrapper {
+  position: relative;
+  z-index: 1;
+}
+
 /* Белая карточка */
 .card {
   flex-shrink: 0;

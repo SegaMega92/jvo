@@ -15,11 +15,12 @@ export function HeroBlock({
   illustration,
   illustrationAlt = '',
   backgroundImage,
+  showPattern = true,
   className = '',
 }) {
   return (
     <div
-      className={`${styles.block} ${className}`}
+      className={`${styles.block} ${showPattern ? styles.withPattern : ''} ${className}`}
       style={backgroundImage ? { '--bg-image': `url(${backgroundImage})` } : undefined}
     >
       {/* Белая карточка с фичами */}
@@ -73,6 +74,7 @@ HeroBlock.propTypes = {
   illustration: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   illustrationAlt: PropTypes.string,
   backgroundImage: PropTypes.string,
+  showPattern: PropTypes.bool,
   className: PropTypes.string,
 };
 

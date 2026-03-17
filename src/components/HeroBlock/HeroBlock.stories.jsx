@@ -13,6 +13,12 @@ export default {
       default: 'light',
     },
   },
+  argTypes: {
+    showPattern: {
+      control: 'boolean',
+      description: 'Показать точечный паттерн поверх градиента',
+    },
+  },
 };
 
 // Базовый вариант - Агент коммуникаций

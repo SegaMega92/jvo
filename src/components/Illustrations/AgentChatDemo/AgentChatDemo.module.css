@@ -282,48 +282,50 @@
     border-radius: 12px;
   }
 
+  /* Кнопка - чуть меньше но читаемая */
   .automateButton {
-    height: 36px;
+    height: 38px;
     gap: 8px;
-    padding: 0 12px 0 8px;
-    border-radius: 8px;
+    padding: 0 14px 0 8px;
+    border-radius: 9px;
   }
 
   .automateIconWrapper {
-    width: 24px;
-    height: 24px;
-    border-radius: 5px;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
   }
 
   .automateIcon {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
   }
 
   .automateText {
-    font-size: 14px;
+    font-size: 15px;
   }
 
+  /* Чат-пузыри - процентное позиционирование */
   .chatBubble {
-    left: 12px;
-    right: 12px;
+    left: 4%;
+    right: 4%;
+    max-width: none;
     padding: 10px;
     border-radius: 8px;
   }
 
   .chatBubble1 {
-    top: 28px;
+    top: 8%;
   }
 
   .chatBubble2 {
-    top: auto;
-    bottom: 60px;
+    top: 56%;
   }
 
   .agentTag {
     padding: 4px 8px;
     border-radius: 10px;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
   }
 
   .agentDot {
@@ -335,27 +337,71 @@
     font-size: 10px;
   }
 
+  /* Текст чата - компактнее */
   .chatText {
-    font-size: 11px;
+    font-size: 10px;
+    line-height: 1.3;
   }
 
   .bulletList {
-    padding-left: 14px;
+    padding-left: 12px;
+    margin-top: 2px;
   }
 
   .bulletList li {
-    font-size: 11px;
+    font-size: 10px;
+    line-height: 1.3;
   }
 
+  /* Кнопки ответа */
   .responseButtons {
-    left: 12px;
-    top: auto;
-    bottom: 12px;
-    padding-top: 8px;
+    left: 4%;
+    right: 4%;
+    top: 80%;
+    padding-top: 6px;
+    gap: 4px;
   }
 
   .responseButton {
-    font-size: 11px;
-    padding: 3px 8px;
+    font-size: 10px;
+    padding: 4px 8px;
+    border-radius: 10px;
+  }
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 380px) {
+  .automateButton {
+    height: 34px;
+    gap: 6px;
+    padding: 0 10px 0 6px;
+  }
+
+  .automateIconWrapper {
+    width: 22px;
+    height: 22px;
+  }
+
+  .automateIcon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .automateText {
+    font-size: 13px;
+  }
+
+  .chatText,
+  .bulletList li {
+    font-size: 9px;
+  }
+
+  .agentName {
+    font-size: 9px;
+  }
+
+  .responseButton {
+    font-size: 9px;
+    padding: 3px 6px;
   }
 }

@@ -79,15 +79,17 @@ export function FeatureSlider({
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        {/* Левая часть: текст + кнопка */}
+        {/* Левая часть: текст + кнопка (десктоп) */}
         <div className={styles.content}>
           <div className={styles.text}>
             <h2 className={styles.title}>{sectionTitle}</h2>
             <p className={styles.description}>{sectionDescription}</p>
           </div>
-          <Button href={buttonHref} variant="outline" size="medium">
-            {buttonText}
-          </Button>
+          <div className={styles.buttonDesktop}>
+            <Button href={buttonHref} variant="outline" size="medium">
+              {buttonText}
+            </Button>
+          </div>
         </div>
 
         {/* Правая часть: медиа + слайдер */}
@@ -176,6 +178,13 @@ export function FeatureSlider({
               </div>
             )}
           </div>
+        </div>
+
+        {/* Кнопка для мобильных — под слайдером */}
+        <div className={styles.buttonMobile}>
+          <Button href={buttonHref} variant="outline" size="medium">
+            {buttonText}
+          </Button>
         </div>
       </div>
     </section>

@@ -1,0 +1,94 @@
+/* FeatureSliderGroup - sticky табы-точки слева + scroll snap */
+
+.group {
+  position: relative;
+  background: #300247;
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+/* Sticky табы — позиционируются слева */
+.tabs {
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  pointer-events: none;
+  height: 0;
+}
+
+.tabsInner {
+  position: absolute;
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: auto;
+}
+
+/* Таб-точка */
+.tab {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.tab:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.2);
+}
+
+.tabActive {
+  background: #c16ffb;
+  transform: scale(1.2);
+}
+
+.tabActive:hover {
+  background: #c16ffb;
+}
+
+/* Секции */
+.sections {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionWrapper {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* ========================================
+   Адаптив
+   ======================================== */
+
+@media (max-width: 1200px) {
+  .tabsInner {
+    left: 16px;
+  }
+}
+
+@media (max-width: 960px) {
+  /* На мобильных убираем snap и табы */
+  .group {
+    height: auto;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .tabs {
+    display: none;
+  }
+
+  .sectionWrapper {
+    scroll-snap-align: none;
+  }
+}
+

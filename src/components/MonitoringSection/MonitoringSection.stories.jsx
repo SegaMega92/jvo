@@ -62,6 +62,45 @@ const LeftIllustration = () => (
   </div>
 );
 
+// Обёртка для правой иллюстрации с градиентом и интерактивным AgentChatDemo
+const RightIllustration = () => (
+  <div
+    style={{
+      width: '100%',
+      height: '100%',
+      borderRadius: '16px',
+      overflow: 'hidden',
+      position: 'relative',
+      background: `
+        radial-gradient(
+          ellipse 70% 50% at 30% 50%,
+          rgba(253, 224, 255, 0.9) 0%,
+          transparent 100%
+        ),
+        radial-gradient(
+          ellipse 60% 40% at 80% 30%,
+          rgba(234, 215, 254, 0.8) 0%,
+          transparent 100%
+        )
+      `,
+      backgroundColor: '#f6f3fe',
+    }}
+  >
+    {/* Точечный паттерн */}
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        backgroundImage: 'var(--pattern-dots)',
+        backgroundRepeat: 'repeat',
+        pointerEvents: 'none',
+      }}
+    />
+    {/* Интерактивная иллюстрация поверх фона */}
+    <AgentChatDemo />
+  </div>
+);
+
 // Полная секция как в макете с интерактивной иллюстрацией
 export const Default = {
   args: {
@@ -75,7 +114,7 @@ export const Default = {
         description: 'система распределяет найденные отклонения по уровням критичности — от рекомендованных до важных и критических — для фокусировки на задачах, требующих решения в первую очередь.',
       },
       {
-        image: <AgentChatDemo />,
+        image: <RightIllustration />,
         imageAlt: 'Мгновенная автоматизация',
         title: 'Мгновенная автоматизация',
         description: 'Часть созданных задач в один клик передаётся в работу профильным Агентам для исполнения — от управления ценами до подготовки ответов на отзывы',

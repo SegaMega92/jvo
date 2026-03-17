@@ -137,12 +137,6 @@ export function AgentChatDemo({
   return (
     <div className={`${styles.wrapper} ${className}`}>
       <div className={styles.container}>
-        {/* Градиентный фон */}
-        <div className={styles.background} />
-
-        {/* Точечный паттерн */}
-        <div className={styles.pattern} />
-
         {/* Кнопка "Автоматизировать" */}
         <button
           className={`${styles.automateButton} ${stage !== 'idle' ? styles.automateButtonHidden : ''}`}

@@ -1,12 +1,22 @@
 /* AgentChatDemo - интерактивная иллюстрация чата агента */
 /* Pixel-perfect по макету Figma */
 
+/* Внешняя обёртка для центрирования при scale */
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
 .container {
   position: relative;
   width: 360px;
   height: 360px;
   border-radius: 16px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 /* Градиентный фон - из Figma */
@@ -270,138 +280,25 @@
 }
 
 /* ========================================
-   Адаптив
+   Адаптив - используем scale для сохранения пропорций
    ======================================== */
 
 @media (max-width: 640px) {
   .container {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    min-height: 280px;
-    border-radius: 12px;
-  }
-
-  /* Кнопка - чуть меньше но читаемая */
-  .automateButton {
-    height: 38px;
-    gap: 8px;
-    padding: 0 14px 0 8px;
-    border-radius: 9px;
-  }
-
-  .automateIconWrapper {
-    width: 26px;
-    height: 26px;
-    border-radius: 6px;
-  }
-
-  .automateIcon {
-    width: 20px;
-    height: 20px;
-  }
-
-  .automateText {
-    font-size: 15px;
-  }
-
-  /* Чат-пузыри - процентное позиционирование */
-  .chatBubble {
-    left: 4%;
-    right: 4%;
-    max-width: none;
-    padding: 10px;
-    border-radius: 8px;
-  }
-
-  .chatBubble1 {
-    top: 8%;
-  }
-
-  .chatBubble2 {
-    top: 56%;
-  }
-
-  .agentTag {
-    padding: 4px 8px;
-    border-radius: 10px;
-    margin-bottom: 5px;
-  }
-
-  .agentDot {
-    width: 7px;
-    height: 7px;
-  }
-
-  .agentName {
-    font-size: 10px;
-  }
-
-  /* Текст чата - компактнее */
-  .chatText {
-    font-size: 10px;
-    line-height: 1.3;
-  }
-
-  .bulletList {
-    padding-left: 12px;
-    margin-top: 2px;
-  }
-
-  .bulletList li {
-    font-size: 10px;
-    line-height: 1.3;
-  }
-
-  /* Кнопки ответа */
-  .responseButtons {
-    left: 4%;
-    right: 4%;
-    top: 80%;
-    padding-top: 6px;
-    gap: 4px;
-  }
-
-  .responseButton {
-    font-size: 10px;
-    padding: 4px 8px;
-    border-radius: 10px;
+    /* Масштабируем контейнер, сохраняя оригинальный layout */
+    transform: scale(0.85);
+    transform-origin: center center;
   }
 }
 
-/* Очень маленькие экраны */
+@media (max-width: 480px) {
+  .container {
+    transform: scale(0.75);
+  }
+}
+
 @media (max-width: 380px) {
-  .automateButton {
-    height: 34px;
-    gap: 6px;
-    padding: 0 10px 0 6px;
-  }
-
-  .automateIconWrapper {
-    width: 22px;
-    height: 22px;
-  }
-
-  .automateIcon {
-    width: 16px;
-    height: 16px;
-  }
-
-  .automateText {
-    font-size: 13px;
-  }
-
-  .chatText,
-  .bulletList li {
-    font-size: 9px;
-  }
-
-  .agentName {
-    font-size: 9px;
-  }
-
-  .responseButton {
-    font-size: 9px;
-    padding: 3px 6px;
+  .container {
+    transform: scale(0.65);
   }
 }

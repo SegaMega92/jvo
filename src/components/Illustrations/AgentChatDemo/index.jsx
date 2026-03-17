@@ -135,65 +135,67 @@ export function AgentChatDemo({
   }, [autoPlay, autoPlayDelay, stage, startAnimation]);
 
   return (
-    <div className={`${styles.container} ${className}`}>
-      {/* Градиентный фон */}
-      <div className={styles.background} />
+    <div className={`${styles.wrapper} ${className}`}>
+      <div className={styles.container}>
+        {/* Градиентный фон */}
+        <div className={styles.background} />
 
-      {/* Точечный паттерн */}
-      <div className={styles.pattern} />
+        {/* Точечный паттерн */}
+        <div className={styles.pattern} />
 
-      {/* Кнопка "Автоматизировать" */}
-      <button
-        className={`${styles.automateButton} ${stage !== 'idle' ? styles.automateButtonHidden : ''}`}
-        onClick={startAnimation}
-        disabled={stage !== 'idle'}
-      >
-        <span className={styles.automateIconWrapper}>
-          <img src={automateIcon} alt="" className={styles.automateIcon} />
-        </span>
-        <span className={styles.automateText}>Автоматизировать</span>
-      </button>
+        {/* Кнопка "Автоматизировать" */}
+        <button
+          className={`${styles.automateButton} ${stage !== 'idle' ? styles.automateButtonHidden : ''}`}
+          onClick={startAnimation}
+          disabled={stage !== 'idle'}
+        >
+          <span className={styles.automateIconWrapper}>
+            <img src={automateIcon} alt="" className={styles.automateIcon} />
+          </span>
+          <span className={styles.automateText}>Автоматизировать</span>
+        </button>
 
-      {/* Чат-пузырь 1 */}
-      <div className={`${styles.chatBubble} ${styles.chatBubble1} ${stage !== 'idle' ? styles.chatBubbleVisible : ''}`}>
-        <div className={styles.agentTag}>
-          <span className={styles.agentDot} />
-          <span className={styles.agentName}>Агент коммуникаций</span>
+        {/* Чат-пузырь 1 */}
+        <div className={`${styles.chatBubble} ${styles.chatBubble1} ${stage !== 'idle' ? styles.chatBubbleVisible : ''}`}>
+          <div className={styles.agentTag}>
+            <span className={styles.agentDot} />
+            <span className={styles.agentName}>Агент коммуникаций</span>
+          </div>
+          <div className={styles.chatContent}>
+            <p className={styles.chatText}>
+              {displayedText1}
+              {cursorPosition === 'text1' && <span className={styles.cursor} />}
+            </p>
+            {displayedBullets.length > 0 && (
+              <ul className={styles.bulletList}>
+                {displayedBullets.map((bullet, index) => (
+                  <li key={index}>
+                    {bullet}
+                    {cursorPosition === `bullet${index}` && <span className={styles.cursor} />}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
-        <div className={styles.chatContent}>
+
+        {/* Чат-пузырь 2 */}
+        <div className={`${styles.chatBubble} ${styles.chatBubble2} ${stage === 'typing2' || stage === 'complete' ? styles.chatBubbleVisible : ''}`}>
           <p className={styles.chatText}>
-            {displayedText1}
-            {cursorPosition === 'text1' && <span className={styles.cursor} />}
+            {displayedText2}
+            {cursorPosition === 'text2' && <span className={styles.cursor} />}
           </p>
-          {displayedBullets.length > 0 && (
-            <ul className={styles.bulletList}>
-              {displayedBullets.map((bullet, index) => (
-                <li key={index}>
-                  {bullet}
-                  {cursorPosition === `bullet${index}` && <span className={styles.cursor} />}
-                </li>
-              ))}
-            </ul>
-          )}
         </div>
-      </div>
 
-      {/* Чат-пузырь 2 */}
-      <div className={`${styles.chatBubble} ${styles.chatBubble2} ${stage === 'typing2' || stage === 'complete' ? styles.chatBubbleVisible : ''}`}>
-        <p className={styles.chatText}>
-          {displayedText2}
-          {cursorPosition === 'text2' && <span className={styles.cursor} />}
-        </p>
-      </div>
-
-      {/* Кнопки ответа */}
-      <div className={`${styles.responseButtons} ${showButtons ? styles.responseButtonsVisible : ''}`}>
-        <button className={styles.responseButton} onClick={reset}>
-          Все хорошо
-        </button>
-        <button className={styles.responseButton} onClick={reset}>
-          Хочу внести корректировки
-        </button>
+        {/* Кнопки ответа */}
+        <div className={`${styles.responseButtons} ${showButtons ? styles.responseButtonsVisible : ''}`}>
+          <button className={styles.responseButton} onClick={reset}>
+            Все хорошо
+          </button>
+          <button className={styles.responseButton} onClick={reset}>
+            Хочу внести корректировки
+          </button>
+        </div>
       </div>
     </div>
   );

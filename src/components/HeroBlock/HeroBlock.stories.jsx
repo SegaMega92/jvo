@@ -1,6 +1,6 @@
 import { HeroBlock } from './index';
 import heroIllustration from '../../../assets/hero-illustration-agent.png';
-import heroBlockBg from '../../../assets/hero-block-bg.png';
+import heroGradient from '../../../assets/hero-gradient.png';
 
 export default {
   title: 'Sections/HeroBlock',
@@ -25,7 +25,7 @@ export const Default = {
     buttonHref: '#demo',
     illustration: heroIllustration,
     illustrationAlt: 'Автоматические ответы на отзывы',
-    backgroundImage: heroBlockBg,
+    backgroundImage: heroGradient,
   },
 };
 
@@ -41,7 +41,7 @@ export const AlternativeFeatures = {
     buttonText: 'Начать бесплатно',
     buttonHref: '#start',
     illustration: heroIllustration,
-    backgroundImage: heroBlockBg,
+    backgroundImage: heroGradient,
   },
 };
 
@@ -55,7 +55,7 @@ export const Minimal = {
     buttonText: 'Попробовать',
     buttonHref: '#try',
     illustration: heroIllustration,
-    backgroundImage: heroBlockBg,
+    backgroundImage: heroGradient,
   },
 };
 
@@ -70,7 +70,7 @@ export const WithSectionHeader = {
     buttonText: 'Подключить ИИ-агента',
     buttonHref: '#demo',
     illustration: heroIllustration,
-    backgroundImage: heroBlockBg,
+    backgroundImage: heroGradient,
   },
   decorators: [
     (Story) => (

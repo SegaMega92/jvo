@@ -1,0 +1,238 @@
+/* FAQSection - секция "Часто задаваемые вопросы" */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+  padding: 40px 24px 200px;
+  background: #15181f;
+}
+
+/* ========================================
+   Заголовок
+   ======================================== */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  text-align: center;
+}
+
+.iconWrapper {
+  width: 72px;
+  height: 72px;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.title {
+  font-family: 'RF Dewi Extended', var(--font-family-primary);
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  margin: 0;
+  max-width: 686px;
+}
+
+/* ========================================
+   FAQ список
+   ======================================== */
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  width: 100%;
+  max-width: 640px;
+}
+
+.faqItem {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ========================================
+   Вопрос (кнопка)
+   ======================================== */
+
+.faqQuestion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.faqQuestionText {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #ffffff;
+  flex: 1;
+}
+
+.faqChevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: rgba(233, 235, 240, 0.1);
+  border-radius: 8px;
+  flex-shrink: 0;
+  color: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+.chevronIcon {
+  transition: transform 0.3s ease;
+}
+
+.faqItemOpen .faqChevron .chevronIcon {
+  transform: rotate(180deg);
+}
+
+/* ========================================
+   Ответ
+   ======================================== */
+
+.faqAnswer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.faqItemOpen .faqAnswer {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.faqAnswerText {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  padding-right: 40px;
+}
+
+/* ========================================
+   Разделитель
+   ======================================== */
+
+.faqDivider {
+  height: 1px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================
+   Анимация появления
+   ======================================== */
+
+.animateIn {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animateIn.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================
+   Адаптив
+   ======================================== */
+
+@media (max-width: 768px) {
+  .section {
+    gap: 48px;
+    padding: 32px 16px 120px;
+  }
+
+  .header {
+    gap: 24px;
+  }
+
+  .iconWrapper {
+    width: 56px;
+    height: 56px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .faqList {
+    gap: 24px;
+  }
+
+  .faqItem {
+    gap: 12px;
+  }
+
+  .faqQuestionText {
+    font-size: 15px;
+  }
+
+  .faqAnswerText {
+    font-size: 14px;
+    padding-right: 0;
+  }
+
+  .faqChevron {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    gap: 32px;
+    padding: 24px 12px 80px;
+  }
+
+  .header {
+    gap: 20px;
+  }
+
+  .iconWrapper {
+    width: 48px;
+    height: 48px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .faqList {
+    gap: 20px;
+  }
+
+  .faqQuestionText {
+    font-size: 14px;
+  }
+
+  .faqAnswerText {
+    font-size: 13px;
+  }
+}

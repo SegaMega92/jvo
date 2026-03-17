@@ -25,6 +25,12 @@ export { TestimonialsSection } from './TestimonialsSection';
 export { CTASection } from './CTASection';
 export { BannerSection } from './BannerSection';
 export { MonitoringSection } from './MonitoringSection';
+export { ComparisonSlider } from './ComparisonSlider';
+export { BentoGrid } from './BentoGrid';
+export { AudienceSection } from './AudienceSection';
+export { LaunchSection } from './LaunchSection';
+export { ProductsSlider } from './ProductsSlider';
+export { FAQSection } from './FAQSection';
 
 // Illustrations
 export { AgentChatDemo } from './Illustrations/AgentChatDemo';

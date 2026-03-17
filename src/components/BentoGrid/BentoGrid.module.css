@@ -1,0 +1,435 @@
+/* BentoGrid - сетка фич в стиле bento */
+
+.section {
+  padding: 40px 24px;
+  background: #ffffff;
+}
+
+/* Основная сетка 3x3 */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 240px);
+  gap: 20px;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #300247;
+  border-radius: 32px;
+}
+
+/* ========================================
+   Базовые стили блоков
+   ======================================== */
+
+.block {
+  background: rgba(234, 215, 254, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+
+  /* Анимация появления */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.block.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================
+   Позиционирование блоков в сетке
+   ======================================== */
+
+/* Block 1: row 1, col 1-2 */
+.block1 {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+  align-items: center;
+}
+
+/* Block 2: row 1, col 3 */
+.block2 {
+  grid-column: 3;
+  grid-row: 1;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Block 3: row 2, col 1 */
+.block3 {
+  grid-column: 1;
+  grid-row: 2;
+  gap: 24px;
+}
+
+/* Block 4: Center - row 2, col 2 */
+.blockCenter {
+  grid-column: 2;
+  grid-row: 2;
+  background: linear-gradient(
+    135deg,
+    rgba(48, 2, 71, 1) 0%,
+    rgba(117, 5, 173, 0.8) 50%,
+    rgba(193, 111, 251, 0.6) 100%
+  );
+  align-items: center;
+  justify-content: center;
+}
+
+/* Block 5: row 2, col 3 */
+.block5 {
+  grid-column: 3;
+  grid-row: 2;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Block 6: row 3, col 1 */
+.block6 {
+  grid-column: 1;
+  grid-row: 3;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Block 7: row 3, col 2-3 */
+.block7 {
+  grid-column: 2 / span 2;
+  grid-row: 3;
+  align-items: center;
+}
+
+/* ========================================
+   Текстовый контент
+   ======================================== */
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: #ead7fe;
+  margin: 0;
+}
+
+.description {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #ead7fe;
+  opacity: 0.8;
+  margin: 0;
+}
+
+/* ========================================
+   Центральный заголовок
+   ======================================== */
+
+.centerTitle {
+  font-family: 'RF Dewi Extended', var(--font-family-primary);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #ead7fe;
+  text-align: center;
+  margin: 0;
+}
+
+/* ========================================
+   Иконки и иллюстрации
+   ======================================== */
+
+.iconWrapper {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Большая иллюстрация (Block 1) */
+.illustrationLarge {
+  width: 340px;
+  height: 200px;
+  background: #c16ffb;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Иллюстрация контроля (Block 3) */
+.illustrationControl {
+  width: 90px;
+  height: 200px;
+  background: #ead7fe;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Иллюстрация мультибренда (Block 7) */
+.illustrationMultibrand {
+  width: 340px;
+  height: 200px;
+  background: #c16ffb;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.illustrationImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Бейдж 50К знаков */
+.badge50k {
+  height: 48px;
+  padding: 0 8px;
+  background: linear-gradient(
+    135deg,
+    rgba(48, 2, 71, 1) 0%,
+    rgba(117, 5, 173, 0.8) 50%,
+    rgba(193, 111, 251, 0.6) 100%
+  );
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.badge50kText {
+  font-family: 'RF Dewi Extended', var(--font-family-primary);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: #c16ffb;
+  white-space: nowrap;
+}
+
+/* ========================================
+   Адаптив
+   ======================================== */
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, auto);
+    max-width: 760px;
+  }
+
+  /* Перестраиваем сетку на 2 колонки */
+  .block1 {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+  }
+
+  .block2 {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .blockCenter {
+    grid-column: 2;
+    grid-row: 2;
+    min-height: 200px;
+  }
+
+  .block3 {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .block5 {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .block6 {
+    grid-column: 1 / span 2;
+    grid-row: 4;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .block7 {
+    grid-column: 1 / span 2;
+    grid-row: 5;
+  }
+
+  .block6 .iconWrapper {
+    width: 48px;
+    height: 48px;
+  }
+
+  .illustrationLarge,
+  .illustrationMultibrand {
+    width: 280px;
+    height: 180px;
+  }
+
+  .centerTitle {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 32px 16px;
+  }
+
+  .grid {
+    padding: 16px;
+    gap: 16px;
+    border-radius: 24px;
+  }
+
+  .block {
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  /* Block 1 становится вертикальным */
+  .block1 {
+    flex-direction: column;
+  }
+
+  .illustrationLarge {
+    width: 100%;
+    height: 160px;
+  }
+
+  /* Block 7 становится вертикальным */
+  .block7 {
+    flex-direction: column-reverse;
+  }
+
+  .illustrationMultibrand {
+    width: 100%;
+    height: 160px;
+  }
+
+  .centerTitle {
+    font-size: 24px;
+  }
+
+  .badge50kText {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5, auto);
+  }
+
+  .block3 {
+    flex-direction: column;
+  }
+
+  .illustrationControl {
+    width: 100%;
+    height: 80px;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .centerTitle {
+    font-size: 20px;
+  }
+
+  .badge50kText {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 24px 12px;
+  }
+
+  .grid {
+    padding: 12px;
+    gap: 12px;
+    border-radius: 20px;
+  }
+
+  .block {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .blockCenter {
+    min-height: 160px;
+  }
+
+  .title {
+    font-size: 13px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+
+  .centerTitle {
+    font-size: 18px;
+  }
+
+  .iconWrapper {
+    width: 40px;
+    height: 40px;
+  }
+
+  .badge50k {
+    height: 40px;
+  }
+
+  .badge50kText {
+    font-size: 20px;
+  }
+
+  .illustrationLarge,
+  .illustrationMultibrand {
+    height: 120px;
+  }
+
+  .illustrationControl {
+    height: 60px;
+  }
+}

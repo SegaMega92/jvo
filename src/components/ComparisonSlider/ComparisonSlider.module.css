@@ -1,0 +1,418 @@
+/* ComparisonSlider - 3D карусель сравнения */
+
+.section {
+  padding: 40px 24px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* Убираем padding у вложенного SectionHeader */
+.header {
+  padding: 0 !important;
+  margin-bottom: 48px;
+}
+
+/* ========================================
+   3D Карусель
+   ======================================== */
+
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  perspective: 1200px;
+  perspective-origin: center center;
+  outline: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.carousel.dragging {
+  cursor: grabbing;
+}
+
+.carouselTrack {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 340px;
+  transform-style: preserve-3d;
+}
+
+/* ========================================
+   Карточки
+   ======================================== */
+
+.card {
+  position: absolute;
+  width: 600px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+/* Позиционирование карточек с 3D эффектом */
+.card {
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Центральная карточка (активная) */
+.cardCenter {
+  transform: translateX(0) rotateY(0deg) scale(1);
+  z-index: 10;
+  opacity: 1;
+}
+
+.cardActive {
+  pointer-events: auto;
+}
+
+/* Левая карточка (position = -1) — без наложения, gap 20px */
+.cardLeft {
+  transform: translateX(calc(-100% - 20px)) rotateY(3deg) scale(0.75);
+  z-index: 5;
+  opacity: 1;
+}
+
+/* Правая карточка (position = 1) */
+.cardRight {
+  transform: translateX(calc(100% + 20px)) rotateY(-3deg) scale(0.75);
+  z-index: 5;
+  opacity: 1;
+}
+
+/* Дальняя левая карточка (position = -2) */
+.cardFarLeft {
+  transform: translateX(calc(-200% - 40px)) rotateY(5deg) scale(0.5);
+  z-index: 1;
+  opacity: 0;
+}
+
+/* Дальняя правая карточка (position = 2) */
+.cardFarRight {
+  transform: translateX(calc(200% + 40px)) rotateY(-5deg) scale(0.5);
+  z-index: 1;
+  opacity: 0;
+}
+
+.cardInner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 40px 20px;
+  background: #f6f6f9;
+  border-radius: 16px;
+  backface-visibility: hidden;
+}
+
+/* Заголовок карточки */
+.cardHeader {
+  display: block;
+}
+
+.cardTitle {
+  font-family: 'RF Dewi Extended', var(--font-family-primary);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #15181f;
+  margin: 0;
+  max-width: 500px;
+}
+
+.cardCounter {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: rgba(21, 24, 31, 0.4);
+  white-space: nowrap;
+}
+
+/* Контент карточки - две колонки */
+.cardContent {
+  display: flex;
+  gap: 48px;
+}
+
+.cardColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 260px;
+}
+
+.columnHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dotAgent {
+  width: 12px;
+  height: 12px;
+  background: #c16ffb;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dotCompetitor {
+  width: 12px;
+  height: 12px;
+  background: #15181f;
+  opacity: 0.2;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.columnTitle {
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: #15181f;
+  white-space: nowrap;
+}
+
+.columnText {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #15181f;
+  margin: 0;
+}
+
+.columnTextMuted {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: rgba(21, 24, 31, 0.6);
+  margin: 0;
+}
+
+/* ========================================
+   Навигация
+   ======================================== */
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.arrowButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #e9ebf0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.arrowButton:hover {
+  background: #dcdfe5;
+  transform: scale(1.05);
+}
+
+.arrowButton:active {
+  transform: scale(0.95);
+}
+
+.arrowIcon {
+  width: 6px;
+  height: 10px;
+}
+
+
+/* ========================================
+   Адаптив
+   ======================================== */
+
+@media (max-width: 960px) {
+  .section {
+    padding: 32px 16px;
+  }
+
+  .header {
+    margin-bottom: 48px;
+  }
+
+  .carousel {
+    perspective: 800px;
+  }
+
+  .carouselTrack {
+    height: 380px;
+  }
+
+  .card {
+    width: 480px;
+  }
+
+  .cardLeft {
+    transform: translateX(calc(-100% - 16px)) rotateY(3deg) scale(0.75);
+  }
+
+  .cardRight {
+    transform: translateX(calc(100% + 16px)) rotateY(-3deg) scale(0.75);
+  }
+
+  .cardFarLeft {
+    transform: translateX(calc(-200% - 32px)) rotateY(5deg) scale(0.5);
+    opacity: 0;
+  }
+
+  .cardFarRight {
+    transform: translateX(calc(200% + 32px)) rotateY(-5deg) scale(0.5);
+    opacity: 0;
+  }
+
+  .cardInner {
+    padding: 30px 15px;
+    gap: 36px;
+  }
+
+  .cardTitle {
+    font-size: 28px;
+  }
+
+  .cardContent {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .cardColumn {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 24px 12px;
+  }
+
+  .header {
+    margin-bottom: 32px;
+  }
+
+  .carousel {
+    perspective: 600px;
+    /* Показываем краешки карточек на мобильных */
+    padding: 0 20px;
+  }
+
+  .carouselTrack {
+    height: 340px;
+  }
+
+  .card {
+    width: calc(100vw - 64px);
+    max-width: 360px;
+  }
+
+  .cardLeft {
+    transform: translateX(calc(-90% - 10px)) rotateY(2deg) scale(0.9);
+    opacity: 0.35;
+  }
+
+  .cardRight {
+    transform: translateX(calc(90% + 10px)) rotateY(-2deg) scale(0.9);
+    opacity: 0.35;
+  }
+
+  .cardFarLeft,
+  .cardFarRight {
+    opacity: 0;
+  }
+
+  .cardInner {
+    padding: 24px 16px;
+    gap: 24px;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .cardTitle {
+    font-size: 22px;
+    max-width: 100%;
+  }
+
+  .cardCounter {
+    top: 16px;
+    right: 16px;
+    font-size: 11px;
+  }
+
+  .cardContent {
+    gap: 20px;
+  }
+
+  .cardColumn {
+    gap: 16px;
+  }
+
+  .columnText,
+  .columnTextMuted {
+    font-size: 14px;
+  }
+
+  .navigation {
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: calc(100vw - 48px);
+  }
+
+  .cardLeft {
+    transform: translateX(calc(-92% - 8px)) rotateY(2deg) scale(0.9);
+    opacity: 0.3;
+  }
+
+  .cardRight {
+    transform: translateX(calc(92% + 8px)) rotateY(-2deg) scale(0.9);
+    opacity: 0.3;
+  }
+
+  .cardInner {
+    padding: 20px 14px;
+    gap: 20px;
+  }
+
+  .cardTitle {
+    font-size: 20px;
+  }
+
+  .columnTitle {
+    font-size: 11px;
+  }
+
+  .columnText,
+  .columnTextMuted {
+    font-size: 13px;
+  }
+
+  /* Стрелки остаются 36x36 как в макете */
+}

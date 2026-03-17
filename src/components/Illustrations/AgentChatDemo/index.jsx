@@ -17,7 +17,9 @@ export function AgentChatDemo({
   autoPlayDelay = 2000,
   typingSpeed = 30,
   className = '',
+  onStart,
   onComplete,
+  onReset,
 }) {
   // Состояния анимации: 'idle' | 'typing1' | 'typing2' | 'complete'
   const [stage, setStage] = useState('idle');
@@ -44,14 +46,16 @@ export function AgentChatDemo({
     setDisplayedText2('');
     setShowButtons(false);
     setCursorPosition('none');
-  }, []);
+    onReset?.();
+  }, [onReset]);
 
   // Запуск анимации
   const startAnimation = useCallback(() => {
     if (stage !== 'idle') return;
     setStage('typing1');
     setCursorPosition('text1');
-  }, [stage]);
+    onStart?.();
+  }, [stage, onStart]);
 
   // Эффект печатания первого сообщения
   useEffect(() => {
@@ -200,7 +204,9 @@ AgentChatDemo.propTypes = {
   autoPlayDelay: PropTypes.number,
   typingSpeed: PropTypes.number,
   className: PropTypes.string,
+  onStart: PropTypes.func,
   onComplete: PropTypes.func,
+  onReset: PropTypes.func,
 };
 
 export default AgentChatDemo;

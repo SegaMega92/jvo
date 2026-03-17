@@ -1,0 +1,430 @@
+/* ProductsSlider - секция "Другие решения системы Дживио" */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 64px;
+  padding: 40px 0;
+  background: #ffffff;
+  overflow: hidden;
+  /* Центрируем контент относительно контентной сетки */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ========================================
+   Заголовок
+   ======================================== */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  text-align: center;
+  width: 100%;
+  padding: 0 24px;
+}
+
+.title {
+  font-family: 'RF Dewi Extended', var(--font-family-primary);
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: #15181f;
+  margin: 0;
+  max-width: 960px;
+}
+
+.subtitle {
+  font-family: var(--font-family-primary);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #15181f;
+  margin: 0;
+  max-width: 760px;
+}
+
+/* ========================================
+   Слайдер
+   ======================================== */
+
+.sliderWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.slider {
+  display: flex;
+  gap: 20px;
+  padding-left: 20px;
+  padding-right: 40px;
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slider.dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+
+/* Маска для плавного затухания карточек */
+/* Исходное состояние: fade только справа */
+.slider.fadeRight {
+  mask-image: linear-gradient(to right, black 0%, black calc(100% - 100px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 0%, black calc(100% - 100px), transparent 100%);
+}
+
+/* Прокрутили: fade с обеих сторон */
+.slider.fadeBoth {
+  mask-image: linear-gradient(to right, transparent 0%, black 100px, black calc(100% - 100px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 100px, black calc(100% - 100px), transparent 100%);
+}
+
+/* В конце: fade только слева */
+.slider.fadeLeft {
+  mask-image: linear-gradient(to right, transparent 0%, black 100px, black 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 100px, black 100%);
+}
+
+/* ========================================
+   Карточка
+   ======================================== */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  width: 540px;
+  flex-shrink: 0;
+  padding: 20px 20px 10px;
+  background: #f6f6f9;
+  border-radius: 16px;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+/* Тег продукта */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px 6px 6px;
+  border-radius: 16px;
+  width: fit-content;
+}
+
+.tagViolet {
+  background: #ead7fe;
+}
+
+.tagGray {
+  background: #e9ebf0;
+}
+
+.tagIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.tagIconViolet {
+  background: #300247;
+}
+
+.tagIconGray {
+  background: #15181f;
+}
+
+.tagIconImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tagText {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.tagTextViolet {
+  color: #300247;
+}
+
+.tagTextGray {
+  color: #15181f;
+}
+
+.cardDescription {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  color: #15181f;
+  margin: 0;
+}
+
+/* Изображение карточки */
+.cardImage {
+  width: 100%;
+  height: 372px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardImageViolet {
+  background: #ead7fe;
+}
+
+.cardImageGray {
+  background: #e9ebf0;
+}
+
+.cardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========================================
+   Навигация
+   ======================================== */
+
+.navigation {
+  display: flex;
+  gap: 12px;
+  padding-left: 20px;
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #e9ebf0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.navButton:hover:not(:disabled) {
+  background: #dcdfe5;
+  transform: scale(1.05);
+}
+
+.navButton:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.navButtonDisabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.arrowIcon {
+  width: 6px;
+  height: 10px;
+}
+
+/* ========================================
+   Анимация появления
+   ======================================== */
+
+.animateIn {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animateIn.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================
+   Адаптив
+   ======================================== */
+
+@media (max-width: 1024px) {
+  .section {
+    gap: 48px;
+  }
+
+  .title {
+    font-size: 48px;
+    max-width: 700px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+  }
+
+  .card {
+    width: 480px;
+  }
+
+  .cardImage {
+    height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    gap: 40px;
+    padding: 32px 0;
+  }
+
+  .header {
+    gap: 24px;
+    padding: 0 16px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .slider {
+    padding-left: 16px;
+    padding-right: 32px;
+    gap: 16px;
+  }
+
+  .card {
+    width: 320px;
+    padding: 16px 16px 8px;
+    gap: 16px;
+    border-radius: 12px;
+  }
+
+  .cardContent {
+    gap: 16px;
+  }
+
+  .tag {
+    padding: 4px 12px 4px 4px;
+    border-radius: 12px;
+  }
+
+  .tagIcon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+  }
+
+  .tagText {
+    font-size: 14px;
+  }
+
+  .cardDescription {
+    font-size: 14px;
+  }
+
+  .cardImage {
+    height: 240px;
+    border-radius: 6px;
+  }
+
+  .navigation {
+    padding-left: 16px;
+  }
+
+  .navButton {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    gap: 32px;
+    padding: 24px 0;
+  }
+
+  .header {
+    padding: 0 12px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .slider {
+    padding-left: 12px;
+    padding-right: 24px;
+    gap: 12px;
+  }
+
+  .card {
+    width: 280px;
+    padding: 12px 12px 6px;
+    gap: 12px;
+  }
+
+  .cardContent {
+    gap: 12px;
+  }
+
+  .tagText {
+    font-size: 13px;
+  }
+
+  .cardDescription {
+    font-size: 13px;
+  }
+
+  .cardImage {
+    height: 200px;
+  }
+
+  .navigation {
+    padding-left: 12px;
+    gap: 8px;
+  }
+
+  .navButton {
+    width: 28px;
+    height: 28px;
+  }
+}

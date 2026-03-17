@@ -1,0 +1,407 @@
+/* AudienceSection - секция "Кому необходим Агент" */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  padding: 40px 24px;
+  background: #ffffff;
+}
+
+/* ========================================
+   Заголовок
+   ======================================== */
+
+.title {
+  font-family: 'RF Dewi Extended', var(--font-family-primary);
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: #15181f;
+  text-align: center;
+  margin: 0;
+  max-width: 782px;
+}
+
+/* ========================================
+   Основной блок
+   ======================================== */
+
+.mainBlock {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(90deg, rgba(233, 235, 240, 0.5) 0%, rgba(233, 235, 240, 0.5) 100%);
+  border-radius: 32px;
+  width: 100%;
+  max-width: 1160px;
+}
+
+/* ========================================
+   Меню табов
+   ======================================== */
+
+.tabsMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 340px;
+  flex-shrink: 0;
+  background: white;
+  border-radius: 16px;
+  padding: 40px 30px;
+  height: 400px;
+  justify-content: center;
+}
+
+.tabButton {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: transparent;
+  border: none;
+  border-radius: 16px;
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: #15181f;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tabButton:hover {
+  opacity: 0.7;
+}
+
+.tabButtonActive {
+  background: #ff8fda;
+  color: #15181f;
+  opacity: 1;
+}
+
+.tabArrow {
+  margin-right: 4px;
+}
+
+/* ========================================
+   Контент
+   ======================================== */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  justify-content: center;
+  width: 660px;
+  height: 400px;
+  padding-bottom: 10px;
+  transition: opacity 0.2s ease;
+}
+
+.content.fadeOut {
+  opacity: 0;
+}
+
+.content.fadeIn {
+  opacity: 1;
+}
+
+.contentDescription {
+  font-family: var(--font-family-primary);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #15181f;
+  margin: 0;
+}
+
+/* ========================================
+   Отзыв
+   ======================================== */
+
+.testimonial {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+.testimonialAvatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.testimonialText {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 560px;
+}
+
+.testimonialName {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: #15181f;
+  margin: 0;
+}
+
+.testimonialQuote {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: #15181f;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ========================================
+   Нижний блок
+   ======================================== */
+
+.bottomBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  max-width: 1120px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #c16ffb;
+  border-radius: 100px;
+}
+
+.tagIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: #ead7fe;
+  border-radius: 8px;
+}
+
+.tagText {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: white;
+  white-space: nowrap;
+}
+
+.bottomText {
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #000000;
+  text-align: center;
+  margin: 0;
+  max-width: 760px;
+}
+
+/* ========================================
+   Анимация появления
+   ======================================== */
+
+.animateIn {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animateIn.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================
+   Адаптив
+   ======================================== */
+
+@media (max-width: 1024px) {
+  .section {
+    gap: 60px;
+  }
+
+  .title {
+    font-size: 48px;
+    max-width: 600px;
+  }
+
+  .mainBlock {
+    flex-direction: column;
+    gap: 24px;
+    padding: 16px;
+  }
+
+  .tabsMenu {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 16px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .tabsMenu::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tabButton {
+    padding: 12px 16px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: auto;
+    gap: 32px;
+    padding: 0 16px 16px;
+  }
+
+  .contentDescription {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    gap: 48px;
+    padding: 32px 16px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .mainBlock {
+    border-radius: 24px;
+  }
+
+  .tabsMenu {
+    border-radius: 12px;
+    padding: 12px;
+  }
+
+  .tabButton {
+    font-size: 14px;
+    padding: 10px 14px;
+    border-radius: 10px;
+  }
+
+  .contentDescription {
+    font-size: 18px;
+  }
+
+  .testimonial {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .testimonialAvatar {
+    width: 56px;
+    height: 56px;
+  }
+
+  .testimonialText {
+    max-width: 100%;
+  }
+
+  .tag {
+    padding: 10px 14px;
+  }
+
+  .tagText {
+    font-size: 14px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .bottomText {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    gap: 32px;
+    padding: 24px 12px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .mainBlock {
+    padding: 12px;
+    border-radius: 20px;
+  }
+
+  .tabsMenu {
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .tabButton {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .content {
+    gap: 24px;
+    padding: 0 12px 12px;
+  }
+
+  .contentDescription {
+    font-size: 16px;
+  }
+
+  .testimonialName,
+  .testimonialQuote {
+    font-size: 14px;
+  }
+
+  .bottomBlock {
+    gap: 16px;
+  }
+
+  .tagIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .tagText {
+    font-size: 13px;
+  }
+
+  .bottomText {
+    font-size: 13px;
+  }
+}

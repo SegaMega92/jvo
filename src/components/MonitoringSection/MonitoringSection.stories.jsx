@@ -1,6 +1,6 @@
 import { MonitoringSection } from './index';
 import { AgentChatDemo } from '../Illustrations/AgentChatDemo';
-import featureCardAlerts from '../../../assets/feature-card-alerts.png';
+import illustrationCommunication from '../../../assets/illustration_commenication_1.svg';
 
 export default {
   title: 'Sections/MonitoringSection',
@@ -20,7 +20,7 @@ export const Default = {
     subtitle: 'Система ежедневно проводит аудит воронки продаж, выявляет отклонения и формирует готовые задачи для автоматизации через ИИ-Агентов',
     cards: [
       {
-        image: featureCardAlerts,
+        image: illustrationCommunication,
         imageAlt: 'Приоритезация алертов',
         title: 'Приоритезация алертов',
         description: 'система распределяет найденные отклонения по уровням критичности — от рекомендованных до важных и критических — для фокусировки на задачах, требующих решения в первую очередь.',

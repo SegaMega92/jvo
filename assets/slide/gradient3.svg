@@ -1,0 +1,16 @@
+<svg width="1280" height="1280" viewBox="0 0 1280 1280" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="1280" height="1280" rx="16" fill="#3F0030"/>
+<g clip-path="url(#paint0_diamond_210_9586_clip_path)" data-figma-skip-parse="true"><g transform="matrix(-0.290909 1.29552 -1.62894 -0.365779 640 640)"><rect x="0" y="0" width="576.804" height="458.739" fill="url(#paint0_diamond_210_9586)" opacity="1" shape-rendering="crispEdges"/><rect x="0" y="0" width="576.804" height="458.739" transform="scale(1 -1)" fill="url(#paint0_diamond_210_9586)" opacity="1" shape-rendering="crispEdges"/><rect x="0" y="0" width="576.804" height="458.739" transform="scale(-1 1)" fill="url(#paint0_diamond_210_9586)" opacity="1" shape-rendering="crispEdges"/><rect x="0" y="0" width="576.804" height="458.739" transform="scale(-1)" fill="url(#paint0_diamond_210_9586)" opacity="1" shape-rendering="crispEdges"/></g></g><rect width="1280" height="1280" rx="16" data-figma-gradient-fill="{&#34;type&#34;:&#34;GRADIENT_DIAMOND&#34;,&#34;stops&#34;:[{&#34;color&#34;:{&#34;r&#34;:0.27843138575553894,&#34;g&#34;:0.0078431377187371254,&#34;b&#34;:0.22882354259490967,&#34;a&#34;:1.0},&#34;position&#34;:0.33604425191879272},{&#34;color&#34;:{&#34;r&#34;:1.0,&#34;g&#34;:0.56000000238418579,&#34;b&#34;:0.85333335399627686,&#34;a&#34;:1.0},&#34;position&#34;:0.88885402679443359},{&#34;color&#34;:{&#34;r&#34;:0.88728606700897217,&#34;g&#34;:0.90610730648040771,&#34;b&#34;:0.96794861555099487,&#34;a&#34;:1.0},&#34;position&#34;:1.0}],&#34;stopsVar&#34;:[{&#34;color&#34;:{&#34;r&#34;:0.27843138575553894,&#34;g&#34;:0.0078431377187371254,&#34;b&#34;:0.22882354259490967,&#34;a&#34;:1.0},&#34;position&#34;:0.33604425191879272},{&#34;color&#34;:{&#34;r&#34;:1.0,&#34;g&#34;:0.56000000238418579,&#34;b&#34;:0.85333335399627686,&#34;a&#34;:1.0},&#34;position&#34;:0.88885402679443359},{&#34;color&#34;:{&#34;r&#34;:0.88728606700897217,&#34;g&#34;:0.90610730648040771,&#34;b&#34;:0.96794861555099487,&#34;a&#34;:1.0},&#34;position&#34;:1.0}],&#34;transform&#34;:{&#34;m00&#34;:-581.81799316406250,&#34;m01&#34;:-3257.87597656250,&#34;m02&#34;:2559.8469238281250,&#34;m10&#34;:2591.03027343750,&#34;m11&#34;:-731.5588378906250,&#34;m12&#34;:-289.73571777343750},&#34;opacity&#34;:1.0,&#34;blendMode&#34;:&#34;NORMAL&#34;,&#34;visible&#34;:true}"/>
+<rect width="1280" height="1280" rx="16" fill="url(#pattern0_210_9586)" style="mix-blend-mode:soft-light"/>
+<defs>
+<clipPath id="paint0_diamond_210_9586_clip_path"><rect width="1280" height="1280" rx="16"/></clipPath><linearGradient id="paint0_diamond_210_9586" x1="0" y1="0" x2="500" y2="500" gradientUnits="userSpaceOnUse">
+<stop offset="0.336044" stop-color="#47023A"/>
+<stop offset="0.888854" stop-color="#FF8FDA"/>
+<stop offset="1" stop-color="#E2E7F7"/>
+</linearGradient>
+<pattern id="pattern0_210_9586" patternUnits="userSpaceOnUse" patternTransform="matrix(2 0 0 2 0 0)" preserveAspectRatio="none" viewBox="0 0 200 200" width="1" height="1">
+<g id="pattern0_210_9586_inner">
+<rect width="100" height="100" fill="white"/>
+</g>
+</pattern></defs>
+</svg>

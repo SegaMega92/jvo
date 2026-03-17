@@ -61,16 +61,7 @@
 .featureIcon {
   flex-shrink: 0;
   width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #c16ffb;
-}
-
-.featureIcon svg {
-  width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 .featureText {

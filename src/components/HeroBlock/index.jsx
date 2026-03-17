@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import styles from './HeroBlock.module.css';
 import { Button } from '../Button';
+import defaultCheckIcon from '../../../assets/check-icon-gradient.svg';
 
 /**
  * HeroBlock - блок с карточкой фич и иллюстрацией
@@ -10,6 +11,7 @@ export function HeroBlock({
   features = [],
   buttonText = 'Подключить',
   buttonHref = '#demo',
+  checkIcon = defaultCheckIcon,
   illustration,
   illustrationAlt = '',
   backgroundImage,
@@ -26,17 +28,7 @@ export function HeroBlock({
           <ul className={styles.features}>
             {features.map((feature, index) => (
               <li key={index} className={styles.featureItem}>
-                <span className={styles.featureIcon}>
-                  <svg width="28" height="28" viewBox="0 0 37 28" fill="none">
-                    <path
-                      d="M3 14.5L13.5 25L34 3"
-                      stroke="currentColor"
-                      strokeWidth="5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
+                <img src={checkIcon} alt="" className={styles.featureIcon} />
                 <span className={styles.featureText}>{feature}</span>
               </li>
             ))}
@@ -77,6 +69,7 @@ HeroBlock.propTypes = {
   features: PropTypes.arrayOf(PropTypes.string),
   buttonText: PropTypes.string,
   buttonHref: PropTypes.string,
+  checkIcon: PropTypes.string,
   illustration: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   illustrationAlt: PropTypes.string,
   backgroundImage: PropTypes.string,

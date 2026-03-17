@@ -5,14 +5,14 @@
 /* или использовать CSS переменную --pattern-dots как background-image */
 
 :root {
-  /* Точки 1px, промежуток 1px, прозрачность 50% */
-  --pattern-dots: url("data:image/svg+xml,%3Csvg width='2' height='2' viewBox='0 0 2 2' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='1' height='1' fill='rgba(255,255,255,0.5)'/%3E%3C/svg%3E");
+  /* Точки 1px, промежуток 1px, прозрачность 40% */
+  --pattern-dots: url("data:image/svg+xml,%3Csvg width='2' height='2' viewBox='0 0 2 2' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='1' height='1' fill='rgba(255,255,255,0.4)'/%3E%3C/svg%3E");
 
   /* Точки 1px, промежуток 2px */
-  --pattern-dots-sparse: url("data:image/svg+xml,%3Csvg width='3' height='3' viewBox='0 0 3 3' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='1' height='1' fill='rgba(255,255,255,0.5)'/%3E%3C/svg%3E");
+  --pattern-dots-sparse: url("data:image/svg+xml,%3Csvg width='3' height='3' viewBox='0 0 3 3' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='1' height='1' fill='rgba(255,255,255,0.4)'/%3E%3C/svg%3E");
 
   /* Точки 1px, промежуток 3px */
-  --pattern-dots-extra-sparse: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='1' height='1' fill='rgba(255,255,255,0.5)'/%3E%3C/svg%3E");
+  --pattern-dots-extra-sparse: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='1' height='1' fill='rgba(255,255,255,0.4)'/%3E%3C/svg%3E");
 
   /* Темные точки 1px, промежуток 1px (для светлых фонов) */
   --pattern-dots-dark: url("data:image/svg+xml,%3Csvg width='2' height='2' viewBox='0 0 2 2' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='1' height='1' fill='rgba(0,0,0,0.1)'/%3E%3C/svg%3E");

@@ -90,8 +90,6 @@ const partnerBadges = [
 export function Footer({ className = '' }) {
   return (
     <footer className={`${styles.footer} ${className}`}>
-      {/* Decorative gradient blur */}
-      <div className={styles.gradientBlur} aria-hidden="true" />
 
       <div className={styles.container}>
         {/* Navigation section - 5 columns */}

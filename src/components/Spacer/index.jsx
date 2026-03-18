@@ -14,17 +14,21 @@ const PRESETS = {
  * Spacer - компонент для управляемых отступов между секциями
  *
  * Использование:
- *   <Spacer size={72} />        // кастомное значение в пикселях
- *   <Spacer size="lg" />        // пресет (80px)
- *   <Spacer size="xl" />        // пресет (120px)
+ *   <Spacer size={72} />                    // кастомное значение в пикселях
+ *   <Spacer size="lg" />                    // пресет (80px)
+ *   <Spacer size="xl" />                    // пресет (120px)
+ *   <Spacer size="md" background="#000" />  // с фоном
  */
-export function Spacer({ size = 'md' }) {
+export function Spacer({ size = 'md', background }) {
   const height = typeof size === 'number' ? size : PRESETS[size] || PRESETS.md;
 
   return (
     <div
       className={styles.spacer}
-      style={{ '--spacer-height': `${height}px` }}
+      style={{
+        '--spacer-height': `${height}px`,
+        ...(background && { background })
+      }}
       aria-hidden="true"
     />
   );
@@ -35,6 +39,7 @@ Spacer.propTypes = {
     PropTypes.number,
     PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   ]),
+  background: PropTypes.string,
 };
 
 export default Spacer;

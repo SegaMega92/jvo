@@ -358,7 +358,8 @@
   }
 
   .header {
-    padding: 0 12px;
+    padding: 0 16px;
+    gap: 20px;
   }
 
   .title {
@@ -370,7 +371,12 @@
   }
 
   .sliderWrapper {
-    padding-left: 12px;
+    padding-left: 16px;
+  }
+
+  .sliderViewport {
+    mask-image: linear-gradient(to right, black 0%, black calc(100% - 40px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 0%, black calc(100% - 40px), transparent 100%);
   }
 
   .track {
@@ -378,13 +384,26 @@
   }
 
   .card {
-    width: 280px;
-    padding: 12px 12px 6px;
-    gap: 12px;
+    width: calc(100vw - 56px);
+    min-width: 260px;
+    max-width: 320px;
+    padding: 16px 16px 8px;
+    gap: 16px;
   }
 
   .cardContent {
     gap: 12px;
+  }
+
+  .tag {
+    padding: 4px 10px 4px 4px;
+    gap: 8px;
+  }
+
+  .tagIcon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
   }
 
   .tagText {
@@ -392,20 +411,72 @@
   }
 
   .cardDescription {
-    font-size: 13px;
+    font-size: 14px;
+    line-height: 1.5;
   }
 
   .cardImage {
-    height: 200px;
+    height: 180px;
   }
 
   .navigation {
-    padding-left: 12px;
+    padding-left: 16px;
     gap: 8px;
   }
 
   .navButton {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .arrowIcon {
+    width: 5px;
+    height: 8px;
+  }
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 360px) {
+  .header {
+    padding: 0 12px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .sliderWrapper {
+    padding-left: 12px;
+  }
+
+  .card {
+    width: calc(100vw - 44px);
+    min-width: 240px;
+    padding: 12px 12px 6px;
+    gap: 12px;
+  }
+
+  .cardContent {
+    gap: 10px;
+  }
+
+  .tagText {
+    font-size: 12px;
+  }
+
+  .cardDescription {
+    font-size: 13px;
+  }
+
+  .cardImage {
+    height: 160px;
+  }
+
+  .navigation {
+    padding-left: 12px;
   }
 }

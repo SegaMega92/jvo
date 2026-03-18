@@ -265,7 +265,7 @@ export function LandingPage({ className = '' }) {
 
         <Spacer size="xl" />
 
-        <Spacer size="md" background="#000000" />
+        <Spacer size="md" background="#15181f" />
 
         <FAQSection
           title="Часто задаваемые вопросы"

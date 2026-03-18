@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
 import styles from './MonitoringSection.module.css';
-import { SectionHeader } from '../SectionHeader';
 import { FeatureCard } from '../FeatureCard';
 import chevronRight from '../../../assets/chevron-right.svg';
 
 /**
  * MonitoringSection - секция с двумя карточками и навигацией
- * Заголовок + подзаголовок + две FeatureCard со стрелкой между ними
+ * Простой заголовок + подзаголовок + две FeatureCard со стрелкой между ними
  */
 export function MonitoringSection({
   title,
@@ -18,13 +17,10 @@ export function MonitoringSection({
   return (
     <section className={`${styles.section} ${className}`}>
       {/* Заголовок секции */}
-      <SectionHeader
-        title={title}
-        subtitle={subtitle}
-        titleSize="medium"
-        as="h2"
-        className={styles.header}
-      />
+      <div className={styles.header}>
+        <h2 className={styles.title}>{title}</h2>
+        {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+      </div>
 
       {/* Карточки с навигацией */}
       <div className={styles.cardsContainer}>

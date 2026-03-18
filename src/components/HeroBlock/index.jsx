@@ -4,8 +4,11 @@ import { Button } from '../Button';
 import defaultCheckIcon from '../../../assets/check-icon-gradient.svg';
 
 /**
- * HeroBlock - блок с карточкой фич и иллюстрацией
- * Градиентный фон, белая карточка слева, картинка справа
+ * HeroBlock - блок с карточкой фич и иллюстрацией/видео
+ *
+ * Варианты:
+ * - default: градиентный фон, белая карточка слева, картинка справа
+ * - flat: без внешней карточки, белая карточка с тенью слева, видео/картинка справа
  */
 export function HeroBlock({
   features = [],
@@ -14,10 +17,86 @@ export function HeroBlock({
   checkIcon = defaultCheckIcon,
   illustration,
   illustrationAlt = '',
+  videoSrc,
   backgroundImage,
   showPattern = true,
+  variant = 'default',
   className = '',
 }) {
+  const isFlat = variant === 'flat';
+
+  // Flat вариант — без внешней обёртки
+  if (isFlat) {
+    return (
+      <div className={`${styles.flatContainer} ${className}`}>
+        {/* Список фич */}
+        <div className={styles.flatCard}>
+          {features.length > 0 && (
+            <ul className={styles.flatFeatures}>
+              {features.map((feature, index) => (
+                <li key={index} className={styles.flatFeatureItem}>
+                  <img src={checkIcon} alt="" className={styles.featureIcon} />
+                  <span className={styles.flatFeatureText}>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {/* Кнопка на десктопе внутри карточки */}
+          {buttonText && buttonHref && (
+            <Button
+              href={buttonHref}
+              variant="primary"
+              size="medium"
+              className={styles.flatButtonDesktop}
+            >
+              {buttonText}
+            </Button>
+          )}
+        </div>
+
+        {/* Видео или иллюстрация */}
+        <div className={styles.flatMedia}>
+          {videoSrc ? (
+            <iframe
+              src={videoSrc}
+              allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;"
+              frameBorder="0"
+              allowFullScreen
+              className={styles.flatVideo}
+              title="Video"
+            />
+          ) : illustration && (
+            typeof illustration === 'string' ? (
+              <img
+                src={illustration}
+                alt={illustrationAlt}
+                className={styles.flatIllustration}
+              />
+            ) : (
+              illustration
+            )
+          )}
+        </div>
+
+        {/* Кнопка на мобильных — отдельный элемент для управления order */}
+        {buttonText && buttonHref && (
+          <div className={styles.flatButtonMobile}>
+            <Button
+              href={buttonHref}
+              variant="primary"
+              size="medium"
+              fullWidth
+            >
+              {buttonText}
+            </Button>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Default вариант
   return (
     <div
       className={`${styles.block} ${showPattern ? styles.withPattern : ''} ${className}`}
@@ -73,8 +152,10 @@ HeroBlock.propTypes = {
   checkIcon: PropTypes.string,
   illustration: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   illustrationAlt: PropTypes.string,
+  videoSrc: PropTypes.string,
   backgroundImage: PropTypes.string,
   showPattern: PropTypes.bool,
+  variant: PropTypes.oneOf(['default', 'flat']),
   className: PropTypes.string,
 };
 

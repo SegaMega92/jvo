@@ -69,11 +69,19 @@
   z-index: 1;
 }
 
-/* Hero Block Wrapper */
+/* Hero Block Wrapper — with-section-header версия */
+/* Стандартный вариант — 960px */
 .heroBlockWrapper {
   max-width: 960px;
   margin: -40px auto 80px;
   padding: 0 24px;
+}
+
+/* Широкий вариант — 1160px */
+.heroBlockWrapperWide {
+  width: 100%;
+  max-width: 1160px;
+  margin: -40px auto 80px;
 }
 
 /* Review Card для FeatureSlider */

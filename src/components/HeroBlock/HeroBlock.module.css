@@ -5,7 +5,7 @@
   display: flex;
   gap: 20px;
   align-items: center;
-  padding: 20px 20px 20px 30px;
+  padding: 20px;
   border-radius: 16px;
   overflow: hidden;
   position: relative;
@@ -52,12 +52,13 @@
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  justify-content: space-between;
   padding: 20px;
   background: #ffffff;
-  border-radius: 36px;
+  border-radius: 16px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.02);
   max-width: 370px;
+  align-self: stretch;
 }
 
 /* Список фич */
@@ -115,6 +116,84 @@
 }
 
 /* ========================================
+   Flat вариант — без внешней карточки
+   ======================================== */
+
+.flatContainer {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+  width: 100%;
+}
+
+.flatCard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 40px 0 0;
+  background: #ffffff;
+  border-radius: 32px;
+}
+
+.flatFeatures {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.flatFeatureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 10px 0;
+}
+
+.flatFeatureText {
+  font-family: var(--font-family-primary);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #15181f;
+}
+
+.flatMedia {
+  width: 722px;
+  height: 460px;
+  flex-shrink: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+}
+
+.flatVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.flatIllustration {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Кнопка десктоп — показываем */
+.flatButtonDesktop {
+  width: 100%;
+}
+
+/* Кнопка мобильная — скрываем на десктопе */
+.flatButtonMobile {
+  display: none;
+}
+
+/* ========================================
    Адаптив
    ======================================== */
 
@@ -135,6 +214,40 @@
   .illustrationWrapper {
     width: 100%;
     min-height: 300px;
+  }
+
+  /* Flat адаптив */
+  .flatContainer {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .flatCard {
+    padding: 0;
+    border-radius: 0;
+    order: 2;
+  }
+
+  .flatFeatureText {
+    font-size: 18px;
+  }
+
+  .flatMedia {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 722 / 460;
+    order: 1;
+  }
+
+  /* Скрываем десктопную кнопку, показываем мобильную */
+  .flatButtonDesktop {
+    display: none;
+  }
+
+  .flatButtonMobile {
+    display: block;
+    order: 3;
+    width: 100%;
   }
 }
 
@@ -170,5 +283,23 @@
 
   .illustrationWrapper {
     min-height: 250px;
+  }
+
+  /* Flat адаптив */
+  .flatCard {
+    padding: 0;
+  }
+
+  .flatFeatures {
+    gap: 8px;
+  }
+
+  .flatFeatureItem {
+    gap: 12px;
+    padding: 8px 0;
+  }
+
+  .flatFeatureText {
+    font-size: 16px;
   }
 }

@@ -14,9 +14,14 @@ export default {
     },
   },
   argTypes: {
+    variant: {
+      control: 'select',
+      options: ['default', 'flat'],
+      description: 'Вариант блока: default (с градиентной карточкой) или flat (без обёртки, с видео)',
+    },
     showPattern: {
       control: 'boolean',
-      description: 'Показать точечный паттерн поверх градиента',
+      description: 'Показать точечный паттерн поверх градиента (только для default)',
     },
   },
 };
@@ -89,6 +94,63 @@ export const WithSectionHeader = {
         subtitle="Автоматизируйте общение с покупателями, превращайте отзывы в повторные продажи и получайте готовую аналитику для бизнеса"
       />
       <div style={{ maxWidth: '960px', margin: '-40px auto 80px', padding: '0 24px' }}>
+        <HeroBlock {...args} />
+      </div>
+    </div>
+  ),
+};
+
+// Flat вариант с видео
+export const FlatWithVideo = {
+  args: {
+    variant: 'flat',
+    features: [
+      'Оплата только за результат — от 1,3 ₽ за действие',
+      'Кросс-продажи до 5 артикулов с проверкой остатков',
+      'Готовые отчёты для производства, логистики и маркетинга',
+    ],
+    buttonText: 'Подключить ИИ-агента',
+    buttonHref: '#demo',
+    videoSrc: 'https://kinescope.io/embed/xkELCPCoL3CtbZguap7EHb',
+  },
+  render: (args) => (
+    <div style={{ background: '#fff' }}>
+      <SectionHeader
+        tag="Агент коммуникаций"
+        tagIcon={tagIconAgent}
+        title="Ответы на отзывы, вопросы и кросс-продажи"
+        subtitle="Автоматизируйте общение с покупателями, превращайте отзывы в повторные продажи и получайте готовую аналитику для бизнеса"
+      />
+      <div style={{ maxWidth: '1160px', margin: '-40px auto 80px' }}>
+        <HeroBlock {...args} />
+      </div>
+    </div>
+  ),
+};
+
+// Flat вариант с изображением
+export const FlatWithImage = {
+  args: {
+    variant: 'flat',
+    features: [
+      'Оплата только за результат — от 1,3 ₽ за действие',
+      'Кросс-продажи до 5 артикулов с проверкой остатков',
+      'Готовые отчёты для производства, логистики и маркетинга',
+    ],
+    buttonText: 'Подключить ИИ-агента',
+    buttonHref: '#demo',
+    illustration: heroIllustration,
+    illustrationAlt: 'Автоматические ответы на отзывы',
+  },
+  render: (args) => (
+    <div style={{ background: '#fff' }}>
+      <SectionHeader
+        tag="Агент коммуникаций"
+        tagIcon={tagIconAgent}
+        title="Ответы на отзывы, вопросы и кросс-продажи"
+        subtitle="Автоматизируйте общение с покупателями, превращайте отзывы в повторные продажи и получайте готовую аналитику для бизнеса"
+      />
+      <div style={{ maxWidth: '1160px', margin: '-40px auto 80px' }}>
         <HeroBlock {...args} />
       </div>
     </div>

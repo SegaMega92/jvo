@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ProductsSlider.module.css';
 import chevronLeft from '../../../assets/chevron-left.svg';
@@ -34,7 +34,7 @@ const defaultProducts = [
 
 /**
  * ProductsSlider - секция "Другие решения системы Дживио"
- * Горизонтальный слайдер с карточками продуктов (бесконечный цикл)
+ * Горизонтальный слайдер с карточками продуктов (нативный скролл)
  */
 export function ProductsSlider({
   title = 'Другие решения системы Дживио',
@@ -42,46 +42,8 @@ export function ProductsSlider({
   products = defaultProducts,
   className = '',
 }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [cardWidth, setCardWidth] = useState(560);
-  const [trackPadding, setTrackPadding] = useState(20);
   const trackRef = useRef(null);
   const sectionRef = useRef(null);
-  const touchStartX = useRef(0);
-
-  const productsCount = products.length;
-  const gap = 20;
-
-  // Клонируем: добавляем копии по краям для бесшовного цикла
-  // Нужно минимум 2-3 клона с каждой стороны чтобы заполнить viewport
-  const extendedProducts = [
-    { ...products[productsCount - 2], _key: 'clone-start-2' },
-    { ...products[productsCount - 1], _key: 'clone-start-1' },
-    ...products.map((p, i) => ({ ...p, _key: `original-${i}` })),
-    { ...products[0], _key: 'clone-end-1' },
-    { ...products[1], _key: 'clone-end-2' },
-  ];
-
-  // Измеряем ширину карточки и padding трека
-  useEffect(() => {
-    const measure = () => {
-      const track = trackRef.current;
-      if (track) {
-        const card = track.querySelector(`.${styles.card}`);
-        if (card) {
-          setCardWidth(card.offsetWidth);
-        }
-        const computedStyle = getComputedStyle(track);
-        const paddingLeft = parseInt(computedStyle.paddingLeft, 10) || 0;
-        setTrackPadding(paddingLeft);
-      }
-    };
-
-    measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
-  }, []);
 
   // Анимация появления при скролле
   useEffect(() => {
@@ -105,77 +67,26 @@ export function ProductsSlider({
     return () => observer.disconnect();
   }, []);
 
-  // Обработка окончания transition для бесшовного цикла
-  const handleTransitionEnd = useCallback(() => {
-    setIsTransitioning(false);
+  // Навигация кнопками
+  const scrollByCard = (direction) => {
+    const track = trackRef.current;
+    if (!track) return;
 
-    // Если вышли за границы реальных элементов — прыгаем обратно
-    if (currentIndex < 0 || currentIndex >= productsCount) {
-      const track = trackRef.current;
-      if (!track) return;
+    const card = track.querySelector(`.${styles.card}`);
+    if (!card) return;
 
-      // Вычисляем новый индекс (зацикливаем)
-      let newIndex;
-      if (currentIndex < 0) {
-        newIndex = productsCount + currentIndex; // -1 -> productsCount - 1, -2 -> productsCount - 2
-      } else {
-        newIndex = currentIndex - productsCount; // productsCount -> 0, productsCount + 1 -> 1
-      }
+    const cardWidth = card.offsetWidth;
+    const gap = 20; // gap между карточками
+    const scrollAmount = (cardWidth + gap) * direction;
 
-      const newOffset = -((newIndex + 2) * (cardWidth + gap)) + trackPadding;
-
-      // Отключаем transition напрямую через DOM
-      track.style.transition = 'none';
-      track.style.transform = `translateX(${newOffset}px)`;
-
-      // Форсируем reflow чтобы браузер применил изменения
-      track.offsetHeight;
-
-      // Включаем transition обратно
-      track.style.transition = '';
-
-      // Синхронизируем React state
-      setCurrentIndex(newIndex);
-    }
-  }, [currentIndex, productsCount, cardWidth, gap, trackPadding]);
-
-  // Навигация
-  const goTo = useCallback((direction) => {
-    if (isTransitioning) return;
-
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => prev + direction);
-  }, [isTransitioning]);
-
-  const goNext = useCallback(() => goTo(1), [goTo]);
-  const goPrev = useCallback(() => goTo(-1), [goTo]);
-
-  // Touch/drag обработчики
-  const handleTouchStart = (e) => {
-    touchStartX.current = e.touches ? e.touches[0].clientX : e.clientX;
+    track.scrollBy({
+      left: scrollAmount,
+      behavior: 'smooth',
+    });
   };
 
-  const handleTouchEnd = (e) => {
-    const endX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
-    const diff = touchStartX.current - endX;
-    const threshold = 50;
-
-    if (Math.abs(diff) > threshold) {
-      if (diff > 0) {
-        goNext();
-      } else {
-        goPrev();
-      }
-    }
-  };
-
-  // Вычисляем смещение трека
-  // currentIndex 0 = первый реальный продукт (index 2 в extendedProducts, т.к. 2 клона в начале)
-  // Добавляем trackPadding чтобы компенсировать padding-left трека
-  const trackOffset = -((currentIndex + 2) * (cardWidth + gap)) + trackPadding;
-
-  // Определяем нужна ли анимация
-  const shouldAnimate = isTransitioning;
+  const goNext = () => scrollByCard(1);
+  const goPrev = () => scrollByCard(-1);
 
   return (
     <section className={`${styles.section} ${className}`} ref={sectionRef}>
@@ -185,41 +96,27 @@ export function ProductsSlider({
         <p className={styles.subtitle}>{subtitle}</p>
       </div>
 
-      {/* Слайдер */}
+      {/* Слайдер с нативным скроллом */}
       <div className={`${styles.sliderWrapper} ${styles.animateIn}`}>
-        <div className={styles.sliderViewport}>
-          <div
-            ref={trackRef}
-            className={styles.track}
-            style={{
-              transform: `translateX(${trackOffset}px)`,
-              transition: shouldAnimate ? 'transform 0.4s ease-out' : 'none',
-            }}
-            onTransitionEnd={handleTransitionEnd}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-            onMouseDown={handleTouchStart}
-            onMouseUp={handleTouchEnd}
-          >
-            {extendedProducts.map((product) => (
-              <div key={product._key} className={styles.card}>
-                <div className={styles.cardContent}>
-                  <div className={`${styles.tag} ${product.color === 'violet' ? styles.tagViolet : styles.tagGray}`}>
-                    <div className={`${styles.tagIcon} ${product.color === 'violet' ? styles.tagIconViolet : styles.tagIconGray}`}>
-                      {product.icon && <img src={product.icon} alt="" className={styles.tagIconImg} />}
-                    </div>
-                    <span className={`${styles.tagText} ${product.color === 'violet' ? styles.tagTextViolet : styles.tagTextGray}`}>
-                      {product.name}
-                    </span>
+        <div ref={trackRef} className={styles.track}>
+          {products.map((product) => (
+            <div key={product.id} className={styles.card}>
+              <div className={styles.cardContent}>
+                <div className={`${styles.tag} ${product.color === 'violet' ? styles.tagViolet : styles.tagGray}`}>
+                  <div className={`${styles.tagIcon} ${product.color === 'violet' ? styles.tagIconViolet : styles.tagIconGray}`}>
+                    {product.icon && <img src={product.icon} alt="" className={styles.tagIconImg} />}
                   </div>
-                  <p className={styles.cardDescription}>{product.description}</p>
+                  <span className={`${styles.tagText} ${product.color === 'violet' ? styles.tagTextViolet : styles.tagTextGray}`}>
+                    {product.name}
+                  </span>
                 </div>
-                <div className={`${styles.cardImage} ${product.color === 'violet' ? styles.cardImageViolet : styles.cardImageGray}`}>
-                  {product.image && <img src={product.image} alt="" className={styles.cardImg} />}
-                </div>
+                <p className={styles.cardDescription}>{product.description}</p>
               </div>
-            ))}
-          </div>
+              <div className={`${styles.cardImage} ${product.color === 'violet' ? styles.cardImageViolet : styles.cardImageGray}`}>
+                {product.image && <img src={product.image} alt="" className={styles.cardImg} />}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 

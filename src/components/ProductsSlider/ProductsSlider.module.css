@@ -8,7 +8,6 @@
   padding: 40px 0;
   background: #ffffff;
   overflow: hidden;
-  /* Ограничиваем ширину секции */
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -27,6 +26,7 @@
   text-align: center;
   width: 100%;
   padding: 0 24px;
+  box-sizing: border-box;
 }
 
 .title {
@@ -51,37 +51,29 @@
 }
 
 /* ========================================
-   Слайдер
+   Слайдер (нативный скролл)
    ======================================== */
 
 .sliderWrapper {
-  position: relative;
   width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
   overflow: hidden;
 }
 
-/* Viewport обрезает контент и добавляет fade справа */
-.sliderViewport {
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  mask-image: linear-gradient(to right, black 0%, black calc(100% - 120px), transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, black 0%, black calc(100% - 120px), transparent 100%);
-}
-
-/* Track двигается через transform */
+/* Track с нативным горизонтальным скроллом */
 .track {
   display: flex;
   gap: 20px;
-  padding-left: 20px;
-  cursor: grab;
-  user-select: none;
+  padding: 0 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
 }
 
-.track:active {
-  cursor: grabbing;
+.track::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 
 /* ========================================
@@ -95,11 +87,13 @@
   align-items: center;
   justify-content: center;
   width: 540px;
+  min-width: 540px;
   flex-shrink: 0;
   padding: 20px 20px 10px;
   background: #f6f6f9;
   border-radius: 16px;
   overflow: hidden;
+  scroll-snap-align: start;
 }
 
 .cardContent {
@@ -234,11 +228,6 @@
   transform: scale(0.95);
 }
 
-.navButtonDisabled {
-  opacity: 0.4;
-  cursor: default;
-}
-
 .arrowIcon {
   width: 6px;
   height: 10px;
@@ -279,6 +268,7 @@
 
   .card {
     width: 480px;
+    min-width: 480px;
   }
 
   .cardImage {
@@ -307,11 +297,12 @@
 
   .track {
     gap: 16px;
-    padding-left: 16px;
+    padding: 0 16px;
   }
 
   .card {
     width: 320px;
+    min-width: 320px;
     padding: 16px 16px 8px;
     gap: 16px;
     border-radius: 12px;
@@ -374,19 +365,14 @@
     font-size: 14px;
   }
 
-  .sliderViewport {
-    mask-image: linear-gradient(to right, black 0%, black calc(100% - 40px), transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, black 0%, black calc(100% - 40px), transparent 100%);
-  }
-
   .track {
     gap: 12px;
-    padding-left: 16px;
+    padding: 0 16px;
   }
 
   .card {
-    width: calc(100vw - 56px);
-    min-width: 260px;
+    width: calc(100vw - 48px);
+    min-width: calc(100vw - 48px);
     max-width: 320px;
     padding: 16px 16px 8px;
     gap: 16px;
@@ -436,7 +422,6 @@
   }
 }
 
-/* Очень маленькие экраны */
 @media (max-width: 360px) {
   .header {
     padding: 0 12px;
@@ -451,12 +436,13 @@
   }
 
   .track {
-    padding-left: 12px;
+    padding: 0 12px;
+    gap: 12px;
   }
 
   .card {
-    width: calc(100vw - 44px);
-    min-width: 240px;
+    width: calc(100vw - 40px);
+    min-width: calc(100vw - 40px);
     padding: 12px 12px 6px;
     gap: 12px;
   }

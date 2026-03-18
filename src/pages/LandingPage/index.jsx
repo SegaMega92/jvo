@@ -14,6 +14,7 @@ import { AudienceSection } from '../../components/AudienceSection';
 import { LaunchSection } from '../../components/LaunchSection';
 import { ProductsSlider } from '../../components/ProductsSlider';
 import { FAQSection } from '../../components/FAQSection';
+import { Footer } from '../../components/Footer';
 import { Spacer } from '../../components/Spacer';
 import { AgentWorkflowDemo } from '../../components/Illustrations/AgentWorkflowDemo';
 import illustrationCommunication from '../../../assets/illustration_commenication_1.svg';
@@ -267,7 +268,11 @@ export function LandingPage({ className = '' }) {
         <FAQSection
           title="Часто задаваемые вопросы"
         />
+
+        <Spacer size="xl" />
       </main>
+
+      <Footer />
     </div>
   );
 }

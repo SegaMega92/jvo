@@ -1,194 +1,513 @@
 /* Footer Component Styles */
 
 .footer {
+  position: relative;
   width: 100%;
-  background: var(--color-bg-secondary);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: #101010;
+  overflow: hidden;
 }
 
-.footer--default {
-  padding: var(--spacing-16) 0 var(--spacing-8);
-}
-
-.footer--minimal {
-  padding: var(--spacing-8) 0;
-}
-
-.footer--centered {
-  padding: var(--spacing-12) 0;
-  text-align: center;
-}
-
-.footer__container {
-  max-width: var(--container-max-width);
+.container {
+  position: relative;
+  max-width: 1408px;
   margin: 0 auto;
-  padding: 0 var(--container-padding);
+  padding: 40px 24px;
+  z-index: 1;
 }
 
-/* Main */
-.footer__main {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-12);
+/* ========================================
+   Decorative gradient blur
+   ======================================== */
+
+.gradientBlur {
+  position: absolute;
+  bottom: -400px;
+  right: -200px;
+  width: 876px;
+  height: 873px;
+  background: radial-gradient(
+    circle at center,
+    rgba(247, 167, 151, 0.4) 0%,
+    rgba(255, 146, 161, 0.3) 25%,
+    rgba(252, 120, 237, 0.2) 50%,
+    rgba(195, 107, 246, 0.15) 70%,
+    rgba(139, 93, 255, 0.1) 85%,
+    transparent 100%
+  );
+  filter: blur(150px);
+  pointer-events: none;
+  transform: rotate(180deg);
 }
 
-@media (min-width: 768px) {
-  .footer--default .footer__main {
-    grid-template-columns: 1fr 2fr;
-  }
-}
+/* ========================================
+   Top section: Navigation + Newsletter
+   ======================================== */
 
-/* Brand */
-.footer__brand {
-  max-width: 300px;
-}
-
-.footer--centered .footer__brand {
-  max-width: none;
-  margin: 0 auto;
-}
-
-.footer__logo {
-  display: inline-flex;
-  text-decoration: none;
-  margin-bottom: var(--spacing-4);
-}
-
-.footer__logoText {
-  font-family: var(--font-family-heading);
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-accent-pink);
-}
-
-.footer__description {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  margin: 0 0 var(--spacing-6);
-  line-height: var(--line-height-relaxed);
-}
-
-/* Social */
-.footer__social {
-  margin-top: var(--spacing-4);
-}
-
-.footer__socialList {
+.topSection {
   display: flex;
-  gap: var(--spacing-3);
-  list-style: none;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.navColumns {
+  display: flex;
+  gap: 48px;
+}
+
+.navColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.navColumnSecondary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 274px;
+}
+
+.navLinkPrimary {
+  font-family: 'RF Dewi Extended', var(--font-family-primary);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navLinkPrimary:hover {
+  color: #ff8fda;
+}
+
+.navLinkSecondary {
+  font-family: 'RF Dewi', var(--font-family-primary);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navLinkSecondary:hover {
+  color: #ff8fda;
+}
+
+/* ========================================
+   Newsletter subscription
+   ======================================== */
+
+.newsletter {
+  max-width: 474px;
+}
+
+.newsletterTitle {
+  font-family: 'RF Dewi Extended', var(--font-family-primary);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.68px;
+  color: #ffffff;
+  margin: 0 0 20px;
+}
+
+.subscribeForm {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.inputWrapper {
+  display: flex;
+  gap: 8px;
+  padding: 4px;
+  background: rgba(156, 191, 255, 0.07);
+  backdrop-filter: blur(40px);
+  border-radius: 16px;
+}
+
+.emailInput {
+  flex: 1;
+  padding: 13px 8px;
+  background: transparent;
+  border: none;
+  border-radius: 80px;
+  font-family: 'RF Dewi', var(--font-family-primary);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+  outline: none;
+}
+
+.emailInput::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.subscribeButton {
+  padding: 15px 24px;
+  background: #ff8fda;
+  border: none;
+  border-radius: 12px;
+  font-family: 'RF Dewi Extended', var(--font-family-primary);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.42px;
+  text-transform: uppercase;
+  color: #101010;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.subscribeButton:hover {
+  background: #ff70cb;
+  transform: scale(1.02);
+}
+
+.subscribeButton:active {
+  transform: scale(0.98);
+}
+
+.privacyNote {
+  font-family: 'RF Dewi', var(--font-family-primary);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.22px;
+  color: rgba(255, 255, 255, 0.4);
   margin: 0;
-  padding: 0;
 }
 
-.footer--centered .footer__socialList {
-  justify-content: center;
+/* ========================================
+   Partners section
+   ======================================== */
+
+.partnersSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
 }
 
-.footer__socialLink {
+.partnerBadge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.partnerLogo {
+  flex-shrink: 0;
+}
+
+.partnerLogo svg {
+  display: block;
+}
+
+.partnerText {
+  font-family: 'RF Dewi', var(--font-family-primary);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0.26px;
+  color: #ffffff;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* ========================================
+   Bottom section: Company info + Social
+   ======================================== */
+
+.bottomSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.companyInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.companyName {
+  font-family: 'RF Dewi', var(--font-family-primary);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0.26px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.companyDetails {
+  font-family: 'RF Dewi', var(--font-family-primary);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0.26px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.paymentIcons {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.paymentIcon {
+  font-family: 'RF Dewi', var(--font-family-primary);
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.socialLinks {
+  display: flex;
+  gap: 4px;
+}
+
+.socialLink {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: var(--color-bg-card);
-  border-radius: var(--radius-lg);
-  color: var(--color-text-secondary);
-  transition: all var(--transition-fast);
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.footer__socialLink:hover {
-  background: var(--color-accent-pink);
-  color: var(--color-white);
+.socialLink:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
 }
 
-/* Columns */
-.footer__columns {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-8);
+.socialLink svg {
+  display: block;
 }
 
-@media (min-width: 768px) {
-  .footer__columns {
-    grid-template-columns: repeat(3, 1fr);
+/* ========================================
+   Responsive: 1200px
+   ======================================== */
+
+@media (max-width: 1280px) {
+  .container {
+    max-width: 1168px;
+  }
+
+  .topSection {
+    gap: 32px;
+  }
+
+  .navColumns {
+    gap: 40px;
+  }
+
+  .newsletterTitle {
+    font-size: 28px;
+  }
+
+  .partnersSection {
+    gap: 16px;
+  }
+
+  .partnerText {
+    font-size: 12px;
   }
 }
 
-@media (min-width: 1024px) {
-  .footer__columns {
-    grid-template-columns: repeat(4, 1fr);
+/* ========================================
+   Responsive: Tablet (768px)
+   ======================================== */
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 32px 16px;
+  }
+
+  .topSection {
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .navColumns {
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+
+  .navColumn {
+    min-width: 140px;
+  }
+
+  .navColumnSecondary {
+    min-width: 200px;
+  }
+
+  .newsletter {
+    max-width: 100%;
+  }
+
+  .newsletterTitle {
+    font-size: 32px;
+  }
+
+  .partnersSection {
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .partnerBadge {
+    flex: 0 0 calc(50% - 12px);
+  }
+
+  .bottomSection {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .socialLinks {
+    align-self: flex-start;
   }
 }
 
-.footer--minimal .footer__columns {
-  display: none;
+/* ========================================
+   Responsive: Mobile (480px)
+   ======================================== */
+
+@media (max-width: 600px) {
+  .container {
+    padding: 40px 16px;
+  }
+
+  .topSection {
+    flex-direction: column-reverse;
+    margin-bottom: 32px;
+  }
+
+  .newsletter {
+    order: 1;
+  }
+
+  .newsletterTitle {
+    font-size: 28px;
+    line-height: 1.1;
+  }
+
+  .inputWrapper {
+    flex-direction: column;
+    gap: 8px;
+    padding: 4px;
+  }
+
+  .emailInput {
+    padding: 15px 8px;
+  }
+
+  .subscribeButton {
+    width: 100%;
+    padding: 17px 24px;
+  }
+
+  .privacyNote {
+    text-align: center;
+  }
+
+  .navColumns {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .navColumn,
+  .navColumnSecondary {
+    width: 100%;
+    min-width: unset;
+    max-width: unset;
+  }
+
+  .navLinkPrimary {
+    font-size: 16px;
+  }
+
+  .navLinkSecondary {
+    font-size: 14px;
+  }
+
+  .partnersSection {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .partnerBadge {
+    flex: 1 1 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .partnerText {
+    white-space: normal;
+  }
+
+  .companyDetails {
+    line-height: 1.4;
+  }
+
+  .gradientBlur {
+    width: 500px;
+    height: 500px;
+    bottom: -200px;
+    right: -150px;
+  }
 }
 
-.footer--centered .footer__columns {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--spacing-8);
-}
+/* ========================================
+   Responsive: Small Mobile (320px)
+   ======================================== */
 
-/* Column */
-.footer__column {
-  min-width: 0;
-}
+@media (max-width: 380px) {
+  .container {
+    padding: 40px 12px;
+  }
 
-.footer__columnTitle {
-  font-family: var(--font-family-heading);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  margin: 0 0 var(--spacing-4);
-  text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-wide);
-}
+  .newsletterTitle {
+    font-size: 24px;
+  }
 
-.footer__links {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-3);
-}
+  .navLinkPrimary {
+    font-size: 15px;
+  }
 
-.footer--centered .footer__links {
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+  .navLinkSecondary {
+    font-size: 13px;
+  }
 
-.footer__link {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
+  .partnerBadge {
+    flex-direction: row;
+    align-items: center;
+  }
 
-.footer__link:hover {
-  color: var(--color-accent-pink);
-}
+  .companyDetails {
+    font-size: 12px;
+  }
 
-/* Bottom */
-.footer__bottom {
-  margin-top: var(--spacing-12);
-  padding-top: var(--spacing-8);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
+  .socialLinks {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 
-.footer--minimal .footer__bottom {
-  margin-top: 0;
-  padding-top: 0;
-  border-top: none;
-}
-
-.footer__copyright {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
-  margin: 0;
-  text-align: center;
+  .socialLink svg {
+    width: 32px;
+    height: 32px;
+  }
 }

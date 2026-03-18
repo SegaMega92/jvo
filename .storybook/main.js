@@ -13,6 +13,11 @@ const config = {
     "@storybook/addon-docs",
     "@storybook/addon-onboarding"
   ],
-  "framework": "@storybook/react-vite"
+  "framework": "@storybook/react-vite",
+  viteFinal: async (config) => {
+    // Set base path for GitHub Pages deployment
+    config.base = '/jvo/';
+    return config;
+  },
 };
 export default config;

@@ -167,6 +167,17 @@ export function AudienceSection({
     }, 200);
   };
 
+  // Навигация стрелками для мобильной версии
+  const goToPrev = () => {
+    const newIndex = activeTab > 0 ? activeTab - 1 : tabs.length - 1;
+    handleTabChange(newIndex);
+  };
+
+  const goToNext = () => {
+    const newIndex = activeTab < tabs.length - 1 ? activeTab + 1 : 0;
+    handleTabChange(newIndex);
+  };
+
   const currentTab = tabs[activeTab];
 
   return (
@@ -176,7 +187,7 @@ export function AudienceSection({
 
       {/* Основной блок с табами */}
       <div className={`${styles.mainBlock} ${styles.animateIn}`}>
-        {/* Меню табов */}
+        {/* Меню табов - десктоп */}
         <div className={styles.tabsMenu} ref={tabsMenuRef}>
           {tabs.map((tab, index) => (
             <button
@@ -189,6 +200,32 @@ export function AudienceSection({
               {tab.label}
             </button>
           ))}
+        </div>
+
+        {/* Навигация стрелками - мобильная */}
+        <div className={styles.mobileNav}>
+          <button
+            className={styles.navArrow}
+            onClick={goToPrev}
+            aria-label="Предыдущий"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          <div className={styles.mobileNavCenter}>
+            <span className={styles.mobileNavLabel}>{currentTab.label}</span>
+            <span className={styles.mobileNavCounter}>{activeTab + 1} из {tabs.length}</span>
+          </div>
+          <button
+            className={styles.navArrow}
+            onClick={goToNext}
+            aria-label="Следующий"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
         </div>
 
         {/* Контент */}

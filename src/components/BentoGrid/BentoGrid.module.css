@@ -337,7 +337,16 @@
 
   .illustrationLarge {
     width: 100%;
-    height: 160px;
+    height: 200px;
+  }
+
+  .illustrationLarge .illustrationImg {
+    object-fit: contain;
+  }
+
+  /* Block 3: скрываем картинку на мобильном */
+  .illustrationControl {
+    display: none;
   }
 
   /* Block 7 становится вертикальным */
@@ -347,7 +356,11 @@
 
   .illustrationMultibrand {
     width: 100%;
-    height: 160px;
+    height: 200px;
+  }
+
+  .illustrationMultibrand .illustrationImg {
+    object-fit: contain;
   }
 
   .centerTitle {
@@ -359,15 +372,6 @@
   .grid {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(5, auto);
-  }
-
-  .block3 {
-    flex-direction: column;
-  }
-
-  .illustrationControl {
-    width: 100%;
-    height: 80px;
   }
 
   .title {
@@ -433,10 +437,6 @@
 
   .illustrationLarge,
   .illustrationMultibrand {
-    height: 120px;
-  }
-
-  .illustrationControl {
-    height: 60px;
+    height: 160px;
   }
 }

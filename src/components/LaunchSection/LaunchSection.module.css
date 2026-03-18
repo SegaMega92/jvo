@@ -252,7 +252,12 @@
   }
 
   .cardImage {
-    max-height: 280px;
+    aspect-ratio: auto;
+    height: 200px;
+  }
+
+  .cardImg {
+    object-fit: contain;
   }
 
   .tag {
@@ -294,7 +299,7 @@
 
   .cardImage {
     border-radius: 12px;
-    max-height: 240px;
+    height: 160px;
   }
 
   .cardText {

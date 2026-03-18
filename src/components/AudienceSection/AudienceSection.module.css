@@ -92,6 +92,69 @@
 }
 
 /* ========================================
+   Мобильная навигация (стрелки)
+   ======================================== */
+
+.mobileNav {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.navArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #f6f6f9;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #15181f;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.navArrow:hover {
+  background: #e9ebf0;
+}
+
+.navArrow:active {
+  background: #dcdfe5;
+}
+
+.mobileNavCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.mobileNavLabel {
+  font-family: var(--font-family-primary);
+  font-size: 14px;
+  font-weight: 700;
+  color: #15181f;
+  text-align: center;
+}
+
+.mobileNavCounter {
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  font-weight: 500;
+  color: #15181f;
+  opacity: 0.5;
+}
+
+/* ========================================
    Контент
    ======================================== */
 
@@ -308,15 +371,13 @@
     border-radius: 24px;
   }
 
+  /* Скрываем табы, показываем мобильную навигацию */
   .tabsMenu {
-    border-radius: 12px;
-    padding: 12px;
+    display: none;
   }
 
-  .tabButton {
-    font-size: 14px;
-    padding: 10px 14px;
-    border-radius: 10px;
+  .mobileNav {
+    display: flex;
   }
 
   .contentDescription {
@@ -367,14 +428,22 @@
     border-radius: 20px;
   }
 
-  .tabsMenu {
+  .mobileNav {
     padding: 10px;
-    gap: 6px;
+    border-radius: 10px;
   }
 
-  .tabButton {
+  .navArrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .mobileNavLabel {
     font-size: 13px;
-    padding: 8px 12px;
+  }
+
+  .mobileNavCounter {
+    font-size: 11px;
   }
 
   .content {

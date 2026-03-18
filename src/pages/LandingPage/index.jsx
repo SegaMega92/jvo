@@ -268,8 +268,6 @@ export function LandingPage({ className = '' }) {
         <FAQSection
           title="Часто задаваемые вопросы"
         />
-
-        <Spacer size="xl" />
       </main>
 
       <Footer />

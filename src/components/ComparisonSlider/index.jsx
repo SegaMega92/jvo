@@ -4,6 +4,8 @@ import styles from './ComparisonSlider.module.css';
 import { SectionHeader } from '../SectionHeader';
 import chevronLeft from '../../../assets/chevron-left.svg';
 import chevronRight from '../../../assets/chevron-right.svg';
+import checkmarkIcon from '../../../assets/сhekmakr.png';
+import crossIcon from '../../../assets/cross.png';
 
 // Данные слайдов (9 штук из Figma)
 const defaultSlides = [
@@ -248,7 +250,7 @@ export function ComparisonSlider({
             {/* Агент Дживио */}
             <div className={styles.cardColumn}>
               <div className={styles.columnHeader}>
-                <span className={styles.dotAgent} />
+                <img src={checkmarkIcon} alt="" className={styles.columnIcon} />
                 <span className={styles.columnTitle}>Агент коммуникаций Дживио</span>
               </div>
               <p className={styles.columnText}>{slide.agent.text}</p>
@@ -257,7 +259,7 @@ export function ComparisonSlider({
             {/* Конкуренты */}
             <div className={styles.cardColumn}>
               <div className={styles.columnHeader}>
-                <span className={styles.dotCompetitor} />
+                <img src={crossIcon} alt="" className={styles.columnIcon} />
                 <span className={styles.columnTitle}>Базовые ИИ-сервисы</span>
               </div>
               <p className={styles.columnTextMuted}>{slide.competitor.text}</p>

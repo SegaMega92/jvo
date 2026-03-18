@@ -45,6 +45,7 @@ export function ProductsSlider({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [cardWidth, setCardWidth] = useState(560);
+  const [trackPadding, setTrackPadding] = useState(20);
   const trackRef = useRef(null);
   const sectionRef = useRef(null);
   const touchStartX = useRef(0);
@@ -62,18 +63,24 @@ export function ProductsSlider({
     { ...products[1], _key: 'clone-end-2' },
   ];
 
-  // Измеряем ширину карточки
+  // Измеряем ширину карточки и padding трека
   useEffect(() => {
-    const measureCard = () => {
-      const card = trackRef.current?.querySelector(`.${styles.card}`);
-      if (card) {
-        setCardWidth(card.offsetWidth);
+    const measure = () => {
+      const track = trackRef.current;
+      if (track) {
+        const card = track.querySelector(`.${styles.card}`);
+        if (card) {
+          setCardWidth(card.offsetWidth);
+        }
+        const computedStyle = getComputedStyle(track);
+        const paddingLeft = parseInt(computedStyle.paddingLeft, 10) || 0;
+        setTrackPadding(paddingLeft);
       }
     };
 
-    measureCard();
-    window.addEventListener('resize', measureCard);
-    return () => window.removeEventListener('resize', measureCard);
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
   }, []);
 
   // Анимация появления при скролле
@@ -115,7 +122,7 @@ export function ProductsSlider({
         newIndex = currentIndex - productsCount; // productsCount -> 0, productsCount + 1 -> 1
       }
 
-      const newOffset = -((newIndex + 2) * (cardWidth + gap));
+      const newOffset = -((newIndex + 2) * (cardWidth + gap)) + trackPadding;
 
       // Отключаем transition напрямую через DOM
       track.style.transition = 'none';
@@ -130,7 +137,7 @@ export function ProductsSlider({
       // Синхронизируем React state
       setCurrentIndex(newIndex);
     }
-  }, [currentIndex, productsCount, cardWidth, gap]);
+  }, [currentIndex, productsCount, cardWidth, gap, trackPadding]);
 
   // Навигация
   const goTo = useCallback((direction) => {
@@ -164,7 +171,8 @@ export function ProductsSlider({
 
   // Вычисляем смещение трека
   // currentIndex 0 = первый реальный продукт (index 2 в extendedProducts, т.к. 2 клона в начале)
-  const trackOffset = -((currentIndex + 2) * (cardWidth + gap));
+  // Добавляем trackPadding чтобы компенсировать padding-left трека
+  const trackOffset = -((currentIndex + 2) * (cardWidth + gap)) + trackPadding;
 
   // Определяем нужна ли анимация
   const shouldAnimate = isTransitioning;

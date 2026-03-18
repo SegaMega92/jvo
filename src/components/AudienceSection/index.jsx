@@ -90,6 +90,7 @@ export function AudienceSection({
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
   const tabsRef = useRef([]);
+  const tabsMenuRef = useRef(null);
 
   // Анимация появления при скролле
   useEffect(() => {
@@ -112,6 +113,33 @@ export function AudienceSection({
 
     return () => observer.disconnect();
   }, []);
+
+  // Скролл активного таба в видимую область при появлении секции
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Прокручиваем активный таб в видимую область
+            setTimeout(() => {
+              tabsRef.current[activeTab]?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+                inline: 'center',
+              });
+            }, 300);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [activeTab]);
 
   // Смена таба с анимацией
   const handleTabChange = (index) => {
@@ -149,7 +177,7 @@ export function AudienceSection({
       {/* Основной блок с табами */}
       <div className={`${styles.mainBlock} ${styles.animateIn}`}>
         {/* Меню табов */}
-        <div className={styles.tabsMenu}>
+        <div className={styles.tabsMenu} ref={tabsMenuRef}>
           {tabs.map((tab, index) => (
             <button
               key={tab.id}

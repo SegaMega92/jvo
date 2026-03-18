@@ -8,9 +8,11 @@
   padding: 40px 0;
   background: #ffffff;
   overflow: hidden;
-  /* Центрируем контент относительно контентной сетки */
+  /* Ограничиваем ширину секции */
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* ========================================
@@ -55,11 +57,16 @@
 .sliderWrapper {
   position: relative;
   width: 100%;
+  max-width: 100%;
   padding-left: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* Viewport обрезает контент и добавляет fade справа */
 .sliderViewport {
+  width: 100%;
+  max-width: 100%;
   overflow: hidden;
   mask-image: linear-gradient(to right, black 0%, black calc(100% - 120px), transparent 100%);
   -webkit-mask-image: linear-gradient(to right, black 0%, black calc(100% - 120px), transparent 100%);

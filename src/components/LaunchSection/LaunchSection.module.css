@@ -74,6 +74,17 @@
   justify-content: center;
 }
 
+/* Паттерн с точками поверх градиента */
+.cardImage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--pattern-dots);
+  background-repeat: repeat;
+  pointer-events: none;
+  z-index: 2;
+}
+
 .cardGradient {
   position: absolute;
   inset: 0;

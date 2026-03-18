@@ -40,19 +40,13 @@
 }
 
 /* ========================================
-   Top section: Navigation + Newsletter
+   Navigation section
    ======================================== */
 
-.topSection {
-  display: flex;
-  justify-content: space-between;
-  gap: 40px;
-  margin-bottom: 60px;
-}
-
-.navColumns {
+.navSection {
   display: flex;
   gap: 48px;
+  margin-bottom: 60px;
 }
 
 .navColumn {
@@ -95,94 +89,6 @@
 
 .navLinkSecondary:hover {
   color: #ff8fda;
-}
-
-/* ========================================
-   Newsletter subscription
-   ======================================== */
-
-.newsletter {
-  max-width: 474px;
-}
-
-.newsletterTitle {
-  font-family: 'RF Dewi Extended', var(--font-family-primary);
-  font-size: 34px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.68px;
-  color: #ffffff;
-  margin: 0 0 20px;
-}
-
-.subscribeForm {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.inputWrapper {
-  display: flex;
-  gap: 8px;
-  padding: 4px;
-  background: rgba(156, 191, 255, 0.07);
-  backdrop-filter: blur(40px);
-  border-radius: 16px;
-}
-
-.emailInput {
-  flex: 1;
-  padding: 13px 8px;
-  background: transparent;
-  border: none;
-  border-radius: 80px;
-  font-family: 'RF Dewi', var(--font-family-primary);
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: 0.3px;
-  color: #ffffff;
-  outline: none;
-}
-
-.emailInput::placeholder {
-  color: rgba(255, 255, 255, 0.3);
-}
-
-.subscribeButton {
-  padding: 15px 24px;
-  background: #ff8fda;
-  border: none;
-  border-radius: 12px;
-  font-family: 'RF Dewi Extended', var(--font-family-primary);
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.42px;
-  text-transform: uppercase;
-  color: #101010;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
-  white-space: nowrap;
-}
-
-.subscribeButton:hover {
-  background: #ff70cb;
-  transform: scale(1.02);
-}
-
-.subscribeButton:active {
-  transform: scale(0.98);
-}
-
-.privacyNote {
-  font-family: 'RF Dewi', var(--font-family-primary);
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: 0.22px;
-  color: rgba(255, 255, 255, 0.4);
-  margin: 0;
 }
 
 /* ========================================
@@ -303,16 +209,8 @@
     max-width: 1168px;
   }
 
-  .topSection {
-    gap: 32px;
-  }
-
-  .navColumns {
+  .navSection {
     gap: 40px;
-  }
-
-  .newsletterTitle {
-    font-size: 28px;
   }
 
   .partnersSection {
@@ -333,15 +231,10 @@
     padding: 32px 16px;
   }
 
-  .topSection {
-    flex-direction: column;
-    gap: 40px;
-    margin-bottom: 40px;
-  }
-
-  .navColumns {
+  .navSection {
     flex-wrap: wrap;
     gap: 32px;
+    margin-bottom: 40px;
   }
 
   .navColumn {
@@ -350,14 +243,6 @@
 
   .navColumnSecondary {
     min-width: 200px;
-  }
-
-  .newsletter {
-    max-width: 100%;
-  }
-
-  .newsletterTitle {
-    font-size: 32px;
   }
 
   .partnersSection {
@@ -389,42 +274,10 @@
     padding: 40px 16px;
   }
 
-  .topSection {
-    flex-direction: column-reverse;
-    margin-bottom: 32px;
-  }
-
-  .newsletter {
-    order: 1;
-  }
-
-  .newsletterTitle {
-    font-size: 28px;
-    line-height: 1.1;
-  }
-
-  .inputWrapper {
-    flex-direction: column;
-    gap: 8px;
-    padding: 4px;
-  }
-
-  .emailInput {
-    padding: 15px 8px;
-  }
-
-  .subscribeButton {
-    width: 100%;
-    padding: 17px 24px;
-  }
-
-  .privacyNote {
-    text-align: center;
-  }
-
-  .navColumns {
+  .navSection {
     flex-direction: column;
     gap: 24px;
+    margin-bottom: 32px;
   }
 
   .navColumn,
@@ -478,10 +331,6 @@
 @media (max-width: 380px) {
   .container {
     padding: 40px 12px;
-  }
-
-  .newsletterTitle {
-    font-size: 24px;
   }
 
   .navLinkPrimary {

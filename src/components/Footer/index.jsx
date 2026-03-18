@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Footer.module.css';
 
@@ -81,76 +80,40 @@ const partnerBadges = [
 
 /**
  * Footer - футер сайта
- * Содержит навигацию, форму подписки, партнёров и контакты
+ * Содержит навигацию, партнёров и контакты
  */
 export function Footer({ className = '' }) {
-  const [email, setEmail] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Subscribe:', email);
-    setEmail('');
-  };
-
   return (
     <footer className={`${styles.footer} ${className}`}>
       {/* Decorative gradient blur */}
       <div className={styles.gradientBlur} aria-hidden="true" />
 
       <div className={styles.container}>
-        {/* Top section: Navigation + Newsletter */}
-        <div className={styles.topSection}>
-          {/* Navigation columns */}
-          <div className={styles.navColumns}>
-            <nav className={styles.navColumn}>
-              {navLinksColumn1.map((link) => (
-                <a key={link.label} href={link.href} className={styles.navLinkPrimary}>
-                  {link.label}
-                </a>
-              ))}
-            </nav>
+        {/* Navigation section */}
+        <div className={styles.navSection}>
+          <nav className={styles.navColumn}>
+            {navLinksColumn1.map((link) => (
+              <a key={link.label} href={link.href} className={styles.navLinkPrimary}>
+                {link.label}
+              </a>
+            ))}
+          </nav>
 
-            <nav className={styles.navColumn}>
-              {navLinksColumn2.map((link) => (
-                <a key={link.label} href={link.href} className={styles.navLinkPrimary}>
-                  {link.label}
-                </a>
-              ))}
-            </nav>
+          <nav className={styles.navColumn}>
+            {navLinksColumn2.map((link) => (
+              <a key={link.label} href={link.href} className={styles.navLinkPrimary}>
+                {link.label}
+              </a>
+            ))}
+          </nav>
 
-            <nav className={styles.navColumnSecondary}>
-              {navLinksColumn3.map((link) => (
-                <a key={link.label} href={link.href} className={styles.navLinkSecondary}>
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-          </div>
-
-          {/* Newsletter subscription */}
-          <div className={styles.newsletter}>
-            <h3 className={styles.newsletterTitle}>
-              Делимся лучшими практиками e-commerce компаний
-            </h3>
-            <form className={styles.subscribeForm} onSubmit={handleSubmit}>
-              <div className={styles.inputWrapper}>
-                <input
-                  type="email"
-                  placeholder="E–mail"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className={styles.emailInput}
-                  required
-                />
-                <button type="submit" className={styles.subscribeButton}>
-                  Подписаться
-                </button>
-              </div>
-              <p className={styles.privacyNote}>
-                Нажимая кнопку «Подписаться» вы соглашаетесь с Политикой обработки персональных данных
-              </p>
-            </form>
-          </div>
+          <nav className={styles.navColumnSecondary}>
+            {navLinksColumn3.map((link) => (
+              <a key={link.label} href={link.href} className={styles.navLinkSecondary}>
+                {link.label}
+              </a>
+            ))}
+          </nav>
         </div>
 
         {/* Partners section */}

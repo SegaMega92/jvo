@@ -2,12 +2,14 @@ import { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styles from './BentoGrid.module.css';
 
-// Placeholder icons - replace with actual exports from Figma
-import iconScenarios from '../../../assets/bento-icon-scenarios.svg';
-import iconStrategies from '../../../assets/bento-icon-strategies.svg';
-import iconControl from '../../../assets/bento-icon-control.svg';
-import iconSettings from '../../../assets/bento-icon-settings.svg';
-import iconMultibrand from '../../../assets/bento-icon-multibrand.svg';
+// Feature images
+import imgScenarios from '../../../assets/features/img-3.png';
+import imgStrategies from '../../../assets/features/img-4.png';
+import imgControl from '../../../assets/features/img-6.png';
+import imgBadge50k from '../../../assets/features/img-1.png';
+import imgSettings from '../../../assets/features/img-2.png';
+import imgMultibrand from '../../../assets/features/img-5.png';
+import imgCenterIcon from '../../../assets/features/img.png';
 
 /**
  * BentoGrid - сетка фич в стиле bento
@@ -44,7 +46,7 @@ export function BentoGrid({ className = '' }) {
         {/* Block 1: Лёгкий старт (row 1, col 1-2) */}
         <div className={`${styles.block} ${styles.block1}`}>
           <div className={styles.illustrationLarge}>
-            <img src={iconScenarios} alt="" className={styles.illustrationImg} />
+            <img src={imgScenarios} alt="" className={styles.illustrationImg} />
           </div>
           <div className={styles.textContent}>
             <h3 className={styles.title}>Лёгкий старт с готовыми сценариями</h3>
@@ -57,7 +59,7 @@ export function BentoGrid({ className = '' }) {
         {/* Block 2: Мультистратегии (row 1, col 3) */}
         <div className={`${styles.block} ${styles.block2}`}>
           <div className={styles.iconWrapper}>
-            <img src={iconStrategies} alt="" className={styles.icon} />
+            <img src={imgStrategies} alt="" className={styles.icon} />
           </div>
           <div className={styles.textContent}>
             <h3 className={styles.title}>Уникальные мультистратегии</h3>
@@ -70,7 +72,7 @@ export function BentoGrid({ className = '' }) {
         {/* Block 3: Два режима контроля (row 2, col 1) */}
         <div className={`${styles.block} ${styles.block3}`}>
           <div className={styles.illustrationControl}>
-            <img src={iconControl} alt="" className={styles.illustrationImg} />
+            <img src={imgControl} alt="" className={styles.illustrationImg} />
           </div>
           <div className={styles.textContent}>
             <h3 className={styles.title}>Два режима контроля</h3>
@@ -82,6 +84,9 @@ export function BentoGrid({ className = '' }) {
 
         {/* Block 4: Центральный заголовок (row 2, col 2) */}
         <div className={`${styles.block} ${styles.blockCenter}`}>
+          <div className={styles.centerIconWrapper}>
+            <img src={imgCenterIcon} alt="" className={styles.centerIcon} />
+          </div>
           <h2 className={styles.centerTitle}>
             Гибкость<br />и безопасность управления
           </h2>
@@ -90,7 +95,7 @@ export function BentoGrid({ className = '' }) {
         {/* Block 5: 50К знаков (row 2, col 3) */}
         <div className={`${styles.block} ${styles.block5}`}>
           <div className={styles.badge50k}>
-            <span className={styles.badge50kText}>50К знаков</span>
+            <img src={imgBadge50k} alt="50К" className={styles.badge50kImg} />
           </div>
           <div className={styles.textContent}>
             <h3 className={styles.title}>Промт до 50 000 знаков</h3>
@@ -103,7 +108,7 @@ export function BentoGrid({ className = '' }) {
         {/* Block 6: Мгновенная настройка (row 3, col 1) */}
         <div className={`${styles.block} ${styles.block6}`}>
           <div className={styles.iconWrapper}>
-            <img src={iconSettings} alt="" className={styles.icon} />
+            <img src={imgSettings} alt="" className={styles.icon} />
           </div>
           <div className={styles.textContent}>
             <h3 className={styles.title}>Мгновенная настройка</h3>
@@ -122,7 +127,7 @@ export function BentoGrid({ className = '' }) {
             </p>
           </div>
           <div className={styles.illustrationMultibrand}>
-            <img src={iconMultibrand} alt="" className={styles.illustrationImg} />
+            <img src={imgMultibrand} alt="" className={styles.illustrationImg} />
           </div>
         </div>
       </div>

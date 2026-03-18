@@ -73,11 +73,16 @@
   background: linear-gradient(
     135deg,
     rgba(48, 2, 71, 1) 0%,
-    rgba(117, 5, 173, 0.8) 50%,
-    rgba(193, 111, 251, 0.6) 100%
+    rgba(82, 3, 122, 1) 25%,
+    rgba(117, 5, 173, 1) 50%,
+    rgba(155, 58, 212, 1) 75%,
+    rgba(193, 111, 251, 1) 100%
   );
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 12px;
+  padding: 30px 20px;
 }
 
 /* Block 5: row 2, col 3 */
@@ -129,24 +134,46 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 1.6;
+  letter-spacing: -0.01em;
   color: #ead7fe;
   opacity: 0.8;
   margin: 0;
 }
 
 /* ========================================
-   Центральный заголовок
+   Центральный блок
    ======================================== */
+
+.centerIconWrapper {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.centerIcon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
 .centerTitle {
   font-family: 'RF Dewi Extended', var(--font-family-primary);
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1;
   letter-spacing: -0.03em;
-  color: #ead7fe;
   text-align: center;
   margin: 0;
+  background: radial-gradient(
+    ellipse at center,
+    #ffffff 0%,
+    #e0b7fd 50%,
+    #d193fc 75%,
+    #c16ffb 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* ========================================
@@ -169,7 +196,6 @@
 .illustrationLarge {
   width: 340px;
   height: 200px;
-  background: #c16ffb;
   border-radius: 8px;
   overflow: hidden;
   flex-shrink: 0;
@@ -182,7 +208,6 @@
 .illustrationControl {
   width: 90px;
   height: 200px;
-  background: #ead7fe;
   border-radius: 12px;
   overflow: hidden;
   flex-shrink: 0;
@@ -195,7 +220,6 @@
 .illustrationMultibrand {
   width: 340px;
   height: 200px;
-  background: #c16ffb;
   border-radius: 12px;
   overflow: hidden;
   flex-shrink: 0;
@@ -207,33 +231,21 @@
 .illustrationImg {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  border-radius: inherit;
 }
 
-/* Бейдж 50К знаков */
+/* Бейдж 50К */
 .badge50k {
   height: 48px;
-  padding: 0 8px;
-  background: linear-gradient(
-    135deg,
-    rgba(48, 2, 71, 1) 0%,
-    rgba(117, 5, 173, 0.8) 50%,
-    rgba(193, 111, 251, 0.6) 100%
-  );
-  border-radius: 12px;
-  display: inline-flex;
-  align-items: center;
-  width: fit-content;
+  width: 109px;
+  flex-shrink: 0;
 }
 
-.badge50kText {
-  font-family: 'RF Dewi Extended', var(--font-family-primary);
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  color: #c16ffb;
-  white-space: nowrap;
+.badge50kImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 /* ========================================
@@ -341,10 +353,6 @@
   .centerTitle {
     font-size: 24px;
   }
-
-  .badge50kText {
-    font-size: 28px;
-  }
 }
 
 @media (max-width: 640px) {
@@ -374,8 +382,9 @@
     font-size: 20px;
   }
 
-  .badge50kText {
-    font-size: 24px;
+  .badge50k {
+    width: 90px;
+    height: 40px;
   }
 }
 
@@ -411,17 +420,15 @@
     font-size: 18px;
   }
 
-  .iconWrapper {
+  .iconWrapper,
+  .centerIconWrapper {
     width: 40px;
     height: 40px;
   }
 
   .badge50k {
-    height: 40px;
-  }
-
-  .badge50kText {
-    font-size: 20px;
+    width: 80px;
+    height: 36px;
   }
 
   .illustrationLarge,

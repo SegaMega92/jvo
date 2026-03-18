@@ -22,26 +22,31 @@ import vkIcon from '../../../assets/footer/Subtract-4.svg';
 const navLinksColumn1 = [
   { label: 'О сервисе', href: '#' },
   { label: 'Личный кабинет', href: '#' },
-  { label: 'SEO-оптимизация', href: '#' },
   { label: 'Справочник', href: '#' },
+];
+
+const navLinksColumn2 = [
+  { label: 'SEO-оптимизация', href: '#' },
   { label: 'Вакансии', href: '#' },
   { label: 'Рассылки', href: '#' },
 ];
 
-const navLinksColumn2 = [
+const navLinksColumn3 = [
   { label: 'Блог', href: '#' },
   { label: 'Блог на РБК', href: '#' },
   { label: 'Мероприятия', href: '#' },
+];
+
+const navLinksColumn4 = [
   { label: 'Реферальная программа', href: '#' },
   { label: 'Контакты', href: '#' },
 ];
 
-const navLinksColumn3 = [
+const navLinksColumn5 = [
   { label: 'Карта сайта', href: '#' },
   { label: 'Пользовательское соглашение', href: '#' },
-  { label: 'Свидетельства о государственной регистрации ПО', href: '#' },
+  { label: 'Свидетельства о гос. регистрации ПО', href: '#' },
   { label: 'Политика конфиденциальности', href: '#' },
-  { label: 'Реестер стартапов Московского инновационного кластера', href: '#' },
 ];
 
 // Partner badges data
@@ -89,51 +94,47 @@ export function Footer({ className = '' }) {
       <div className={styles.gradientBlur} aria-hidden="true" />
 
       <div className={styles.container}>
-        {/* Top section: Navigation + Social */}
-        <div className={styles.topSection}>
-          <div className={styles.navColumns}>
-            <nav className={styles.navColumn}>
-              {navLinksColumn1.map((link) => (
-                <a key={link.label} href={link.href} className={styles.navLinkPrimary}>
-                  {link.label}
-                </a>
-              ))}
-            </nav>
+        {/* Navigation section - 5 columns */}
+        <div className={styles.navSection}>
+          <nav className={styles.navColumn}>
+            {navLinksColumn1.map((link) => (
+              <a key={link.label} href={link.href} className={styles.navLinkPrimary}>
+                {link.label}
+              </a>
+            ))}
+          </nav>
 
-            <nav className={styles.navColumn}>
-              {navLinksColumn2.map((link) => (
-                <a key={link.label} href={link.href} className={styles.navLinkPrimary}>
-                  {link.label}
-                </a>
-              ))}
-            </nav>
+          <nav className={styles.navColumn}>
+            {navLinksColumn2.map((link) => (
+              <a key={link.label} href={link.href} className={styles.navLinkPrimary}>
+                {link.label}
+              </a>
+            ))}
+          </nav>
 
-            <nav className={styles.navColumnSecondary}>
-              {navLinksColumn3.map((link) => (
-                <a key={link.label} href={link.href} className={styles.navLinkSecondary}>
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-          </div>
+          <nav className={styles.navColumn}>
+            {navLinksColumn3.map((link) => (
+              <a key={link.label} href={link.href} className={styles.navLinkPrimary}>
+                {link.label}
+              </a>
+            ))}
+          </nav>
 
-          <div className={styles.socialLinks}>
-            <a href="#" className={styles.socialLink} aria-label="vc.ru">
-              <img src={vcRuIcon} alt="vc.ru" />
-            </a>
-            <a href="#" className={styles.socialLink} aria-label="YouTube">
-              <img src={youtubeIcon} alt="YouTube" />
-            </a>
-            <a href="#" className={styles.socialLink} aria-label="Дзен">
-              <img src={dzenIcon} alt="Дзен" />
-            </a>
-            <a href="#" className={styles.socialLink} aria-label="Telegram">
-              <img src={telegramIcon} alt="Telegram" />
-            </a>
-            <a href="#" className={styles.socialLink} aria-label="VK">
-              <img src={vkIcon} alt="VK" />
-            </a>
-          </div>
+          <nav className={styles.navColumn}>
+            {navLinksColumn4.map((link) => (
+              <a key={link.label} href={link.href} className={styles.navLinkPrimary}>
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <nav className={styles.navColumnSecondary}>
+            {navLinksColumn5.map((link) => (
+              <a key={link.label} href={link.href} className={styles.navLinkSecondary}>
+                {link.label}
+              </a>
+            ))}
+          </nav>
         </div>
 
         {/* Partners section */}
@@ -155,14 +156,34 @@ export function Footer({ className = '' }) {
           ))}
         </div>
 
-        {/* Bottom section: Company info */}
+        {/* Bottom section: Company info + Social */}
         <div className={styles.bottomSection}>
-          <p className={styles.companyName}>ООО «ДЖИВИО»</p>
-          <p className={styles.companyDetails}>
-            ИНН 7730303699, ОРГН 1237700262172, 121087, г. Москва, ул, Барклая, д. 6, стр. 5 пом. 8H, hi@jvo.ru, +7 499 322-09-33
-          </p>
-          <div className={styles.paymentIcons}>
-            <img src={paymentSystemsLogo} alt="VISA, Mastercard, МИР" />
+          <div className={styles.companyInfo}>
+            <p className={styles.companyName}>ООО «ДЖИВИО»</p>
+            <p className={styles.companyDetails}>
+              ИНН 7730303699, ОРГН 1237700262172, 121087, г. Москва, ул, Барклая, д. 6, стр. 5 пом. 8H, hi@jvo.ru, +7 499 322-09-33
+            </p>
+            <div className={styles.paymentIcons}>
+              <img src={paymentSystemsLogo} alt="VISA, Mastercard, МИР" />
+            </div>
+          </div>
+
+          <div className={styles.socialLinks}>
+            <a href="#" className={styles.socialLink} aria-label="vc.ru">
+              <img src={vcRuIcon} alt="vc.ru" />
+            </a>
+            <a href="#" className={styles.socialLink} aria-label="YouTube">
+              <img src={youtubeIcon} alt="YouTube" />
+            </a>
+            <a href="#" className={styles.socialLink} aria-label="Дзен">
+              <img src={dzenIcon} alt="Дзен" />
+            </a>
+            <a href="#" className={styles.socialLink} aria-label="Telegram">
+              <img src={telegramIcon} alt="Telegram" />
+            </a>
+            <a href="#" className={styles.socialLink} aria-label="VK">
+              <img src={vkIcon} alt="VK" />
+            </a>
           </div>
         </div>
       </div>

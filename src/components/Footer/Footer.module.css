@@ -40,20 +40,14 @@
 }
 
 /* ========================================
-   Top section: Navigation + Social
+   Navigation section - 5 columns
    ======================================== */
 
-.topSection {
+.navSection {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 40px;
+  gap: 24px;
   margin-bottom: 60px;
-}
-
-.navColumns {
-  display: flex;
-  gap: 48px;
 }
 
 .navColumn {
@@ -137,10 +131,17 @@
 }
 
 /* ========================================
-   Bottom section: Company info
+   Bottom section: Company info + Social
    ======================================== */
 
 .bottomSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.companyInfo {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -209,8 +210,8 @@
     max-width: 1168px;
   }
 
-  .navColumns {
-    gap: 40px;
+  .navSection {
+    gap: 20px;
   }
 
   .partnersSection {
@@ -231,28 +232,19 @@
     padding: 32px 16px;
   }
 
-  .topSection {
+  .navSection {
     flex-wrap: wrap;
-    gap: 32px;
+    gap: 24px;
     margin-bottom: 40px;
   }
 
-  .navColumns {
-    flex-wrap: wrap;
-    gap: 32px;
-  }
-
   .navColumn {
-    min-width: 140px;
+    min-width: 120px;
   }
 
   .navColumnSecondary {
-    min-width: 200px;
-  }
-
-  .socialLinks {
-    width: 100%;
-    justify-content: flex-start;
+    min-width: 180px;
+    flex: 1 1 100%;
   }
 
   .partnersSection {
@@ -262,6 +254,16 @@
 
   .partnerBadge {
     flex: 0 0 calc(50% - 12px);
+  }
+
+  .bottomSection {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .socialLinks {
+    align-self: flex-start;
   }
 }
 
@@ -274,15 +276,10 @@
     padding: 40px 16px;
   }
 
-  .topSection {
+  .navSection {
     flex-direction: column;
     gap: 24px;
     margin-bottom: 32px;
-  }
-
-  .navColumns {
-    flex-direction: column;
-    gap: 24px;
   }
 
   .navColumn,

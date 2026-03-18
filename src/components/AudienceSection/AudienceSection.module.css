@@ -267,6 +267,8 @@
     padding: 16px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    scroll-padding: 16px;
   }
 
   .tabsMenu::-webkit-scrollbar {
@@ -277,6 +279,7 @@
     padding: 12px 16px;
     white-space: nowrap;
     flex-shrink: 0;
+    scroll-snap-align: center;
   }
 
   .content {

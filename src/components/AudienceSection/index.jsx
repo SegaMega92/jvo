@@ -89,6 +89,7 @@ export function AudienceSection({
   const [isAnimating, setIsAnimating] = useState(false);
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
+  const tabsRef = useRef([]);
 
   // Анимация появления при скролле
   useEffect(() => {
@@ -115,6 +116,13 @@ export function AudienceSection({
   // Смена таба с анимацией
   const handleTabChange = (index) => {
     if (index === activeTab || isAnimating) return;
+
+    // Скроллим таб в видимую область
+    tabsRef.current[index]?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    });
 
     setIsAnimating(true);
     contentRef.current?.classList.add(styles.fadeOut);
@@ -145,6 +153,7 @@ export function AudienceSection({
           {tabs.map((tab, index) => (
             <button
               key={tab.id}
+              ref={(el) => (tabsRef.current[index] = el)}
               className={`${styles.tabButton} ${index === activeTab ? styles.tabButtonActive : ''}`}
               onClick={() => handleTabChange(index)}
             >

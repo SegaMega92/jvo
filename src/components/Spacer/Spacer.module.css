@@ -1,0 +1,20 @@
+/* Spacer - управляемые отступы между секциями */
+
+.spacer {
+  height: var(--spacer-height, 60px);
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* Адаптив: уменьшаем отступы на мобильных */
+@media (max-width: 960px) {
+  .spacer {
+    height: calc(var(--spacer-height, 60px) * 0.75);
+  }
+}
+
+@media (max-width: 640px) {
+  .spacer {
+    height: calc(var(--spacer-height, 60px) * 0.5);
+  }
+}

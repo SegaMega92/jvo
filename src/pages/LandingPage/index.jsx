@@ -14,7 +14,8 @@ import { AudienceSection } from '../../components/AudienceSection';
 import { LaunchSection } from '../../components/LaunchSection';
 import { ProductsSlider } from '../../components/ProductsSlider';
 import { FAQSection } from '../../components/FAQSection';
-import { AgentChatDemo } from '../../components/Illustrations/AgentChatDemo';
+import { Spacer } from '../../components/Spacer';
+import { AgentWorkflowDemo } from '../../components/Illustrations/AgentWorkflowDemo';
 import illustrationCommunication from '../../../assets/illustration_commenication_1.svg';
 
 // Assets for HeroBlock
@@ -30,8 +31,11 @@ import slideAutoresponse4 from '../../../assets/slide/Работа тональ�
 import slideCrossSell1 from '../../../assets/slide/Умные кросс-продажи.png';
 import slideCrossSell2 from '../../../assets/slide/Умные кросс-продажи2.png';
 import slideCrossSell3 from '../../../assets/slide/Умные кросс-продажи3.png';
-import slideAnalytics from '../../../assets/slide/Аналитические отчеты.png';
-import gradientViolet from '../../../assets/slide/grdaient1.svg';
+import slideAnalytics1 from '../../../assets/slide/Аналитические отчеты.png';
+import slideAnalytics2 from '../../../assets/slide/Аналитические отчеты2.png';
+import slideAnalytics3 from '../../../assets/slide/Аналитические отчеты3.png';
+import slideAnalytics4 from '../../../assets/slide/Аналитические отчеты4.png';
+import gradientViolet from '../../../assets/slide/gradient1.svg';
 import gradientPink from '../../../assets/slide/gradient2.svg';
 import gradientMagenta from '../../../assets/slide/gradient3.svg';
 
@@ -47,11 +51,11 @@ const LeftIllustration = () => (
   </div>
 );
 
-// Обёртка для правой иллюстрации с градиентом и интерактивным AgentChatDemo
+// Обёртка для правой иллюстрации с градиентом и интерактивным AgentWorkflowDemo
 const RightIllustration = () => (
   <div className={styles.illustrationWrapperRight}>
     <div className={styles.dotsPattern} />
-    <AgentChatDemo />
+    <AgentWorkflowDemo />
   </div>
 );
 
@@ -93,6 +97,7 @@ const featureSliderSections = [
     sectionDescription: typograph('Агент обеспечивает экспертную коммуникацию на основе полных технических данных о товаре'),
     buttonText: 'Оставить заявку',
     buttonHref: '#demo',
+    panelBackground: gradientViolet,
     slides: [
       {
         title: typograph('Работа с тональностью'),
@@ -126,6 +131,7 @@ const featureSliderSections = [
     sectionDescription: typograph('Автоматические рекомендации релевантных товаров в ответах с учётом остатков на складах'),
     buttonText: 'Оставить заявку',
     buttonHref: '#demo',
+    panelBackground: gradientPink,
     slides: [
       {
         title: typograph('Рекомендация до 5 артикулов'),
@@ -153,29 +159,30 @@ const featureSliderSections = [
     sectionDescription: typograph('Готовые решения и рекомендации по улучшению продукта на основе обратной связи от покупателей'),
     buttonText: 'Оставить заявку',
     buttonHref: '#demo',
+    panelBackground: gradientMagenta,
     slides: [
       {
         title: 'Для развития продукта',
         description: typograph('Детализирует повторяющиеся запросы и фиксирует незакрытые потребности покупателей для доработки ассортимента и поиска новых точек роста.'),
-        media: <SlideImage src={slideAnalytics} alt="Для развития продукта" />,
+        media: <SlideImage src={slideAnalytics1} alt="Для развития продукта" />,
         background: gradientMagenta,
       },
       {
         title: 'Для производства',
         description: typograph('Систематизирует данные по причинам брака, критическим замечаниям к характеристикам и повторяющимся дефектам товара'),
-        media: <SlideImage src={slideAnalytics} alt="Для производства" />,
+        media: <SlideImage src={slideAnalytics2} alt="Для производства" />,
         background: gradientMagenta,
       },
       {
         title: 'Для маркетинга',
         description: typograph('Выявляет ключевые преимущества продукта по мнению покупателей и формирует рекомендации для позиционирования'),
-        media: <SlideImage src={slideAnalytics} alt="Для маркетинга" />,
+        media: <SlideImage src={slideAnalytics4} alt="Для маркетинга" />,
         background: gradientMagenta,
       },
       {
         title: 'Для логистики',
         description: typograph('Анализирует отзывы о доставке и упаковке, выявляя проблемные зоны в цепочке поставок'),
-        media: <SlideImage src={slideAnalytics} alt="Для логистики" />,
+        media: <SlideImage src={slideAnalytics3} alt="Для логистики" />,
         background: gradientMagenta,
       },
     ],
@@ -212,34 +219,50 @@ export function LandingPage({ className = '' }) {
           />
         </div>
 
+        <Spacer size="xl" />
+
         <MonitoringSection
           title={typograph('Мониторинг и аналитика')}
           subtitle={typograph('Это центр управления и главный движок Дживио. Система ежедневно проводит аудит воронки продаж, выявляет отклонения и формирует готовые задачи для автоматизации через ИИ-Агентов')}
           cards={monitoringCards}
         />
 
+        <Spacer size="xl" />
+
         <FeatureSliderGroup sections={featureSliderSections} />
+
+        <Spacer size="xl" />
 
         <ComparisonSlider
           title="Преимущества Агента перед конкурентами"
           subtitle={typograph('Сравните возможности нашего Агента с типовыми решениями на рынке')}
         />
 
+        <Spacer size="xl" />
+
         <BentoGrid />
+
+        <Spacer size="xl" />
 
         <AudienceSection
           title="Кому необходим Агент коммуникаций"
         />
+
+        <Spacer size="xl" />
 
         <LaunchSection
           title={typograph('Запуск и внедрение системы Дживио')}
           subtitle={typograph('Все необходимые инструменты и поддержка для комфортного старта и эффективной работы команды')}
         />
 
+        <Spacer size="xl" />
+
         <ProductsSlider
           title="Другие решения системы Дживио"
           subtitle={typograph('Для автоматизации бизнеса на маркетплейсах используйте наши ИИ-продукты:')}
         />
+
+        <Spacer size="xl" />
 
         <FAQSection
           title="Часто задаваемые вопросы"

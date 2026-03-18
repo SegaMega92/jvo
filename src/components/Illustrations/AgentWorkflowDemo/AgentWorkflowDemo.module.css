@@ -1,0 +1,293 @@
+/* AgentWorkflowDemo - интерактивная иллюстрация рабочего процесса агента */
+/* Pixel-perfect по макету Figma (node 244-10344) */
+
+/* Внешняя обёртка - занимает всё пространство родителя */
+.wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Контейнер для интерактивных элементов - прозрачный фон */
+.container {
+  position: relative;
+  width: 360px;
+  height: 360px;
+  flex-shrink: 0;
+}
+
+/* ========================================
+   Состояния с crossfade
+   ======================================== */
+.state {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.stateVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ========================================
+   Состояние 1: Кнопка "Автоматизировать"
+   Figma: height 41px, padding 10px 15px 10px 10px, gap 10px
+   ======================================== */
+.automateButton {
+  display: flex;
+  align-items: center;
+  gap: 9.654px;
+  height: 41.028px;
+  padding: 0 14.48px 0 9.654px;
+  background: linear-gradient(104.91deg, #aa50ea 14.597%, #e877ff 111.68%);
+  border: none;
+  border-radius: 9.654px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.automateButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(170, 80, 234, 0.4);
+}
+
+.automateButton:active {
+  transform: scale(0.98);
+}
+
+/* Иконка в кнопке - 29x29px с фоном */
+.automateIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28.961px;
+  height: 28.961px;
+  background: #aa50ea;
+  border-radius: 6px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.automateIcon {
+  width: 22px;
+  height: 22px;
+}
+
+/* Текст кнопки - Golos Text Medium 17px */
+.automateText {
+  font-family: var(--font-family-primary);
+  font-size: 16.894px;
+  font-weight: 500;
+  line-height: 21.721px;
+  white-space: nowrap;
+}
+
+/* ========================================
+   Состояние 2: Иконка + текст агента
+   Figma: width 284px, centered
+   ======================================== */
+.agentHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.agentLogo {
+  height: 24px;
+  width: auto;
+}
+
+/* Описание - RF Dewi Extended Ultrabold 20px */
+.agentDescription {
+  width: 284px;
+  font-family: var(--font-family-heading);
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 20px;
+  letter-spacing: -0.48px;
+  color: #2b2b2b;
+  text-align: center;
+}
+
+/* ========================================
+   Состояние 3: Чат-пузырь + кнопка "Запустить"
+   ======================================== */
+
+/* Чат-пузырь - Figma: left 18px, padding 12px, border-radius 9px */
+.chatBubble {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(calc(-50% - 27.75px));
+  display: flex;
+  flex-direction: column;
+  gap: 7.5px;
+  padding: 12px;
+  background: white;
+  border-radius: 9px;
+  max-width: 486px;
+}
+
+/* Тег агента - Figma: padding 6px 10px, border-radius 12px, gap 6px */
+.agentTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(234, 215, 254, 0.6);
+  border-radius: 12px;
+  width: fit-content;
+}
+
+.agentDot {
+  width: 9px;
+  height: 9px;
+  background: #c16ffb;
+  border-radius: 7.5px;
+  flex-shrink: 0;
+}
+
+/* Figma: Manrope Medium 12px, color #300247 */
+.agentName {
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  color: #300247;
+  white-space: nowrap;
+}
+
+/* Текст чата - Figma: Golos Text Regular 12px, line-height 16.5px, width 300px */
+.chatText {
+  width: 300px;
+  max-width: 300px;
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16.5px;
+  color: #2b2b2b;
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Кнопка "Запустить" - Figma: width 324px, height 41px, bottom center */
+.launchButton {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 133.5px);
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9.654px;
+  width: 324px;
+  height: 41px;
+  padding: 0 14.48px 0 9.654px;
+  background: linear-gradient(111.447deg, #aa50ea 14.597%, #e877ff 111.68%);
+  border: none;
+  border-radius: 9.654px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.launchButtonVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.launchButton:hover {
+  box-shadow: 0 4px 20px rgba(170, 80, 234, 0.4);
+}
+
+.launchButton:active {
+  transform: translate(-50%, -50%) scale(0.98);
+}
+
+.launchIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28.961px;
+  height: 28.961px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.launchIcon {
+  width: 22px;
+  height: 22px;
+}
+
+/* Figma: Golos Text Medium 17px */
+.launchText {
+  font-family: var(--font-family-primary);
+  font-size: 16.894px;
+  font-weight: 500;
+  line-height: 21.721px;
+  white-space: nowrap;
+}
+
+/* ========================================
+   Курсор печатания
+   ======================================== */
+.cursor {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  background: #c16ffb;
+  margin-left: 1px;
+  vertical-align: text-bottom;
+  animation: blink 0.6s infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* ========================================
+   Адаптив - масштабирование для сохранения пропорций
+   ======================================== */
+@media (max-width: 640px) {
+  .container {
+    transform: scale(0.9);
+    transform-origin: center center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    transform: scale(0.8);
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    transform: scale(0.7);
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    transform: scale(0.6);
+  }
+}

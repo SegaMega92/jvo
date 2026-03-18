@@ -1,121 +1,121 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import styles from './FeatureSliderGroup.module.css';
 import { FeatureSlider } from '../FeatureSlider';
 
+// Регистрируем плагины
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
 /**
  * FeatureSliderGroup - обёртка для нескольких FeatureSlider секций
- * При 1 секции: просто рендерит FeatureSlider
- * При нескольких: sticky табы слева + scroll sync + intro анимация
+ * Использует GSAP ScrollTrigger для "прикрепления" секции к viewport
+ * При скролле страницы переключаются табы/секции
  */
 export function FeatureSliderGroup({
   sections = [],
   autoplayInterval = 6000,
-  introDelay = 1500, // Задержка перед разблокировкой скролла
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isIntroComplete, setIsIntroComplete] = useState(false);
-  const [visibleTabs, setVisibleTabs] = useState([]);
-  const groupRef = useRef(null);
-  const sectionRefs = useRef([]);
-  const isScrolling = useRef(false);
-  const hasTriggeredIntro = useRef(false);
+  const [isReady, setIsReady] = useState(false);
+  const containerRef = useRef(null);
+  const pinWrapperRef = useRef(null);
+  const scrollTriggerRef = useRef(null);
 
   const sectionsCount = sections.length;
 
-  // Intersection Observer для запуска intro-анимации
+  // Инициализация GSAP ScrollTrigger (только для десктопа)
   useEffect(() => {
-    if (sectionsCount <= 1 || !groupRef.current) return;
+    if (sectionsCount <= 1 || !containerRef.current || !pinWrapperRef.current) return;
 
-    const triggerObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          // Когда нижняя граница секции появляется в viewport
-          if (entry.isIntersecting && !hasTriggeredIntro.current) {
-            hasTriggeredIntro.current = true;
+    // На мобильных (< 960px) не используем пининг
+    const isMobile = window.matchMedia('(max-width: 960px)').matches;
+    if (isMobile) {
+      setIsReady(true);
+      return;
+    }
 
-            // Анимируем появление точек по очереди
-            sections.forEach((_, index) => {
-              setTimeout(() => {
-                setVisibleTabs((prev) => [...prev, index]);
-              }, index * 200); // Каждая точка появляется с задержкой 200ms
-            });
-
-            // Разблокируем скролл после introDelay
-            setTimeout(() => {
-              setIsIntroComplete(true);
-            }, introDelay);
-          }
-        });
-      },
-      {
-        threshold: 0.1, // Срабатывает когда 10% секции видно
-        rootMargin: '0px 0px -10% 0px', // Немного раньше чем полностью видно
-      }
-    );
-
-    triggerObserver.observe(groupRef.current);
-
-    return () => triggerObserver.disconnect();
-  }, [sectionsCount, introDelay, sections]);
-
-  // Intersection Observer для отслеживания видимой секции (после intro)
-  useEffect(() => {
-    if (sectionsCount <= 1 || !groupRef.current || !isIntroComplete) return;
-
-    const observerOptions = {
-      root: groupRef.current,
-      rootMargin: '-50% 0px -50% 0px',
-      threshold: 0,
-    };
-
-    const observerCallback = (entries) => {
-      if (isScrolling.current) return;
-
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const index = sectionRefs.current.indexOf(entry.target);
-          if (index !== -1) {
-            setActiveIndex(index);
-          }
-        }
+    // Небольшая задержка для корректного расчёта размеров
+    const timer = setTimeout(() => {
+      // Создаём ScrollTrigger с пинингом
+      scrollTriggerRef.current = ScrollTrigger.create({
+        trigger: containerRef.current,
+        pin: pinWrapperRef.current,
+        pinSpacing: true,
+        start: 'top top',
+        // Длина скролла = (количество секций - 1) * 100vh
+        end: `+=${(sectionsCount - 1) * 100}%`,
+        scrub: 0.5, // Плавность привязки к скроллу
+        onUpdate: (self) => {
+          // Вычисляем активный индекс на основе прогресса скролла
+          const progress = self.progress;
+          const newIndex = Math.min(
+            Math.floor(progress * sectionsCount),
+            sectionsCount - 1
+          );
+          setActiveIndex(newIndex);
+        },
+        onEnter: () => setIsReady(true),
+        onLeaveBack: () => setIsReady(false),
       });
+
+      setIsReady(true);
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill();
+      }
+    };
+  }, [sectionsCount]);
+
+  // Обновляем ScrollTrigger при изменении размеров окна
+  useEffect(() => {
+    let resizeTimeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        const isMobile = window.matchMedia('(max-width: 960px)').matches;
+
+        if (isMobile && scrollTriggerRef.current) {
+          // Переход на мобильную версию — убиваем ScrollTrigger
+          scrollTriggerRef.current.kill();
+          scrollTriggerRef.current = null;
+        } else if (!isMobile) {
+          // Обновляем ScrollTrigger
+          ScrollTrigger.refresh();
+        }
+      }, 200);
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    sectionRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
-
-    return () => observer.disconnect();
-  }, [sectionsCount, isIntroComplete]);
-
-  // Клик по табу — скролл к секции
-  const handleTabClick = useCallback((index) => {
-    if (!isIntroComplete) return; // Блокируем клики во время intro
-
-    const section = sectionRefs.current[index];
-    if (!section) return;
-
-    isScrolling.current = true;
-    setActiveIndex(index);
-
-    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-    setTimeout(() => {
-      isScrolling.current = false;
-    }, 1000);
-  }, [isIntroComplete]);
-
-  // Сохраняем ref секции
-  const setSectionRef = useCallback((index) => (el) => {
-    sectionRefs.current[index] = el;
+    window.addEventListener('resize', handleResize);
+    return () => {
+      clearTimeout(resizeTimeout);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
+
+  // Клик по табу — скролл к соответствующей позиции
+  const handleTabClick = useCallback((index) => {
+    if (!scrollTriggerRef.current) return;
+
+    const trigger = scrollTriggerRef.current;
+    const targetProgress = index / (sectionsCount - 1 || 1);
+    const targetScroll = trigger.start + (trigger.end - trigger.start) * targetProgress;
+
+    gsap.to(window, {
+      scrollTo: targetScroll,
+      duration: 0.8,
+      ease: 'power2.inOut',
+    });
+  }, [sectionsCount]);
 
   if (sectionsCount === 0) return null;
 
-  // Если 1 секция — просто FeatureSlider без табов
+  // Если 1 секция — просто FeatureSlider без табов и пининга
   if (sectionsCount === 1) {
     const section = sections[0];
     return (
@@ -130,50 +130,55 @@ export function FeatureSliderGroup({
     );
   }
 
-  // Несколько секций — sticky табы слева + scroll snap + intro
+  // Несколько секций — GSAP ScrollTrigger с пинингом
   return (
-    <div
-      ref={groupRef}
-      className={`${styles.group} ${!isIntroComplete ? styles.locked : ''}`}
-    >
-      {/* Sticky табы слева с анимацией появления */}
-      <nav className={styles.tabs}>
-        <div className={styles.tabsInner}>
+    <div ref={containerRef} className={styles.container}>
+      <div ref={pinWrapperRef} className={styles.pinWrapper}>
+        {/* Sticky табы слева */}
+        <nav className={styles.tabs} aria-label="Навигация по секциям">
+          <div className={styles.tabsInner}>
+            {sections.map((section, index) => (
+              <button
+                key={index}
+                type="button"
+                className={`
+                  ${styles.tab}
+                  ${isReady ? styles.tabVisible : ''}
+                  ${index === activeIndex ? styles.tabActive : ''}
+                `}
+                onClick={() => handleTabClick(index)}
+                aria-label={section.tabTitle}
+                aria-pressed={index === activeIndex}
+              />
+            ))}
+          </div>
+        </nav>
+
+        {/* Секции — показываем только активную */}
+        <div className={styles.sectionsContainer}>
           {sections.map((section, index) => (
-            <button
+            <div
               key={index}
-              type="button"
               className={`
-                ${styles.tab}
-                ${index === activeIndex ? styles.tabActive : ''}
-                ${visibleTabs.includes(index) ? styles.tabVisible : ''}
+                ${styles.section}
+                ${index === activeIndex ? styles.sectionActive : ''}
               `}
-              onClick={() => handleTabClick(index)}
-              aria-label={section.tabTitle}
-              disabled={!isIntroComplete}
-            />
+              aria-hidden={index !== activeIndex}
+            >
+              <FeatureSlider
+                sectionTitle={section.sectionTitle}
+                sectionDescription={section.sectionDescription}
+                buttonText={section.buttonText}
+                buttonHref={section.buttonHref}
+                slides={section.slides}
+                autoplayInterval={autoplayInterval}
+                isActive={index === activeIndex}
+                compact
+                panelBackground={section.panelBackground}
+              />
+            </div>
           ))}
         </div>
-      </nav>
-
-      {/* Секции */}
-      <div className={styles.sections}>
-        {sections.map((section, index) => (
-          <div
-            key={index}
-            ref={setSectionRef(index)}
-            className={styles.sectionWrapper}
-          >
-            <FeatureSlider
-              sectionTitle={section.sectionTitle}
-              sectionDescription={section.sectionDescription}
-              buttonText={section.buttonText}
-              buttonHref={section.buttonHref}
-              slides={section.slides}
-              autoplayInterval={autoplayInterval}
-            />
-          </div>
-        ))}
       </div>
     </div>
   );
@@ -188,10 +193,10 @@ FeatureSliderGroup.propTypes = {
       buttonText: PropTypes.string,
       buttonHref: PropTypes.string,
       slides: PropTypes.array.isRequired,
+      panelBackground: PropTypes.string,
     })
   ).isRequired,
   autoplayInterval: PropTypes.number,
-  introDelay: PropTypes.number,
 };
 
 export default FeatureSliderGroup;

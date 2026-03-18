@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ProductsSlider.module.css';
 import chevronLeft from '../../../assets/chevron-left.svg';
@@ -10,7 +10,7 @@ const defaultProducts = [
     id: 'pricing-agent',
     name: 'Агент ценообразования',
     description: 'Управление ценами на основе данных о воронке продаж, текущих остатках и динамике спроса',
-    color: 'violet', // violet или gray
+    color: 'violet',
   },
   {
     id: 'reports-agent',
@@ -34,7 +34,7 @@ const defaultProducts = [
 
 /**
  * ProductsSlider - секция "Другие решения системы Дживио"
- * Горизонтальный слайдер с карточками продуктов
+ * Горизонтальный слайдер с карточками продуктов (бесконечный цикл)
  */
 export function ProductsSlider({
   title = 'Другие решения системы Дживио',
@@ -42,14 +42,39 @@ export function ProductsSlider({
   products = defaultProducts,
   className = '',
 }) {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-  const sliderRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [cardWidth, setCardWidth] = useState(560);
+  const trackRef = useRef(null);
   const sectionRef = useRef(null);
-  const isDraggingRef = useRef(false);
-  const startX = useRef(0);
-  const scrollLeftRef = useRef(0);
+  const touchStartX = useRef(0);
+
+  const productsCount = products.length;
+  const gap = 20;
+
+  // Клонируем: добавляем копии по краям для бесшовного цикла
+  // Нужно минимум 2-3 клона с каждой стороны чтобы заполнить viewport
+  const extendedProducts = [
+    { ...products[productsCount - 2], _key: 'clone-start-2' },
+    { ...products[productsCount - 1], _key: 'clone-start-1' },
+    ...products.map((p, i) => ({ ...p, _key: `original-${i}` })),
+    { ...products[0], _key: 'clone-end-1' },
+    { ...products[1], _key: 'clone-end-2' },
+  ];
+
+  // Измеряем ширину карточки
+  useEffect(() => {
+    const measureCard = () => {
+      const card = trackRef.current?.querySelector(`.${styles.card}`);
+      if (card) {
+        setCardWidth(card.offsetWidth);
+      }
+    };
+
+    measureCard();
+    window.addEventListener('resize', measureCard);
+    return () => window.removeEventListener('resize', measureCard);
+  }, []);
 
   // Анимация появления при скролле
   useEffect(() => {
@@ -73,78 +98,76 @@ export function ProductsSlider({
     return () => observer.disconnect();
   }, []);
 
-  // Обновление состояния кнопок навигации
-  const updateScrollState = () => {
-    if (!sliderRef.current) return;
+  // Обработка окончания transition для бесшовного цикла
+  const handleTransitionEnd = useCallback(() => {
+    setIsTransitioning(false);
 
-    const { scrollLeft: sl, scrollWidth, clientWidth } = sliderRef.current;
-    setScrollPosition(sl);
-    setCanScrollLeft(sl > 0);
-    setCanScrollRight(sl < scrollWidth - clientWidth - 10);
+    // Если вышли за границы реальных элементов — прыгаем обратно
+    if (currentIndex < 0 || currentIndex >= productsCount) {
+      const track = trackRef.current;
+      if (!track) return;
+
+      // Вычисляем новый индекс (зацикливаем)
+      let newIndex;
+      if (currentIndex < 0) {
+        newIndex = productsCount + currentIndex; // -1 -> productsCount - 1, -2 -> productsCount - 2
+      } else {
+        newIndex = currentIndex - productsCount; // productsCount -> 0, productsCount + 1 -> 1
+      }
+
+      const newOffset = -((newIndex + 2) * (cardWidth + gap));
+
+      // Отключаем transition напрямую через DOM
+      track.style.transition = 'none';
+      track.style.transform = `translateX(${newOffset}px)`;
+
+      // Форсируем reflow чтобы браузер применил изменения
+      track.offsetHeight;
+
+      // Включаем transition обратно
+      track.style.transition = '';
+
+      // Синхронизируем React state
+      setCurrentIndex(newIndex);
+    }
+  }, [currentIndex, productsCount, cardWidth, gap]);
+
+  // Навигация
+  const goTo = useCallback((direction) => {
+    if (isTransitioning) return;
+
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev + direction);
+  }, [isTransitioning]);
+
+  const goNext = useCallback(() => goTo(1), [goTo]);
+  const goPrev = useCallback(() => goTo(-1), [goTo]);
+
+  // Touch/drag обработчики
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches ? e.touches[0].clientX : e.clientX;
   };
 
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider) return;
+  const handleTouchEnd = (e) => {
+    const endX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+    const diff = touchStartX.current - endX;
+    const threshold = 50;
 
-    slider.addEventListener('scroll', updateScrollState);
-    updateScrollState();
-
-    return () => slider.removeEventListener('scroll', updateScrollState);
-  }, []);
-
-  // Скролл на одну карточку
-  const scroll = (direction) => {
-    if (!sliderRef.current) return;
-
-    const cardWidth = 560; // ширина карточки + gap
-    const newPosition = scrollPosition + (direction === 'left' ? -cardWidth : cardWidth);
-
-    sliderRef.current.scrollTo({
-      left: newPosition,
-      behavior: 'smooth',
-    });
-  };
-
-  // Drag-обработчики
-  const handleMouseDown = (e) => {
-    isDraggingRef.current = true;
-    startX.current = e.pageX - sliderRef.current.offsetLeft;
-    scrollLeftRef.current = sliderRef.current.scrollLeft;
-    sliderRef.current.classList.add(styles.dragging);
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDraggingRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - sliderRef.current.offsetLeft;
-    const walk = (x - startX.current) * 1.5;
-    sliderRef.current.scrollLeft = scrollLeftRef.current - walk;
-  };
-
-  const handleMouseUp = () => {
-    isDraggingRef.current = false;
-    sliderRef.current?.classList.remove(styles.dragging);
-  };
-
-  const handleMouseLeave = () => {
-    if (isDraggingRef.current) {
-      isDraggingRef.current = false;
-      sliderRef.current?.classList.remove(styles.dragging);
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        goNext();
+      } else {
+        goPrev();
+      }
     }
   };
 
-  // Touch-обработчики
-  const handleTouchStart = (e) => {
-    startX.current = e.touches[0].pageX;
-    scrollLeftRef.current = sliderRef.current.scrollLeft;
-  };
+  // Вычисляем смещение трека
+  // currentIndex 0 = первый реальный продукт (index 2 в extendedProducts, т.к. 2 клона в начале)
+  const trackOffset = -((currentIndex + 2) * (cardWidth + gap));
 
-  const handleTouchMove = (e) => {
-    const x = e.touches[0].pageX;
-    const walk = (startX.current - x) * 1.5;
-    sliderRef.current.scrollLeft = scrollLeftRef.current + walk;
-  };
+  // Определяем нужна ли анимация
+  const shouldAnimate = isTransitioning;
 
   return (
     <section className={`${styles.section} ${className}`} ref={sectionRef}>
@@ -156,55 +179,54 @@ export function ProductsSlider({
 
       {/* Слайдер */}
       <div className={`${styles.sliderWrapper} ${styles.animateIn}`}>
-        <div
-          className={`${styles.slider} ${
-            !canScrollLeft && canScrollRight ? styles.fadeRight :
-            canScrollLeft && canScrollRight ? styles.fadeBoth :
-            canScrollLeft && !canScrollRight ? styles.fadeLeft : ''
-          }`}
-          ref={sliderRef}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseLeave}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-        >
-          {products.map((product) => (
-            <div key={product.id} className={styles.card}>
-              <div className={styles.cardContent}>
-                <div className={`${styles.tag} ${product.color === 'violet' ? styles.tagViolet : styles.tagGray}`}>
-                  <div className={`${styles.tagIcon} ${product.color === 'violet' ? styles.tagIconViolet : styles.tagIconGray}`}>
-                    {product.icon && <img src={product.icon} alt="" className={styles.tagIconImg} />}
+        <div className={styles.sliderViewport}>
+          <div
+            ref={trackRef}
+            className={styles.track}
+            style={{
+              transform: `translateX(${trackOffset}px)`,
+              transition: shouldAnimate ? 'transform 0.4s ease-out' : 'none',
+            }}
+            onTransitionEnd={handleTransitionEnd}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onMouseDown={handleTouchStart}
+            onMouseUp={handleTouchEnd}
+          >
+            {extendedProducts.map((product) => (
+              <div key={product._key} className={styles.card}>
+                <div className={styles.cardContent}>
+                  <div className={`${styles.tag} ${product.color === 'violet' ? styles.tagViolet : styles.tagGray}`}>
+                    <div className={`${styles.tagIcon} ${product.color === 'violet' ? styles.tagIconViolet : styles.tagIconGray}`}>
+                      {product.icon && <img src={product.icon} alt="" className={styles.tagIconImg} />}
+                    </div>
+                    <span className={`${styles.tagText} ${product.color === 'violet' ? styles.tagTextViolet : styles.tagTextGray}`}>
+                      {product.name}
+                    </span>
                   </div>
-                  <span className={`${styles.tagText} ${product.color === 'violet' ? styles.tagTextViolet : styles.tagTextGray}`}>
-                    {product.name}
-                  </span>
+                  <p className={styles.cardDescription}>{product.description}</p>
                 </div>
-                <p className={styles.cardDescription}>{product.description}</p>
+                <div className={`${styles.cardImage} ${product.color === 'violet' ? styles.cardImageViolet : styles.cardImageGray}`}>
+                  {product.image && <img src={product.image} alt="" className={styles.cardImg} />}
+                </div>
               </div>
-              <div className={`${styles.cardImage} ${product.color === 'violet' ? styles.cardImageViolet : styles.cardImageGray}`}>
-                {product.image && <img src={product.image} alt="" className={styles.cardImg} />}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Навигация */}
       <div className={styles.navigation}>
         <button
-          className={`${styles.navButton} ${!canScrollLeft ? styles.navButtonDisabled : ''}`}
-          onClick={() => scroll('left')}
-          disabled={!canScrollLeft}
+          className={styles.navButton}
+          onClick={goPrev}
           aria-label="Предыдущий"
         >
           <img src={chevronLeft} alt="" className={styles.arrowIcon} />
         </button>
         <button
-          className={`${styles.navButton} ${!canScrollRight ? styles.navButtonDisabled : ''}`}
-          onClick={() => scroll('right')}
-          disabled={!canScrollRight}
+          className={styles.navButton}
+          onClick={goNext}
           aria-label="Следующий"
         >
           <img src={chevronRight} alt="" className={styles.arrowIcon} />

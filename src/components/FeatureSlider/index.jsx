@@ -13,10 +13,14 @@ export function FeatureSlider({
   buttonText = 'Оставить заявку',
   buttonHref = '#demo',
   slides = [],
-  autoplayInterval = 6000,
+  autoplayInterval = 8000,
+  isActive = true, // Контроль autoplay для неактивных секций
+  compact = false, // Компактный режим для использования в pinned группе
+  panelBackground, // URL градиента для фона плашки слайдера
 }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [animationKey, setAnimationKey] = useState(0);
+  const [autoplayPaused, setAutoplayPaused] = useState(false);
   const timerRef = useRef(null);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -35,9 +39,29 @@ export function FeatureSlider({
     setAnimationKey((prev) => prev + 1);
   }, [slidesCount]);
 
-  // Автопрокрутка через setTimeout
+  // Ручное переключение — останавливает autoplay
+  const handleManualNext = useCallback(() => {
+    setAutoplayPaused(true);
+    goToNext();
+  }, [goToNext]);
+
+  const handleManualPrev = useCallback(() => {
+    setAutoplayPaused(true);
+    goToPrev();
+  }, [goToPrev]);
+
+  // Сброс паузы и слайда при смене активной секции
   useEffect(() => {
-    if (slidesCount <= 1) return;
+    if (isActive) {
+      setAutoplayPaused(false);
+      setCurrentSlide(0);
+      setAnimationKey((prev) => prev + 1);
+    }
+  }, [isActive]);
+
+  // Автопрокрутка через setTimeout (только когда секция активна и autoplay не остановлен)
+  useEffect(() => {
+    if (slidesCount <= 1 || !isActive || autoplayPaused) return;
 
     timerRef.current = setTimeout(() => {
       goToNext();
@@ -48,7 +72,7 @@ export function FeatureSlider({
         clearTimeout(timerRef.current);
       }
     };
-  }, [currentSlide, autoplayInterval, slidesCount, goToNext, animationKey]);
+  }, [currentSlide, autoplayInterval, slidesCount, goToNext, animationKey, isActive, autoplayPaused]);
 
   // Обработка свайпов
   const handleTouchStart = (e) => {
@@ -64,6 +88,7 @@ export function FeatureSlider({
     const minSwipeDistance = 50;
 
     if (Math.abs(diff) > minSwipeDistance) {
+      setAutoplayPaused(true);
       if (diff > 0) {
         goToNext();
       } else {
@@ -77,7 +102,7 @@ export function FeatureSlider({
   if (slidesCount === 0) return null;
 
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${compact ? styles.sectionCompact : ''}`}>
       <div className={styles.container}>
         {/* Левая часть: текст + кнопка (десктоп) */}
         <div className={styles.content}>
@@ -94,7 +119,7 @@ export function FeatureSlider({
 
         {/* Правая часть: медиа + слайдер */}
         <div
-          className={styles.sliderWrapper}
+          className={`${styles.sliderWrapper} ${compact ? styles.sliderWrapperCompact : ''}`}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -106,8 +131,15 @@ export function FeatureSlider({
               <div
                 key={`bg-${index}`}
                 className={`${styles.mediaBg} ${index === currentSlide ? styles.mediaBgActive : ''}`}
-                style={slide.background ? { backgroundImage: `url(${slide.background})` } : undefined}
-              />
+              >
+                {slide.background && (
+                  <img
+                    src={slide.background}
+                    alt=""
+                    className={styles.mediaBgImg}
+                  />
+                )}
+              </div>
             ))}
             {/* Контент слайдов */}
             {slides.map((slide, index) => (
@@ -121,7 +153,10 @@ export function FeatureSlider({
           </div>
 
           {/* Плашка слайдера */}
-          <div className={styles.sliderPanel}>
+          <div
+            className={styles.sliderPanel}
+            style={panelBackground ? { backgroundImage: `url(${panelBackground})` } : undefined}
+          >
             <div className={styles.sliderContent}>
               <div className={styles.sliderText}>
                 <p className={styles.sliderTitle}>{currentSlideData.title}</p>
@@ -134,7 +169,7 @@ export function FeatureSlider({
                   <button
                     type="button"
                     className={styles.navButton}
-                    onClick={goToPrev}
+                    onClick={handleManualPrev}
                     aria-label="Предыдущий слайд"
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -150,7 +185,7 @@ export function FeatureSlider({
                   <button
                     type="button"
                     className={styles.navButton}
-                    onClick={goToNext}
+                    onClick={handleManualNext}
                     aria-label="Следующий слайд"
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -167,8 +202,8 @@ export function FeatureSlider({
               )}
             </div>
 
-            {/* Прогресс-бар */}
-            {slidesCount > 1 && (
+            {/* Прогресс-бар (скрывается когда autoplay остановлен) */}
+            {slidesCount > 1 && !autoplayPaused && (
               <div className={styles.progressBar}>
                 <div
                   key={animationKey}
@@ -205,6 +240,9 @@ FeatureSlider.propTypes = {
     })
   ).isRequired,
   autoplayInterval: PropTypes.number,
+  isActive: PropTypes.bool, // Контроль autoplay
+  compact: PropTypes.bool, // Компактный режим для pinned группы
+  panelBackground: PropTypes.string, // URL градиента для фона плашки
 };
 
 export default FeatureSlider;

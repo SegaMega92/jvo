@@ -55,48 +55,26 @@
 .sliderWrapper {
   position: relative;
   width: 100%;
+  padding-left: 20px;
 }
 
-.slider {
+/* Viewport обрезает контент и добавляет fade справа */
+.sliderViewport {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, black 0%, black calc(100% - 120px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 0%, black calc(100% - 120px), transparent 100%);
+}
+
+/* Track двигается через transform */
+.track {
   display: flex;
   gap: 20px;
-  padding-left: 20px;
-  padding-right: 40px;
-  width: 100%;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
   cursor: grab;
   user-select: none;
 }
 
-.slider::-webkit-scrollbar {
-  display: none;
-}
-
-.slider.dragging {
+.track:active {
   cursor: grabbing;
-  scroll-snap-type: none;
-}
-
-/* Маска для плавного затухания карточек */
-/* Исходное состояние: fade только справа */
-.slider.fadeRight {
-  mask-image: linear-gradient(to right, black 0%, black calc(100% - 100px), transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, black 0%, black calc(100% - 100px), transparent 100%);
-}
-
-/* Прокрутили: fade с обеих сторон */
-.slider.fadeBoth {
-  mask-image: linear-gradient(to right, transparent 0%, black 100px, black calc(100% - 100px), transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 100px, black calc(100% - 100px), transparent 100%);
-}
-
-/* В конце: fade только слева */
-.slider.fadeLeft {
-  mask-image: linear-gradient(to right, transparent 0%, black 100px, black 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 100px, black 100%);
 }
 
 /* ========================================
@@ -115,7 +93,6 @@
   background: #f6f6f9;
   border-radius: 16px;
   overflow: hidden;
-  scroll-snap-align: start;
 }
 
 .cardContent {
@@ -321,9 +298,11 @@
     font-size: 16px;
   }
 
-  .slider {
+  .sliderWrapper {
     padding-left: 16px;
-    padding-right: 32px;
+  }
+
+  .track {
     gap: 16px;
   }
 
@@ -390,9 +369,11 @@
     font-size: 14px;
   }
 
-  .slider {
+  .sliderWrapper {
     padding-left: 12px;
-    padding-right: 24px;
+  }
+
+  .track {
     gap: 12px;
   }
 

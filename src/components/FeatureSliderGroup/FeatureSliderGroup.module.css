@@ -1,39 +1,37 @@
-/* FeatureSliderGroup - sticky табы-точки слева + scroll snap + intro анимация */
+/* FeatureSliderGroup - GSAP ScrollTrigger с пинингом */
 
-.group {
+/* Контейнер — задаёт высоту для ScrollTrigger */
+.container {
   position: relative;
   background: #300247;
-  height: 100vh;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
 }
 
-/* Блокировка скролла во время intro-анимации */
-.locked {
-  overflow: hidden;
+/* Обёртка для пининга — занимает весь viewport */
+.pinWrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Sticky табы — позиционируются слева */
+/* Табы слева — фиксированная позиция внутри pinWrapper */
 .tabs {
-  position: sticky;
+  position: absolute;
+  left: 24px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 50;
-  pointer-events: none;
-  height: 0;
 }
 
 .tabsInner {
-  position: absolute;
-  left: 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  pointer-events: auto;
 }
 
-/* Таб-точка — изначально скрыта */
+/* Таб-точка */
 .tab {
   width: 12px;
   height: 12px;
@@ -42,52 +40,59 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  /* Начальное состояние — невидимая и смещённая */
+  /* Начальное состояние — невидимая */
   opacity: 0;
-  transform: scale(0) translateX(-20px);
+  transform: scale(0);
   transition:
     opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
     transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
     background 0.3s ease;
 }
 
-/* Видимая точка — появляется с анимацией */
+/* Видимая точка */
 .tabVisible {
   opacity: 1;
-  transform: scale(1) translateX(0);
+  transform: scale(1);
 }
 
-.tab:hover:not(:disabled) {
+.tab:hover {
   background: rgba(255, 255, 255, 0.5);
-  transform: scale(1.2) translateX(0);
-}
-
-.tab:disabled {
-  cursor: default;
+  transform: scale(1.2);
 }
 
 .tabActive {
-  background: #c16ffb;
-  transform: scale(1.2) translateX(0);
+  background: #c16ffb !important;
+  transform: scale(1.2);
 }
 
-.tabActive:hover {
-  background: #c16ffb;
+/* Контейнер секций — для crossfade */
+.sectionsContainer {
+  position: relative;
+  width: 100%;
 }
 
-/* Секции */
-.sections {
-  display: flex;
-  flex-direction: column;
+/* Секция — абсолютное позиционирование для crossfade */
+.section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  pointer-events: none;
 }
 
-.sectionWrapper {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+/* Первая секция — относительная позиция для сохранения высоты */
+.section:first-child {
+  position: relative;
 }
 
-.sectionWrapper + .sectionWrapper {
-  margin-top: 180px;
+/* Активная секция */
+.sectionActive {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 /* ========================================
@@ -95,32 +100,32 @@
    ======================================== */
 
 @media (max-width: 1200px) {
-  .tabsInner {
+  .tabs {
     left: 16px;
   }
 }
 
 @media (max-width: 960px) {
-  /* На мобильных убираем snap, табы и intro */
-  .group {
-    height: auto;
-    overflow: visible;
-    scroll-snap-type: none;
-  }
-
-  .locked {
-    overflow: visible;
+  /* На мобильных отключаем пининг — обычный вертикальный layout */
+  .pinWrapper {
+    min-height: auto;
+    display: block;
   }
 
   .tabs {
     display: none;
   }
 
-  .sectionWrapper {
-    scroll-snap-align: none;
+  .sectionsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
   }
 
-  .sectionWrapper + .sectionWrapper {
-    margin-top: 80px;
+  .section {
+    position: relative !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
 }

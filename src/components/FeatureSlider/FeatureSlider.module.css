@@ -344,20 +344,25 @@
 
 @media (max-width: 640px) {
   .section {
-    padding: 48px 16px;
+    padding: 40px 16px;
+    min-height: auto;
+  }
+
+  .container {
+    gap: 24px;
   }
 
   .content {
-    gap: 20px;
-  }
-
-  .text {
     gap: 16px;
   }
 
+  .text {
+    gap: 12px;
+  }
+
   .title {
-    font-size: 24px;
-    letter-spacing: -0.72px;
+    font-size: 22px;
+    letter-spacing: -0.66px;
   }
 
   .description {
@@ -365,17 +370,49 @@
   }
 
   .sliderWrapper {
-    gap: 16px;
+    gap: 12px;
+    max-width: 100%;
   }
 
+  /* Увеличенная область для медиа - занимает больше экрана */
   .mediaArea {
-    min-height: 280px;
+    min-height: 45vh;
+    max-height: 55vh;
+    aspect-ratio: 4 / 3;
+  }
+
+  /* Картинки внутри слайдов масштабируются */
+  .mediaSlide {
+    padding: 16px;
+  }
+
+  .mediaSlide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .sliderPanel {
+    border-radius: 12px;
   }
 
   .sliderContent {
     flex-direction: column;
-    gap: 16px;
-    padding: 16px;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .sliderText {
+    gap: 6px;
+  }
+
+  .sliderTitle {
+    font-size: 14px;
+  }
+
+  .sliderDescription {
+    font-size: 13px;
+    line-height: 1.5;
   }
 
   .sliderNav {
@@ -390,5 +427,36 @@
   .navButton svg {
     width: 20px;
     height: 20px;
+  }
+
+  .progressBar {
+    height: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 32px 12px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .description {
+    font-size: 13px;
+  }
+
+  .mediaArea {
+    min-height: 40vh;
+    max-height: 50vh;
+  }
+
+  .sliderTitle {
+    font-size: 13px;
+  }
+
+  .sliderDescription {
+    font-size: 12px;
   }
 }
